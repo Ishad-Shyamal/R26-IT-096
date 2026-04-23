@@ -8,3 +8,8 @@ Server Setup
 2. Open your microservice folder in terminal and run "npm install" or "npm i"
 3. Open all microservice folders one at a time and run "npm install" or "npm i" to run all 4 microservices
 4. Create .env file in your microservice folder directly.
+
+Client Setup
+
+1. Open the client folder in terminal and run "npm install" or "npm i"
+2. Then run "npm run dev"
