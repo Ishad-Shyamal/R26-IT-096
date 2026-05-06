@@ -1,0 +1,11 @@
+# Data Manipulation & Math
+pandas
+numpy
+
+# Machine Learning & AI
+scikit-learn
+xgboost
+tensorflow
+
+# Database & Integration
+pymongo
