@@ -89,7 +89,9 @@ coverage/
 ############################
 #  IDE & EDITORS
 ############################
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 .idea/
 *.suo
 *.ntvs*
@@ -126,3 +128,12 @@ temp/
 *.seed
 *.tgz
 *.gz
+
+############################
+#  DATASETS (Too large for GitHub)
+############################
+**/data/raw/*.csv
+**/data/raw/*.json
+**/data/raw/*.xlsx
+**/data/processed/*.csv
+**/data/processed/*.json
