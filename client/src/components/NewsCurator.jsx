@@ -3,7 +3,7 @@ import  { useState } from "react";
 import Navbar from "./News/Navbar";
 import NewsFeed from "./News/NewsFeed";
 import IPLPrediction from "./News/IPLPrediction";
-import PerformanceIntelligence from "./News/PerformanceIntelligence";
+//import PerformanceIntelligence from "./News/PerformanceIntelligence";
 import QueryEngine from "./News/QueryEngine";
 
 // IMPORTANT
@@ -50,10 +50,10 @@ export default function NewsCurator() {
         {/* Performance Intelligence Section */}
         <div className="bg-gray-900 rounded-2xl shadow-lg p-6">
           <h2 className="text-2xl font-bold mb-4 text-cyan-400">
-            Performance Intelligence
+            
           </h2>
 
-          <PerformanceIntelligence />
+          {/* <PerformanceIntelligence /> */}
         </div>
 
         {/* Query Engine Section */}

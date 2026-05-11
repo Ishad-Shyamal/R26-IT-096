@@ -2,9 +2,9 @@ import { useApp } from "../context/AppContext";
 import type { Tab } from "../context/AppContext";
 
 const tabs: { id: Tab; label: string; icon: string; desc: string }[] = [
-  { id: "feed", label: "News Feed", icon: "📰", desc: "Personalized" },
-  { id: "intelligence", label: "Performance Intelligence", icon: "📊", desc: "Player Insights" },
   { id: "prediction", label: "IPL Prediction", icon: "🏏", desc: "Selection Forecast" },
+  { id: "feed", label: "News Feed", icon: "📰", desc: "Personalized" },
+ // { id: "intelligence", label: "Performance Intelligence", icon: "📊", desc: "Player Insights" },
   { id: "query", label: "Query Engine", icon: "🔍", desc: "Ask Cricket AI" },
 ];
 
@@ -20,7 +20,7 @@ export default function Navbar() {
             🏏
           </div>
           <div>
-            <h1 className="text-white font-bold text-lg leading-none tracking-tight">CricketIQ</h1>
+            <h1 className="text-white font-bold text-lg leading-none tracking-tight">InsightCric</h1>
             <p className="text-slate-400 text-xs mt-0.5">Intelligent Cricket News Module</p>
           </div>
         </div>

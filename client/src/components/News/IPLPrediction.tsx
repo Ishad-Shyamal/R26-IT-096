@@ -30,13 +30,13 @@ export default function IPLPrediction() {
   const lowProbPlayers = playersWithProb.filter(p => p.iplProb < threshold);
 
   // Pie chart: selected vs not selected
-  const selectionPie = useMemo(() => {
+ /* const selectionPie = useMemo(() => {
     const sel = players.filter(p => p.was_selected === 1).length;
     return [
       { name: "IPL Selected", value: sel },
       { name: "Not Selected", value: players.length - sel },
     ];
-  }, []);
+  }, []);*/
 
   // Probability distribution bins
   const probDistribution = useMemo(() => {
@@ -97,7 +97,7 @@ export default function IPLPrediction() {
         </div>
       </div>
 
-      {/* Model Explanation */}
+      {/* Model Explanation 
       <div className="bg-gradient-to-r from-slate-800/80 to-slate-800/40 border border-slate-700/60 rounded-2xl p-5 grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2">
@@ -122,7 +122,7 @@ export default function IPLPrediction() {
         </div>
       </div>
 
-      {/* Stats Row */}
+      {/* Stats Row 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Predicted Selected", value: players.filter(p => getIPLProbability(p) >= 0.5).length, color: "text-emerald-400", bg: "from-emerald-500 to-emerald-600" },
@@ -137,26 +137,25 @@ export default function IPLPrediction() {
         ))}
       </div>
 
-      {/* Charts Row */}
+      {/* Charts Row 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Pie Chart */}
-        <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 space-y-3">
-          <h3 className="text-white font-semibold text-sm">IPL Selection Breakdown</h3>
-          <ResponsiveContainer width="100%" height={220}>
+        <div>
+          <ResponsiveContainer>
             <PieChart>
-              <Pie
+              {/* <Pie
                 data={selectionPie}
                 cx="50%"
                 cy="50%"
                 innerRadius={55}
-                outerRadius={85}
+                outerRadius={85} 
                 dataKey="value"
                 paddingAngle={4}
               >
                 {selectionPie.map((_, idx) => (
                   <Cell key={idx} fill={idx === 0 ? "#22c55e" : "#334155"} />
                 ))}
-              </Pie>
+              </Pie>*/}
               <Legend
                 iconType="circle"
                 wrapperStyle={{ fontSize: "11px", color: "#94a3b8" }}
@@ -169,7 +168,7 @@ export default function IPLPrediction() {
           </ResponsiveContainer>
         </div>
 
-        {/* Probability Distribution */}
+        {/* Probability Distribution 
         <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 space-y-3">
           <h3 className="text-white font-semibold text-sm">IPL Probability Distribution</h3>
           <ResponsiveContainer width="100%" height={220}>
@@ -184,9 +183,9 @@ export default function IPLPrediction() {
               <Bar dataKey="count" fill="#a855f7" radius={[6, 6, 0, 0]} name="Players" />
             </BarChart>
           </ResponsiveContainer>
-        </div>
+        </div>*/}
 
-        {/* Tournament Selection Rate */}
+        {/* Tournament Selection Rate 
         <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 space-y-3">
           <h3 className="text-white font-semibold text-sm">Selection Rate by Tournament</h3>
           <div className="space-y-4 pt-2">
@@ -213,9 +212,9 @@ export default function IPLPrediction() {
             ))}
           </div>
         </div>
-      </div>
+      </div>*/}
 
-      {/* Top 20 Trend */}
+      {/* Top 20 Trend 
       <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 space-y-3">
         <h3 className="text-white font-semibold text-sm">Top 20 Players: Performance Score vs IPL Probability</h3>
         <ResponsiveContainer width="100%" height={220}>
@@ -232,7 +231,7 @@ export default function IPLPrediction() {
             <Line type="monotone" dataKey="prob" stroke="#22c55e" strokeWidth={2} dot={{ fill: "#22c55e", r: 3 }} name="IPL Prob %" />
           </LineChart>
         </ResponsiveContainer>
-      </div>
+      </div>/* End of Trend Chart */}
 
       {/* Player Prediction Table */}
       <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl overflow-hidden">
