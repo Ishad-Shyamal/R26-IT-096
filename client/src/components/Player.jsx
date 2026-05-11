@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Users, Globe, Target, Brain, Activity } from 'lucide-react';
 import Navbar from './Navbar';
 
 const Player = () => {
+  const navigate = useNavigate();
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [selectedMatchType, setSelectedMatchType] = useState('');
@@ -152,10 +154,13 @@ const Player = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (selectedCountry && selectedPlayer && selectedMatchType) {
-      console.log('Player selected:', {
-        country: countries.find(c => c.code === selectedCountry)?.name,
-        player: selectedPlayer,
-        matchType: selectedMatchType,
+      const countryName = countries.find(c => c.code === selectedCountry)?.name;
+      navigate('/prediction', {
+        state: {
+          country: countryName,
+          playerName: selectedPlayer,
+          matchType: selectedMatchType,
+        }
       });
     }
   };
