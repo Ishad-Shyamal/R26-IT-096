@@ -13,3 +13,11 @@ Client Setup
 
 1. Open the client folder in terminal and run "npm install" or "npm i"
 2. Then run "npm run dev"
+
+Instructions for Prediction Part
+1. Download CSV files for a tournament from ESPNcricinfo.
+2. Move them into the 'data' folder in microservice-2.
+3. Open terminal in microservice-2 and Run: 
+   python scripts/data_processor.py
+   python scripts/train_model.py
+   python scripts/verify_model.py
