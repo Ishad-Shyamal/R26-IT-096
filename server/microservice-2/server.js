@@ -1,29 +1,29 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require('path');
 require("dotenv").config();
 const { spawn } = require('child_process'); // Module to run python scripts
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
-app.use(cors())
 
 app.get("/", (req, res) => {
-  res.send("Microservice 2 is Running");
+    res.send("Microservice 2 is Running");
 });
 
 app.post('/api/predict', (req, res) => {
-    const { country, category, playerName } = req.body;
+    const { playerName, country, category } = req.body;
 
-    // Use .exe for Windows, just 'python' for others
-    const pythonPath = process.platform === "win32" ? './venv/Scripts/python.exe' : './venv/bin/python'; 
-    
-    const pythonProcess = spawn(pythonPath, [
-        './scripts/predict.py', 
-        country, 
-        category, 
-        playerName
+    const pythonExecutable = path.join(__dirname, 'venv', 'Scripts', 'python.exe');
+    const scriptPath = path.join(__dirname, 'scripts', 'predict.py');
+
+    const pythonProcess = spawn(pythonExecutable, [
+        scriptPath,
+        playerName,
+        country,
+        category
     ]);
 
     let resultData = '';
@@ -53,10 +53,10 @@ app.post('/api/predict', (req, res) => {
 });
 
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("Player Performance Database Connected"))
-  .catch(err => console.log(err));
+    .then(() => console.log("Player Performance Database Connected"))
+    .catch(err => console.log(err));
 
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => {
-  console.log(`Microservice 2 is running on port ${PORT}`);
+    console.log(`Microservice 2 is running on port ${PORT}`);
 });

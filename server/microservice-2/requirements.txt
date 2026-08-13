@@ -5,6 +5,7 @@ numpy
 # Machine Learning & AI
 scikit-learn
 xgboost
+joblib
 tensorflow
 
 # Database & Integration
