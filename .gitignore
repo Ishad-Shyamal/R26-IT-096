@@ -54,14 +54,6 @@ ENV/
 # Jupyter Notebook
 .ipynb_checkpoints/
 
-# ML artifacts
-*.h5
-*.hdf5
-*.pkl
-*.joblib
-*.onnx
-*.pt
-*.pth
 
 ############################
 #  ENVIRONMENT VARIABLES (CRITICAL)
