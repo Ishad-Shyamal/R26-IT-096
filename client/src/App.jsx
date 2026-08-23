@@ -1,20 +1,20 @@
-import React from 'react';
+import 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
 import Sidebar from './components/Sidebar';
-import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import About from './components/About';
 import Contact from './components/Contact';
 import Settings from './components/Settings';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import WinPredictor from './components/WinPredictor';
+import NewsCurator from './components/NewsCurator';
 
-
-// A layout component for pages that need the sidebar
+// Layout Component
 const MainLayout = ({ children }) => (
   <div className="app-container">
     <Sidebar />
+
     <main className="main-content">
       {children}
     </main>
@@ -25,33 +25,74 @@ function App() {
   return (
     <Router>
       <Routes>
+
         {/* Auth Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        
-        {/* Main App Routes */}
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={
-          <MainLayout>
-            <Dashboard />
-          </MainLayout>
-        } />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/settings" element={
-          <MainLayout>
-            <Settings />
-          </MainLayout>
-        } />
-        <Route path="/predictor" element={
-          <MainLayout>
-            <WinPredictor />
-          </MainLayout>
-        } />
-        
-        
-        {/* Fallback route */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        <Route
+          path="/signup"
+          element={<Signup />}
+        />
+
+        {/* Dashboard */}
+        <Route
+          path="/"
+          element={
+            <MainLayout>
+              <Dashboard />
+            </MainLayout>
+          }
+        />
+
+        {/* News Curator */}
+        <Route
+          path="/news-curator"
+          element={
+            <MainLayout>
+              <NewsCurator />
+            </MainLayout>
+          }
+        />
+
+        {/* About */}
+        <Route
+          path="/about"
+          element={
+            <MainLayout>
+              <About />
+            </MainLayout>
+          }
+        />
+
+        {/* Contact */}
+        <Route
+          path="/contact"
+          element={
+            <MainLayout>
+              <Contact />
+            </MainLayout>
+          }
+        />
+
+        {/* Settings */}
+        <Route
+          path="/settings"
+          element={
+            <MainLayout>
+              <Settings />
+            </MainLayout>
+          }
+        />
+
+        {/* Fallback */}
+        <Route
+          path="*"
+          element={<Navigate to="/" replace />}
+        />
+
       </Routes>
     </Router>
   );
