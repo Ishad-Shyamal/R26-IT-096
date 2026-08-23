@@ -1,25 +1,16 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Mail, Lock, User, ArrowRight, Activity } from 'lucide-react';
 
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
-// In Signup.jsx handleSubmit method:
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const nameParts = name.trim().split(' ');
-    const firstName = nameParts[0] || '';
-    const lastName = nameParts.slice(1).join(' ') || '';
-
-    const userData = { firstName, lastName, email, password };
-    localStorage.setItem('user', JSON.stringify(userData));
-
-    navigate('/settings');
+    // Handle signup logic
+    console.log('Signup attempt:', { name, email, password });
   };
 
   return (

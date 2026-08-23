@@ -7,9 +7,12 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Simulate form submission
     setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
     setFormData({ name: '', email: '', message: '' });
   };
+
   return (
     <div>
       <div style={{ marginBottom: '32px' }}>
@@ -17,8 +20,8 @@ const Contact = () => {
         <p className="page-subtitle">Have questions or feedback? We'd love to hear from you.</p>
       </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '100%' }}>
-          <div className="glass-panel" style={{ width: '100%' }}>
+      <div className="dashboard-grid">
+        <div className="glass-panel col-span-5">
           <h3 style={{ color: 'var(--text-main)', marginBottom: '24px' }}>Get in Touch</h3>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -38,7 +41,7 @@ const Contact = () => {
               </div>
               <div>
                 <div style={{ fontWeight: '600' }}>Social Media</div>
-                <div style={{ color: 'var(--text-muted)' }}>@InsightCric </div>
+                <div style={{ color: 'var(--text-muted)' }}>@InsightCric on X/Twitter</div>
               </div>
             </div>
             
@@ -47,14 +50,14 @@ const Contact = () => {
                 <MapPin size={20} />
               </div>
               <div>
-                <div style={{ fontWeight: '600' }}>Origin</div>
-                <div style={{ color: 'var(--text-muted)' }}>Malabe,Colombo</div>
+                <div style={{ fontWeight: '600' }}>Office</div>
+                <div style={{ color: 'var(--text-muted)' }}>Innovation Hub, Tech Park, City</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="glass-panel" style={{ width: '100%' }}>
+        <div className="glass-panel col-span-7">
           <h3 style={{ color: 'var(--text-main)', marginBottom: '24px' }}>Send a Message</h3>
           
           {submitted ? (

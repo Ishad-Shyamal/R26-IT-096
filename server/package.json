@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "concurrently \"npm run dev --prefix ./microservice-1\" \"npm run dev --prefix ./microservice-2\" \"npm run dev --prefix ./microservice-3\" \"npm run dev --prefix ./microservice-4\" \"npm run dev --prefix ./gateway\""
   },
