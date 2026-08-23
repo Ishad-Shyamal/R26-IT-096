@@ -1,0 +1,225 @@
+Player,performance_score,marker_score,geopolitical_risk,IPL_select_probability,,country,role
+Abdul Malik,511.28,2.67,0.6,1,,Afghanistan,Top-order Batter
+Shahidullah Kamal,605.2,3.33,0.6,1,,Afghanistan,Batter
+Bahir Shah,761,4,0.6,1,,Afghanistan,Batter
+Munir Ahmad Kakar,426.56,2.4,0.6,1,,Afghanistan,Wicketkeeper Batter
+Darwish Rasooli,988.4,4.67,0.6,1,,Afghanistan,Top-order Batter
+Zubaid Akbari,12.65,3.33,0.6,0,,Afghanistan,All-rounder
+Rohullah Arab,11.11,2.67,0.6,0,,Afghanistan,All-rounder
+Khatir Stanikzai,23.08,2.93,0.6,0,,Afghanistan,Bowler
+Faridoon Dawoodzai,19.33,2.4,0.6,0,,Afghanistan,Bowler
+Wafiullah Tarakhil,329.68,2,0.6,1,,Afghanistan,Batter
+Mohammad Ishaq,521.52,3.33,0.6,1,,Afghanistan,Batter
+Azizullah Mia Khil,394.8,2.4,0.6,1,,Afghanistan,Batter
+Faisal Khan Ahmadzai,9.3,2.67,0.6,0,,Afghanistan,All-rounder
+Nazifullah Amiri,17.68,2.93,0.6,0,,Afghanistan,All-rounder
+Wahidullah Zadran,17.57,1.6,0.6,0,,Afghanistan,Off-spin Bowler
+Henry Hunt,427.16,1.33,0.15,1,,Australia,Batter
+Liam Scott,35.26,1.33,0.15,0,,Australia,All-rounder
+Nathan McAndrew,49.74,1.33,0.15,0,,Australia,Fast Bowler
+Jordan Buckingham,35.02,1.2,0.15,0,,Australia,Fast Bowler
+Henry Thornton,26.38,1.07,0.15,0,,Australia,Fast Bowler
+Jake Lehmann,367.79,1.33,0.15,1,,Australia,Batter
+Sam Elliott,41.56,1.33,0.15,0,,Australia,Seam All-rounder
+Fergus O'Neill,46.54,1.33,0.15,0,,Australia,Fast Bowler
+Corey Rocchiccioli,48.59,1.33,0.15,0,,Australia,Off Spin Bowler
+Liam Hatcher,53.92,1.33,0.15,0,,Australia,Fast Bowler
+Cameron Gannon,54.12,1.33,0.15,0,,Australia,Fast Bowler
+Jason Sangha,369.33,1.33,0.15,1,,Australia,Batter
+Ben Kellaway,11.57,1.47,0.15,0,,Australia,Batting All-rounder
+Mackenzie Harvey,290.34,1.33,0.15,1,,Australia,Batter
+Campbell Kellaway,301.3,1.33,0.15,1,,Australia,Batter
+Harry Nielsen,261.85,1.2,0.15,1,,Australia,WK Batter
+Matthew Gilkes,278.77,1.33,0.15,1,,Australia,WK Batter
+Ben Manenti,28.44,1.33,0.15,0,,Australia,Spin All-rounder
+Anamul Haque Enam,1204.08,7.33,0.4,1,,Bangladesh,Batter
+Zakir Hasan,1113.6,6.67,0.4,1,,Bangladesh,Wicketkeeper Batter
+Mahidul Islam Ankon,932.84,6,0.4,1,,Bangladesh,Wicketkeeper Batter
+Pritom Kumar,872.16,5.6,0.4,1,,Bangladesh,Batter
+Jishan Alam,806,4.67,0.4,1,,Bangladesh,Batter
+Saif Hassan,1531.2,8.67,0.4,1,,Bangladesh,Top-order Batter
+Tanvir Islam,68.84,7.33,0.4,0,,Bangladesh,Left-arm Spinner
+Rejaur Rahman Raja,42.68,5.33,0.4,0,,Bangladesh,Fast Bowler
+Musfik Hasan,35.26,4,0.4,0,,Bangladesh,Fast Bowler
+Nasum Ahmed Jr,59.03,8,0.4,0,,Bangladesh,Left-arm Spinner
+Mahmudul Hasan Joy,1350.72,7.73,0.4,1,,Bangladesh,Top-order Batter
+Shahadat Hossain Dipu,1143.8,6.93,0.4,1,,Bangladesh,Batter
+Enamul Haque Bijoy,1471.56,8.67,0.4,1,,Bangladesh,Batter
+Mominul Haque (domestic only status in dataset context),1888.2,9.33,0.4,1,,Bangladesh,Batter
+Shadman Islam,1528.8,8,0.4,1,,Bangladesh,Top-order Batter
+Najmul Hossain Apu,812.48,5.33,0.4,1,,Bangladesh, Batter
+Akbar Ali,995.2,7.33,0.4,1,,Bangladesh,Wicketkeeper Batter
+Nurul Hasan Sohan,1614,10,0.4,1,,Bangladesh,Wicketkeeper Batter
+Ben McKinney,467.44,1.33,0.15,1,,England,Batter
+Rocky Flintoff,0,1.6,0.15,0,,England,Batting All-rounder
+Archie Vaughan,28.44,1.47,0.15,0,,England,Spin All-rounder
+Farhan Ahmed,34.52,1.2,0.15,0,,England,Off Spin Bowler
+Sonny Baker,27.66,1.33,0.15,0,,England,Fast Bowler
+Henry Crocombe,32.93,1.6,0.15,0,,England,Fast Bowler
+James Rew,545.42,1.73,0.15,1,,England,WK Batter
+Tom Rew,384.04,1.6,0.15,1,,England,WK Batter
+Alex Horton,290.27,1.33,0.15,1,,England,WK Batter
+Ben Geddes,352.1,1.6,0.15,1,,England,Batter
+Luc Benkenstein,4.26,1.33,0.15,0,,England,Batting All-rounder
+Dan Mousley,5.68,1.87,0.15,0,,England,Batting All-rounder
+George Thomas,326.11,1.87,0.15,1,,England,Batter
+James Coles,14.14,1.6,0.15,0,,England,Batting All-rounder
+George Bell,399.64,1.73,0.15,1,,England,WK Batter
+Jack Carson,30.46,1.47,0.15,0,,England,Off Spin Bowler
+Jack Haynes,479.62,1.6,0.15,1,,England,Batter
+George Hill,22.93,1.73,0.15,0,,England,Seam Bowling All-rounder
+John Turner,14.15,1.47,0.15,0,,England,Fast Bowler
+Priyansh Arya,303.05,1.73,0.7,1,,india,Batter
+Vaibhav Suryavanshi,560.52,2.13,0.7,1,,india,Batter
+Digvesh Rathi,0.89,1.33,0.7,0,,india,Leg Spinner
+Kartik Sharma,231.63,1.47,0.7,0,,india,WK Batter
+Prashant Veer,0,0.8,0.7,0,,india,All-rounder
+Salil Arora,157.27,1.87,0.7,0,,india,WK Batter
+Ashok Sharma,2.53,0.8,0.7,0,,india,Fast Bowler
+Kumar Kushagra,62.24,0.13,0.7,0,,india,WK Batter
+Anshul Kamboj,1.86,1.33,0.7,0,,india,Fast Bowler
+Harsh Dubey,3.81,1.07,0.7,0,,india,All-rounder
+Auqib Nabi,2.01,0.67,0.7,0,,india,Fast Bowler
+Mangesh Yadav,10,0.8,0.7,0,,india,All-rounder
+Tejasvi Dahiya,279.58,1.33,0.7,1,,india,WK Batter
+Akshat Raghuwanshi,214.22,0.53,0.7,0,,india,Batter
+Ayush Mhatre,191.75,0.8,0.7,0,,india,Batter
+Sarthak Ranjan,196,1.07,0.7,0,,india,Batter
+Sakib Hussain,7.65,1.47,0.7,0,,india,Fast Bowler
+Manav Suthar,43.06,1.07,0.7,0,,india,Spin Bowler
+Atharva Taide,258.4,1.2,0.7,1,,india,Batter
+Aman Mokhade,218.2,1.07,0.7,0,,india,Batter
+Angkrish Raghuwanshi,311.86,1.47,0.7,1,,india,WK Batter
+Prabhsimran Singh,373.55,1.87,0.7,1,,india,WK Batter
+Brijesh Sharma,6.67,1.73,0.7,0,,india,Fast Bowler
+Jake Egan,321.46,1.07,0.7,1,,Ireland,Batter
+Reuben Wilson,23.54,1.07,0.7,0,,Ireland,Fast Bowler
+Tom Mayes,31.47,1.2,0.7,0,,Ireland,Fast Bowler
+Liam McCarthy,28.54,1.2,0.7,0,,Ireland,Fast Bowler
+Sam Topping,186.2,0.93,0.7,0,,Ireland,Batter
+Cade Carmichael,352.86,1.33,0.7,1,,Ireland,Batter
+Chris de Freitas,302.88,1.2,0.7,1,,Ireland,Batter
+Morgan Topping,293.5,1.07,0.7,1,,Ireland,Batter
+Theo van Woerkom,8.5,1.2,0.7,0,,Ireland,Batting All-rounder
+Gavin Roulston,264.38,1.07,0.7,1,,Ireland,WK Batter
+Matthew Foster,14.51,1.2,0.7,0,,Ireland,Seam All-rounder
+Seamus Lynch,247.42,1.07,0.7,1,,Ireland,Batter
+Scott Macbeth,19.03,1.07,0.7,0,,Ireland,Fast Bowler
+James West,12.68,1.07,0.7,0,,Ireland,Off Spin All-rounder
+Fionn Hand,13.16,1.33,0.7,0,,Ireland,Seam All-rounder
+Adam Leckey,239.96,1.07,0.7,0,,Ireland,WK Batter
+Sebastian Dijkstra,222.25,0.93,0.7,0,,Ireland,Batter
+Luke Murray,17.67,1.07,0.7,0,,Ireland,Fast Bowler
+Lachlan Stackpole,437.88,1.07,0.7,1,,New_Zealand,Batter
+Max Chu,373.85,1.07,0.7,1,,New_Zealand,Batter
+Matthew Boyle,360.74,1.07,0.7,1,,New_Zealand,Batter
+Simon Keene,369.79,1.07,0.7,1,,New_Zealand,Batter
+Jacob Cumming,333.39,1.07,0.7,1,,New_Zealand,Batter
+Curtis Heaphy,322.64,0.93,0.7,1,,New_Zealand,Batter
+Rhys Mariu,319.38,1.07,0.7,1,,New_Zealand,Batter
+Jesse Tashkoff,315.92,0.93,0.7,1,,New_Zealand,Batter
+Bharat Popli,357.37,1.07,0.7,1,,New_Zealand,Batter
+Tim Pringle,40.36,1.07,0.7,0,,New_Zealand,Spin Bowler
+Fraser Sheat,35.26,1.07,0.7,0,,New_Zealand,Fast Bowler
+Rohit Gulati,34.18,0.93,0.7,0,,New_Zealand,Fast Bowler
+Michael Rae,33.09,0.93,0.7,0,,New_Zealand,Fast Bowler
+Adithya Ashok,26.91,1.07,0.7,0,,New_Zealand,Leg Spin Bowler
+Zak Gibson,27.71,1.07,0.7,0,,New_Zealand,Fast Bowler
+Simon Johnston,25.7,1.07,0.7,0,,New_Zealand,Fast Bowler
+Ben Lister,24.36,0.93,0.7,0,,New_Zealand,Fast Bowler
+Matt Bacon,22.94,1.07,0.7,0,,New_Zealand,Fast Bowler
+Mohammad Huraira,1021.4,3.73,0.5,1,,Pakistan,Top-order Batter
+Abdul Faseeh,476.84,2.4,0.5,1,,Pakistan,Batter
+Yasir Khan,0,2.93,0.5,0,,Pakistan,Opener
+Shahzaib Khan,429.2,2,0.5,1,,Pakistan,Batter
+Hassan Nawaz,572.96,2.67,0.5,1,,Pakistan,Batter
+Saad Masood,466.68,2.13,0.5,1,,Pakistan,Middle-order Batter
+Abdul Faseeh Jr (emerging),379.28,1.87,0.5,1,,Pakistan,Batter
+Mohammad Faiq,318.44,0.93,0.5,1,,Pakistan,Top-order Batter
+Arafat Minhas,10.98,3.33,0.5,0,,Pakistan,All-rounder
+Mubasir Khan,13.1,4,0.5,0,,Pakistan,All-rounder
+Qasim Akram,22.15,4.67,0.5,0,,Pakistan,All-rounder
+Abbas Afridi,32.97,5.6,0.5,0,,Pakistan,Bowler
+Naseem Shah (late domestic stage uncapped reference earlier—not applicable internationally at debut stage),34.38,2.67,0.5,0,,Pakistan,Fast Bowler
+Ali Raza,18.67,1.6,0.5,0,,Pakistan,Bowler
+Khawaja Nafay,478.08,2.4,0.5,1,,Pakistan,Batter
+Lhuan-dre Pretorius,307.15,0.8,0.7,1,,South_Africa,WK Batter
+Gavin Kaplan,564.6,0.93,0.7,1,,South_Africa,Batter
+Connor Esterhuizen,499.71,1.07,0.7,1,,South_Africa,Batter
+Jordan Hermann,386.47,1.07,0.7,1,,South_Africa,Batter
+Rubin Hermann,361.04,0.8,0.7,1,,South_Africa,Batter
+Daniel Smith,432.17,0.93,0.7,1,,South_Africa,WK Batter
+Delano Potgieter,17.16,0.93,0.7,0,,South_Africa,Batting All-rounderr
+Dian Forrester,324.15,0.93,0.7,1,,South_Africa,Batter
+Lesiba Ngoepe,326.76,0.93,0.7,1,,South_Africa,Batter
+Meeka-eel Prince,316.78,0.93,0.7,1,,South_Africa,Batter
+Matthew Boast,53.71,1.07,0.7,0,,South_Africa,Fast Bowler
+Kyle Simmonds,38.04,0.93,0.7,0,,South_Africa,Spin All-rounder
+Shaun von Berg,37.53,0.93,0.7,0,,South_Africa,Leg Spin All-rounder
+Mihlali Mpongwana,19.59,1.07,0.7,0,,South_Africa,Seam All-rounder
+Beyers Swanepoel,18.71,1.07,0.7,0,,South_Africa,Fast Bowling All-rounder
+Tshepo Moreki,22.3,0.93,0.7,0,,South_Africa,Fast Bowler
+Alfred Mothoa,25.55,1.07,0.7,0,,South_Africa,Fast Bowler
+Gideon Peters,20.55,0.93,0.7,0,,South_Africa,Fast Bowler
+Junaid Dawood,22.62,1.07,0.7,0,,South_Africa,Off Spin Bowler
+Clyde Fortuin,249.61,0.93,0.7,1,,South_Africa,WK Batter
+Ahan Wickramasinghe,384.16,1.33,0.7,1,,Sri Lanka,Batter
+Ravindu Rasantha,361.32,1.33,0.7,1,,Sri Lanka,Batter
+Sohan de Livera,349.96,1.2,0.7,1,,Sri Lanka,WK Batter
+Sahan Kosala,338.84,1.2,0.7,1,,Sri Lanka,WK Batter
+Nipun Dhananjaya,330.28,1.33,0.7,1,,Sri Lanka,Batter
+Janishka Perera,316.2,1.2,0.7,1,,Sri Lanka,Batter
+Vishen Halambage,0,1.33,0.7,0,,Sri Lanka,Batting All-rounder
+Dhananjaya Lakshan,19.07,1.33,0.7,0,,Sri Lanka,Batting All-rounder
+Ravindu Fernando,15.94,1.33,0.7,0,,Sri Lanka,Batting All-rounder
+Sonal Dinusha,33.33,1.2,0.7,0,,Sri Lanka,Spin All-rounder
+Ashian Daniel,36.43,1.2,0.7,0,,Sri Lanka,Off Spin Bowler
+Dilum Sudeera,33.98,1.07,0.7,0,,Sri Lanka,Left-arm Spinner
+Garuka Sanketh,29.48,1.2,0.7,0,,Sri Lanka,Fast Bowler
+Dulaj Samuditha,27.29,1.07,0.7,0,,Sri Lanka,Left-arm Medium
+Traveen Mathew,27,1.07,0.7,0,,Sri Lanka,Off Spin Bowler
+Tharindu Rathnayake,28.71,1.2,0.7,0,,Sri Lanka,Spin All-rounder
+Chamindu Wijesinghe,14.4,1.33,0.7,0,,Sri Lanka,Seam All-rounder
+Vishad Randika,261.88,1.2,0.7,1,,Sri Lanka,WK Batter
+Vimath Dinsara,293.96,1.87,0.7,1,,Sri Lanka,Batter
+Kavija Gamage,9.89,2.13,0.7,0,,Sri Lanka,Batting All-rounder
+Dulnith Sigera,213.8,0.93,0.7,0,,Sri Lanka,Batter
+Vigneshwaran Akash,25.9,1.87,0.7,0,,Sri Lanka,Leg Spin Bowler
+Jewel Andrew,326.82,1.33,0.7,1,,West_Indies,WK Batter
+Ackeem Auguste,351.79,1.2,0.7,1,,West_Indies,Batter
+Amir Jangoo,362.79,1.47,0.7,1,,West_Indies,WK Batter
+Rivaldo Clarke,318.03,1.2,0.7,1,,West_Indies,WK Batter
+Kevlon Anderson,412.96,1.33,0.7,1,,West_Indies,Batter
+Shaqkere Parris,365.57,1.33,0.7,1,,West_Indies,Batter
+Carlon Tuckett,331.34,1.2,0.7,1,,West_Indies,Batter
+Giovonte Depeiza,6.37,1.33,0.7,0,,West_Indies,Batting All-rounder
+Navin Bidaisee,8.77,1.33,0.7,0,,West_Indies,Batting All-rounder
+Mavendra Dindyal,299.28,1.2,0.7,1,,West_Indies,Batter
+Johann Jeremiah,282.46,1.07,0.7,1,,West_Indies,Batter
+Johann Layne,30.82,1.33,0.7,0,,West_Indies,Fast Bowler
+Jediah Blades,28.2,1.2,0.7,0,,West_Indies,Fast Bowler
+Ramon Simmonds,14.74,1.33,0.7,0,,West_Indies,Left-arm Fast Bowler
+Nathan Edward,27.65,1.33,0.7,0,,West_Indies,Fast Bowler
+Amari Goodridge,24.68,1.07,0.7,0,,West_Indies,Fast Bowler
+Mbeki Joseph,23.01,1.2,0.7,0,,West_Indies,Fast Bowler
+Zishan Motara,20.3,1.33,0.7,0,,West_Indies,Leg Spin Bowler
+Renico Smith,15.44,1.2,0.7,0,,West_Indies,Spin All-rounder
+Kelvin Pittman,12.27,1.2,0.7,0,,West_Indies,Fast Bowling All-rounder
+Antum Naqvi,402.46,1.2,0.7,1,,Zimbabwe,Batter
+Tashinga Musekiwa,5.78,1.33,0.7,0,,Zimbabwe,Batting All-rounder
+Tinotenda Maposa,15.5,1.33,0.7,0,,Zimbabwe,Fast Bowler
+Tafadzwa Tsiga,297.64,1.2,0.7,1,,Zimbabwe,WK Batter
+Vincent Masekesa,33.25,1.07,0.7,0,,Zimbabwe,Leg Spin Bowler
+Newman Nyamhuri,29.41,1.2,0.7,0,,Zimbabwe,Fast Bowler
+Takudzwanashe Kaitano,346.15,1.33,0.7,1,,Zimbabwe,Batter
+Panashe Taruvinga,323.34,1.2,0.7,1,,Zimbabwe,WK Batter
+Kian Blignaut,283.12,1.07,0.7,1,,Zimbabwe,Batter
+Tanaka Chivanga,23.28,1.07,0.7,0,,Zimbabwe,Fast Bowler
+Brandon Mavuta,25.11,1.2,0.7,0,,Zimbabwe,Spin All-rounder
+Ernest Masuku,23.42,1.07,0.7,0,,Zimbabwe,Fast Bowler
+Clive Chitumba,331.46,1.33,0.7,1,,Zimbabwe,WK Batter
+Ainsley Ndlovu,30.64,1.2,0.7,0,,Zimbabwe,Left-arm Spinner
+Tapiwa Mufudza,28.85,1.07,0.7,0,,Zimbabwe,Off Spin Bowler
+Brian Mudzinganyama,305.93,1.2,0.7,1,,Zimbabwe,Batter
+William Mashinge,25.4,1.07,0.7,0,,Zimbabwe,Fast Bowler
+Charlton Tshuma,21.21,1.07,0.7,0,,Zimbabwe,Fast Bowler
