@@ -1,11 +1,15 @@
 import React from 'react';
+import Navbar from './Navbar';
 import { Users, Target, Zap, Shield } from 'lucide-react';
 
 const About = () => {
   return (
-    <div>
-      <div style={{ marginBottom: '32px' }}>
-        <h1 className="page-title">About InsightCric</h1>
+    <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', color: 'var(--text-main)', paddingBottom: '80px' }}>
+      <Navbar />
+
+      <div style={{ maxWidth: '1000px', margin: '0 auto', paddingTop: '120px', paddingLeft: '20px', paddingRight: '20px' }}>
+        <div style={{ marginBottom: '40px', textAlign: 'center' }}>
+          <h1 className="page-title" style={{ fontSize: '3.5rem', marginBottom: '16px' }}>About InsightCric</h1>
         <p className="page-subtitle">Revolutionizing cricket analytics through advanced machine learning and data science.</p>
       </div>
 
@@ -59,6 +63,7 @@ const About = () => {
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Advanced neural networks to project match outcomes with high accuracy.</p>
              </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

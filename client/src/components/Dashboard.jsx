@@ -1,6 +1,7 @@
 import React from 'react';
 import { TrendingUp, Users, AlertCircle, Zap, Shield, Play, Brain } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import Navbar from './Navbar';
 
 const performanceData = [
   { match: 'M1', runs: 45, strikeRate: 130 },
@@ -20,8 +21,9 @@ const teamData = [
 const Dashboard = () => {
   return (
     <div>
+      <Navbar />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
-        <div>
+        <div style={{marginTop: '40px'}}>
           <h1 className="page-title">Command Center</h1>
           <p className="page-subtitle">Welcome back! Here's the latest cricket intelligence.</p>
         </div>
