@@ -1,10 +1,24 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   RadarChart, Radar, PolarGrid, PolarAngleAxis, ScatterChart, Scatter, ZAxis
 } from "recharts";
-import { players, getPerformanceTier, getTierColor, getIPLProbability } from "../data/playersData";
+import { getPerformanceTier, getTierColor } from "../data/playersData";
 import { useApp } from "../context/AppContext";
+
+// Player Object එක සඳහා Type Definition එකක්
+type Player = {
+  player_name: string;
+  role: string;
+  team: string;
+  tournament: string;
+  performance_score: number;
+  marker_score: number;
+  geopolitical: number;
+  was_selected: number;
+  awards: string[];
+  news: string[];
+};
 
 const roleIcons: Record<string, string> = {
   "Batsman": "🏏", "Bowler": "⚡", "All-Rounder": "🌟", "Wicket-Keeper": "🧤", "Opener": "🚀",
@@ -15,23 +29,45 @@ export default function PerformanceIntelligence() {
   const [roleFilter, setRoleFilter] = useState("All");
   const [sortField, setSortField] = useState<"performance_score" | "marker_score">("performance_score");
   const [searchName, setSearchName] = useState("");
+  
+  // 🌐 Backend එකෙන් එන Dataset එක රඳවා ගන්නා State එක
+  const [dynamicPlayers, setDynamicPlayers] = useState<Player[]>([]);
+  const [isLoadingData, setIsLoadingData] = useState(true);
 
   const roles = ["All", "Batsman", "Bowler", "All-Rounder", "Wicket-Keeper", "Opener"];
 
+  // 1. Component එක Mount වන විටම Backend එකෙන් මුළු Dataset එකම Fetch කිරීම
+  useEffect(() => {
+    fetch("http://localhost:5000/api/players")
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to fetch dataset");
+        return res.json();
+      })
+      .then((data: Player[]) => {
+        setDynamicPlayers(data);
+        setIsLoadingData(false);
+      })
+      .catch(err => {
+        console.error("Error loading backend dataset:", err);
+        setIsLoadingData(false);
+      });
+  }, []);
+
+  // 2. Filter සහ Sort Logic
   const filteredPlayers = useMemo(() => {
-    return players
+    return dynamicPlayers
       .filter(p => {
         const matchRole = roleFilter === "All" || p.role === roleFilter;
         const matchName = !searchName || p.player_name.toLowerCase().includes(searchName.toLowerCase());
         return matchRole && matchName;
       })
       .sort((a, b) => b[sortField] - a[sortField]);
-  }, [roleFilter, sortField, searchName]);
+  }, [dynamicPlayers, roleFilter, sortField, searchName]);
 
   // Tournament breakdown for bar chart
   const tournamentStats = useMemo(() => {
     const map: Record<string, { total: number; count: number; selected: number }> = {};
-    players.forEach(p => {
+    dynamicPlayers.forEach(p => {
       if (!map[p.tournament]) map[p.tournament] = { total: 0, count: 0, selected: 0 };
       map[p.tournament].total += p.performance_score;
       map[p.tournament].count++;
@@ -43,20 +79,29 @@ export default function PerformanceIntelligence() {
       selected: v.selected,
       total: v.count,
     }));
-  }, []);
+  }, [dynamicPlayers]);
 
   // Award distribution
   const awardStats = useMemo(() => {
     const map: Record<string, number> = {};
-    players.forEach(p => p.awards.forEach(a => { map[a] = (map[a] || 0) + 1; }));
+    dynamicPlayers.forEach(p => p.awards.forEach(a => { map[a] = (map[a] || 0) + 1; }));
     return Object.entries(map).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
-  }, []);
+  }, [dynamicPlayers]);
+
+  // Calculate National Selection Probability
+  const getIPLProbability = (player: Player): number => {
+    const performanceWeight = (player.performance_score / 10) * 0.4;
+    const markerWeight = (player.marker_score / 5) * 0.3;
+    const geoWeight = (player.geopolitical / 5) * 0.2;
+    const selectionWeight = player.was_selected ? 0.1 : 0;
+    return Math.min((performanceWeight + markerWeight + geoWeight + selectionWeight), 1);
+  };
 
   // Radar data for selected player
   const radarData = selectedPlayer ? [
     { metric: "Performance", value: (selectedPlayer.performance_score / 10) * 100 },
     { metric: "Marker", value: (selectedPlayer.marker_score / 5) * 100 },
-    { metric: "IPL Prob", value: getIPLProbability(selectedPlayer) * 100 },
+    { metric: "National Prob", value: getIPLProbability(selectedPlayer) * 100 },
     { metric: "Selection", value: selectedPlayer.was_selected * 100 },
     { metric: "Geo Factor", value: (selectedPlayer.geopolitical / 5) * 100 },
   ] : [];
@@ -70,6 +115,16 @@ export default function PerformanceIntelligence() {
       name: p.player_name,
       selected: p.was_selected,
     })), [filteredPlayers]);
+
+  // Data ටික load වෙනකම් සරල loading skeleton එකක්
+  if (isLoadingData) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-16 flex flex-col items-center justify-center space-y-4">
+        <div className="w-12 h-12 rounded-full border-4 border-orange-500/30 border-t-orange-500 animate-spin" />
+        <p className="text-slate-400 text-sm animate-pulse">Fetching performance intelligence dataset from backend...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
@@ -85,10 +140,10 @@ export default function PerformanceIntelligence() {
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Total Players", value: players.length, icon: "👥", color: "from-blue-500 to-blue-600" },
-          { label: "IPL Selected", value: players.filter(p => p.was_selected).length, icon: "✅", color: "from-emerald-500 to-emerald-600" },
-          { label: "Elite Performers", value: players.filter(p => p.performance_score >= 8).length, icon: "🌟", color: "from-orange-500 to-red-500" },
-          { label: "Award Winners", value: players.filter(p => p.awards.length > 0).length, icon: "🏆", color: "from-purple-500 to-purple-600" },
+          { label: "Total Players", value: dynamicPlayers.length, icon: "👥", color: "from-blue-500 to-blue-600" },
+          { label: "National Selected", value: dynamicPlayers.filter(p => p.was_selected).length, icon: "🇱🇰", color: "from-emerald-500 to-emerald-600" },
+          { label: "Elite Performers", value: dynamicPlayers.filter(p => p.performance_score >= 8).length, icon: "🌟", color: "from-orange-500 to-red-500" },
+          { label: "Award Winners", value: dynamicPlayers.filter(p => p.awards.length > 0).length, icon: "🏆", color: "from-purple-500 to-purple-600" },
         ].map(card => (
           <div key={card.label} className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 flex items-center gap-4">
             <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${card.color} flex items-center justify-center text-xl shadow-lg`}>
@@ -118,7 +173,7 @@ export default function PerformanceIntelligence() {
                 itemStyle={{ color: "#94a3b8" }}
               />
               <Bar dataKey="avgScore" fill="#f97316" radius={[6, 6, 0, 0]} name="Avg Score" />
-              <Bar dataKey="selected" fill="#22c55e" radius={[6, 6, 0, 0]} name="IPL Selected" />
+              <Bar dataKey="selected" fill="#22c55e" radius={[6, 6, 0, 0]} name="National Selected" />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -151,7 +206,7 @@ export default function PerformanceIntelligence() {
         <div className="flex items-center justify-between">
           <h3 className="text-white font-semibold text-sm">Performance Score vs Marker Score Distribution</h3>
           <div className="flex items-center gap-3 text-xs">
-            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-emerald-400 inline-block" /> IPL Selected</span>
+            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-emerald-400 inline-block" /> National Selected</span>
             <span className="flex items-center gap-1 text-slate-400"><span className="w-3 h-3 rounded-full bg-slate-400 inline-block" /> Not Selected</span>
           </div>
         </div>
@@ -232,7 +287,7 @@ export default function PerformanceIntelligence() {
                   <th className="text-center py-3 px-2 text-slate-400 text-xs font-medium">Perf</th>
                   <th className="text-center py-3 px-2 text-slate-400 text-xs font-medium">Marker</th>
                   <th className="text-center py-3 px-2 text-slate-400 text-xs font-medium">Tier</th>
-                  <th className="text-center py-3 px-2 text-slate-400 text-xs font-medium">IPL</th>
+                  <th className="text-center py-3 px-2 text-slate-400 text-xs font-medium">National</th>
                 </tr>
               </thead>
               <tbody>
@@ -305,7 +360,7 @@ export default function PerformanceIntelligence() {
                     ? "bg-emerald-500/20 border-emerald-500/40 text-emerald-400"
                     : "bg-slate-700/50 border-slate-600 text-slate-400"
                 }`}>
-                  {selectedPlayer.was_selected ? "✅ IPL Selected" : "⏳ Not Selected"}
+                  {selectedPlayer.was_selected ? "✅ National Selected" : "⏳ Not Selected"}
                 </span>
               </div>
 
@@ -332,7 +387,7 @@ export default function PerformanceIntelligence() {
                   <span className="text-slate-300 text-xs">{selectedPlayer.tournament}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-slate-400 text-xs">IPL Probability</span>
+                  <span className="text-slate-400 text-xs">National Probability</span>
                   <span className="text-purple-400 font-bold text-sm">{(getIPLProbability(selectedPlayer) * 100).toFixed(1)}%</span>
                 </div>
               </div>
@@ -359,7 +414,7 @@ export default function PerformanceIntelligence() {
             <div className="h-full flex flex-col items-center justify-center text-center py-16 space-y-3">
               <span className="text-5xl opacity-30">📊</span>
               <p className="text-slate-400 text-sm">Click on a player to view their full performance profile</p>
-              <p className="text-slate-600 text-xs">Including radar chart, news coverage, and IPL probability</p>
+              <p className="text-slate-600 text-xs">Including radar chart, news coverage, and National Selection probability</p>
             </div>
           )}
         </div>

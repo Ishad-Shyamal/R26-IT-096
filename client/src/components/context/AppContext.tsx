@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import { players, Player, teams } from "../data/playersData";
 
-export type Tab = "feed" | "intelligence" | "prediction" | "query";
+// 1. "intelligence" කියන Tab Type එක මෙතනට ඇතුලත් කර ඇත
+export type Tab = "feed" | "prediction" | "intelligence" | "query";
 
 interface UserPrefs {
   favoriteTeams: string[];
   favoritePlayers: string[];
-  preferredTournaments: string[];
 }
 
 interface AppContextType {
@@ -15,7 +15,6 @@ interface AppContextType {
   userPrefs: UserPrefs;
   toggleFavoriteTeam: (team: string) => void;
   toggleFavoritePlayer: (name: string) => void;
-  toggleTournament: (t: string) => void;
   filteredPlayers: Player[];
   searchQuery: string;
   setSearchQuery: (q: string) => void;
@@ -32,11 +31,10 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | null>(null);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
-  const [activeTab, setActiveTab] = useState<Tab>("feed");
+  const [activeTab, setActiveTab] = useState<Tab>("prediction"); // Default tab එක prediction ලෙස තබා ඇත
   const [userPrefs, setUserPrefs] = useState<UserPrefs>({
-    favoriteTeams: ["Mumbai Indians", "Chennai Super Kings"],
+    favoriteTeams: ["Sri Lanka", "Kandy Falcons"],
     favoritePlayers: [],
-    preferredTournaments: ["Ranji Trophy", "Lanka Premier League", "Pakistan Super League"],
   });
   const [searchQuery, setSearchQuery] = useState("");
   const [queryInput, setQueryInput] = useState("");
@@ -59,15 +57,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       favoritePlayers: prev.favoritePlayers.includes(name)
         ? prev.favoritePlayers.filter(p => p !== name)
         : [...prev.favoritePlayers, name],
-    }));
-  }, []);
-
-  const toggleTournament = useCallback((t: string) => {
-    setUserPrefs(prev => ({
-      ...prev,
-      preferredTournaments: prev.preferredTournaments.includes(t)
-        ? prev.preferredTournaments.filter(x => x !== t)
-        : [...prev.preferredTournaments, t],
     }));
   }, []);
 
@@ -109,43 +98,13 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // IPL selection
-    if (q.includes("ipl") || q.includes("selection") || q.includes("selected")) {
+    // National selection queries
+    if (q.includes("national") || q.includes("selection") || q.includes("selected") || q.includes("ipl")) {
       const selected = players.filter(p => p.was_selected === 1)
         .sort((a, b) => b.performance_score - a.performance_score)
         .slice(0, 8);
-      setQueryResult(`✅ Players predicted/selected for IPL (${selected.length} shown):\n` + selected.map(p =>
+      setQueryResult(`✅ Players predicted/selected for National Team (${selected.length} shown):\n` + selected.map(p =>
         `• ${p.player_name} — ${p.tournament} | Score: ${p.performance_score.toFixed(2)}`).join("\n"));
-      return;
-    }
-
-    // Ranji performers
-    if (q.includes("ranji")) {
-      const ranji = players.filter(p => p.tournament === "Ranji Trophy")
-        .sort((a, b) => b.performance_score - a.performance_score)
-        .slice(0, 6);
-      setQueryResult(`🏏 Top Ranji Trophy Performers:\n` + ranji.map(p =>
-        `• ${p.player_name} — Score: ${p.performance_score.toFixed(2)} | IPL Selected: ${p.was_selected ? "Yes" : "No"}`).join("\n"));
-      return;
-    }
-
-    // LPL/Lanka
-    if (q.includes("lpl") || q.includes("lanka")) {
-      const lpl = players.filter(p => p.tournament === "Lanka Premier League")
-        .sort((a, b) => b.performance_score - a.performance_score)
-        .slice(0, 6);
-      setQueryResult(`🌟 Top Lanka Premier League Performers:\n` + lpl.map(p =>
-        `• ${p.player_name} — Score: ${p.performance_score.toFixed(2)} | IPL Selected: ${p.was_selected ? "Yes" : "No"}`).join("\n"));
-      return;
-    }
-
-    // PSL
-    if (q.includes("psl") || q.includes("pakistan")) {
-      const psl = players.filter(p => p.tournament === "Pakistan Super League")
-        .sort((a, b) => b.performance_score - a.performance_score)
-        .slice(0, 6);
-      setQueryResult(`⚡ Top PSL Performers:\n` + psl.map(p =>
-        `• ${p.player_name} — Score: ${p.performance_score.toFixed(2)} | IPL Selected: ${p.was_selected ? "Yes" : "No"}`).join("\n"));
       return;
     }
 
@@ -167,7 +126,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         `Role: ${matchedPlayer.role}\n` +
         `Performance Score: ${matchedPlayer.performance_score.toFixed(3)}\n` +
         `Marker Score: ${matchedPlayer.marker_score}\n` +
-        `IPL Selected: ${matchedPlayer.was_selected ? "✅ Yes" : "❌ No"}\n` +
+        `National Team Selected: ${matchedPlayer.was_selected ? "✅ Yes" : "❌ No"}\n` +
         `Awards: ${matchedPlayer.awards.length > 0 ? matchedPlayer.awards.join(", ") : "None recorded"}\n\n` +
         `Latest News:\n${matchedPlayer.news.map(n => `• ${n}`).join("\n")}`
       );
@@ -184,13 +143,13 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    setQueryResult(`🔍 No specific data found for "${queryInput}". Try queries like:\n• "Man of Match"\n• "Best Bowler"\n• "IPL Selection"\n• "Top Performers"\n• "Ranji Trophy"\n• "LPL"\n• "PSL"\n• Or a player's name`);
+    setQueryResult(`🔍 No specific data found for "${queryInput}". Try queries like:\n• "Man of Match"\n• "Best Bowler"\n• "National Selection"\n• "Top Performers"\n• "Wicket Milestones"\n• Or a player's name`);
   }, [queryInput]);
 
   return (
     <AppContext.Provider value={{
       activeTab, setActiveTab,
-      userPrefs, toggleFavoriteTeam, toggleFavoritePlayer, toggleTournament,
+      userPrefs, toggleFavoriteTeam, toggleFavoritePlayer,
       filteredPlayers, searchQuery, setSearchQuery,
       queryInput, setQueryInput, queryResult, runQuery,
       selectedPlayer, setSelectedPlayer,

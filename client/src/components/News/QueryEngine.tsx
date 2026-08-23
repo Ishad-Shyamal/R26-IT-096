@@ -4,11 +4,8 @@ import { useApp } from "../context/AppContext";
 const exampleQueries = [
   { label: "Man of the Match", icon: "🏆", query: "Man of Match" },
   { label: "Best Bowlers", icon: "⚡", query: "Best Bowler" },
-  { label: "IPL Selected Players", icon: "✅", query: "IPL Selection" },
+  { label: "National Selections", icon: "🇱🇰", query: "National Team Selection" },
   { label: "Top Performers", icon: "🌟", query: "Top Performers" },
-  { label: "Ranji Trophy Stars", icon: "🏏", query: "Ranji Trophy" },
-  { label: "LPL Highlights", icon: "🌴", query: "LPL Lanka" },
-  { label: "PSL Coverage", icon: "🌙", query: "PSL Pakistan" },
   { label: "Wicket Milestones", icon: "🎯", query: "Wicket Milestone" },
 ];
 
@@ -17,7 +14,7 @@ type Message = { role: "user" | "system"; text: string; time: string };
 const initialHistory: Message[] = [
   {
     role: "system",
-    text: "Welcome to CricketIQ Query Engine! I can answer questions about player performances, IPL selection probabilities, tournament statistics, and news-extracted insights. Try asking about 'Man of the Match', 'Best Bowler', 'IPL Selection', or any player name.",
+    text: "Welcome to CricketIQ Query Engine! I can answer questions about player performances, National Team Selection probabilities, and news-extracted insights. Try asking about 'Man of the Match', 'Best Bowler', 'National Selection Probability', or any player name.",
     time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
   },
 ];
@@ -30,10 +27,12 @@ export default function QueryEngine() {
   const resultHandledRef = useRef("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Auto-scroll to bottom of chat
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history, isLoading]);
 
+  // Handle incoming API response from AppContext
   useEffect(() => {
     if (queryResult && queryResult !== resultHandledRef.current) {
       resultHandledRef.current = queryResult;
@@ -49,19 +48,28 @@ export default function QueryEngine() {
     }
   }, [queryResult]);
 
-  const handleQuery = useCallback((q?: string) => {
-    const text = q || localInput;
-    if (!text.trim()) return;
-    setHistory(prev => [...prev, {
-      role: "user",
-      text,
-      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-    }]);
+  // 🚀 Direct text param passed to runQuery to fix state lag/mismatch
+  const handleQuery = useCallback(async (q?: string) => {
+    const text = (q || localInput).trim();
+    if (!text || isLoading) return;
+
+    // 1. Instantly append User Message to Chat History
+    setHistory(prev => [
+      ...prev,
+      {
+        role: "user",
+        text,
+        time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      },
+    ]);
+
     setQueryInput(text);
     setLocalInput("");
     setIsLoading(true);
-    setTimeout(() => { runQuery(); }, 500);
-  }, [localInput, setQueryInput, runQuery]);
+
+    // 2. Direct execution without setTimeout race conditions
+    runQuery();
+  }, [localInput, isLoading, setQueryInput, runQuery]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
@@ -70,19 +78,19 @@ export default function QueryEngine() {
         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-lg">🔍</div>
         <div>
           <h2 className="text-white font-bold text-xl">Cricket Intelligence Query Engine</h2>
-          <p className="text-slate-400 text-sm">Ask natural language questions about player performance, IPL selection, and news insights</p>
+          <p className="text-slate-400 text-sm">Ask natural language questions about player performance, National Team selection probability, and news insights</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Chat Interface */}
         <div className="lg:col-span-2 flex flex-col gap-4">
-          {/* Conversation */}
+          {/* Conversation Area */}
           <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl overflow-hidden flex flex-col h-[520px]">
-            {/* Messages */}
+            {/* Messages Container */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4" id="chat-scroll">
               {history.map((msg, idx) => (
-              <div key={idx} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                <div key={idx} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div className={`max-w-[85%] ${msg.role === "user" ? "order-2" : "order-1"}`}>
                     {msg.role === "system" && (
                       <div className="flex items-center gap-2 mb-1">
@@ -90,6 +98,7 @@ export default function QueryEngine() {
                         <span className="text-slate-500 text-xs">CricketIQ · {msg.time}</span>
                       </div>
                     )}
+                    
                     <div
                       className={`rounded-2xl px-4 py-3 text-sm whitespace-pre-wrap leading-relaxed ${
                         msg.role === "user"
@@ -99,12 +108,14 @@ export default function QueryEngine() {
                     >
                       {msg.text}
                     </div>
+                    
                     {msg.role === "user" && (
                       <p className="text-slate-500 text-xs text-right mt-1">{msg.time}</p>
                     )}
                   </div>
                 </div>
               ))}
+
               {isLoading && (
                 <div className="flex justify-start">
                   <div className="bg-slate-700/60 border border-slate-600/50 rounded-2xl rounded-tl-sm px-4 py-3">
@@ -112,7 +123,7 @@ export default function QueryEngine() {
                       <span className="w-2 h-2 rounded-full bg-orange-400 animate-bounce" style={{ animationDelay: "0ms" }} />
                       <span className="w-2 h-2 rounded-full bg-orange-400 animate-bounce" style={{ animationDelay: "150ms" }} />
                       <span className="w-2 h-2 rounded-full bg-orange-400 animate-bounce" style={{ animationDelay: "300ms" }} />
-                      <span className="text-slate-400 text-xs ml-2">Analyzing cricket data...</span>
+                      <span className="text-slate-400 text-xs ml-2">Analyzing national selection metrics...</span>
                     </div>
                   </div>
                 </div>
@@ -125,7 +136,7 @@ export default function QueryEngine() {
               <div className="flex gap-3 items-end">
                 <textarea
                   rows={2}
-                  placeholder="Ask about players, performances, IPL selection, tournaments..."
+                  placeholder="Ask about players, national team probability, performance scores..."
                   value={localInput}
                   onChange={e => setLocalInput(e.target.value)}
                   onKeyDown={e => {
@@ -151,12 +162,13 @@ export default function QueryEngine() {
           {/* Quick Query Suggestions */}
           <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-4 space-y-3">
             <p className="text-slate-400 text-xs uppercase tracking-wider font-medium">Quick Queries</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
               {exampleQueries.map(q => (
                 <button
                   key={q.label}
                   onClick={() => handleQuery(q.query)}
-                  className="flex items-center gap-2 p-3 rounded-xl bg-slate-700/50 border border-slate-600/50 text-slate-300 text-xs hover:bg-slate-700 hover:border-slate-500 transition-all text-left group"
+                  disabled={isLoading}
+                  className="flex items-center gap-2 p-3 rounded-xl bg-slate-700/50 border border-slate-600/50 text-slate-300 text-xs hover:bg-slate-700 hover:border-slate-500 transition-all text-left group disabled:opacity-50"
                 >
                   <span className="text-lg group-hover:scale-110 transition-transform">{q.icon}</span>
                   <span>{q.label}</span>
@@ -166,17 +178,15 @@ export default function QueryEngine() {
           </div>
         </div>
 
-        {/* Sidebar: Capabilities + Stats */}
+        {/* Sidebar */}
         <div className="space-y-4">
-          {/* Query Capabilities */}
           <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 space-y-4">
             <h3 className="text-white font-semibold text-sm">Query Capabilities</h3>
             <div className="space-y-3">
               {[
                 { icon: "🏆", title: "Award Extraction", desc: "Man of Match, Best Bowler, Wicket Milestones from news" },
                 { icon: "📊", title: "Performance Profiles", desc: "Season stats, composite scores, tier classification" },
-                { icon: "🎯", title: "IPL Selection", desc: "Probability scores, predicted vs actual selection" },
-                { icon: "🌍", title: "Tournament Coverage", desc: "Ranji Trophy, Lanka Premier League, PSL insights" },
+                { icon: "🎯", title: "National Selection", desc: "Selection probability scores, predicted vs actual national call-ups" },
                 { icon: "👤", title: "Player Lookup", desc: "Individual profiles with news and award history" },
                 { icon: "📈", title: "Rankings", desc: "Top performers by performance and marker scores" },
               ].map(cap => (
@@ -191,17 +201,15 @@ export default function QueryEngine() {
             </div>
           </div>
 
-          {/* Dataset Stats */}
           <div className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 space-y-3">
             <h3 className="text-white font-semibold text-sm">Dataset Overview</h3>
             <div className="space-y-2.5">
               {[
                 { label: "Total Records", value: "100 Players" },
                 { label: "Features", value: "5 Columns" },
-                { label: "Tournaments", value: "3 Leagues" },
                 { label: "Performance Range", value: "0.04 – 9.97" },
                 { label: "Marker Range", value: "0 – 5" },
-                { label: "Selection Rate", value: "50%" },
+                { label: "National Squad Selection Rate", value: "50%" },
               ].map(stat => (
                 <div key={stat.label} className="flex justify-between items-center border-b border-slate-700/30 pb-2">
                   <span className="text-slate-400 text-xs">{stat.label}</span>
@@ -209,23 +217,6 @@ export default function QueryEngine() {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Sample Queries */}
-          <div className="bg-gradient-to-br from-violet-500/10 to-purple-500/10 border border-violet-500/30 rounded-2xl p-4 space-y-2">
-            <h3 className="text-violet-300 font-semibold text-sm">💡 Example Queries</h3>
-            <ul className="space-y-1.5">
-              {[
-                '"Who won Man of the Match?"',
-                '"Show me IPL selected players"',
-                '"Top performers in Ranji"',
-                '"Best bowlers this season"',
-                '"LPL highlights"',
-                '"Wicket milestones"',
-              ].map(q => (
-                <li key={q} className="text-violet-200 text-xs italic opacity-80">{q}</li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>

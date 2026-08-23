@@ -2,9 +2,8 @@ import { useApp } from "../context/AppContext";
 import type { Tab } from "../context/AppContext";
 
 const tabs: { id: Tab; label: string; icon: string; desc: string }[] = [
-  { id: "prediction", label: "IPL Prediction", icon: "🏏", desc: "Selection Forecast" },
+  { id: "prediction", label: "National Team Select Prediction", icon: "🏏", desc: "Selection Forecast" },
   { id: "feed", label: "News Feed", icon: "📰", desc: "Personalized" },
- // { id: "intelligence", label: "Performance Intelligence", icon: "📊", desc: "Player Insights" },
   { id: "query", label: "Query Engine", icon: "🔍", desc: "Ask Cricket AI" },
 ];
 
@@ -24,12 +23,15 @@ export default function Navbar() {
             <p className="text-slate-400 text-xs mt-0.5">Intelligent Cricket News Module</p>
           </div>
         </div>
+        
+        {/* Status Indicators */}
         <div className="flex items-center gap-2">
-          <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-medium">
-            Live Season
+          <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-medium flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            Live Data
           </span>
           <span className="px-2.5 py-1 rounded-full bg-blue-500/20 border border-blue-500/40 text-blue-400 text-xs font-medium">
-            100 Players
+            NLP Engine Active
           </span>
         </div>
       </div>
@@ -39,10 +41,11 @@ export default function Navbar() {
         {tabs.map(tab => (
           <button
             key={tab.id}
+            type="button"
             onClick={() => setActiveTab(tab.id)}
-            className={`flex-1 min-w-[140px] flex flex-col items-center gap-1 py-3 px-4 text-center transition-all border-b-2 ${
+            className={`flex-1 min-w-[140px] flex flex-col items-center gap-1 py-3 px-4 text-center transition-all border-b-2 cursor-pointer ${
               activeTab === tab.id
-                ? "border-orange-500 bg-orange-500/10 text-orange-400"
+                ? "border-orange-500 bg-orange-500/10 text-orange-400 font-bold"
                 : "border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
             }`}
           >
