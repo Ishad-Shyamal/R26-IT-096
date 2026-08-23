@@ -13,8 +13,8 @@ const Sidebar = () => {
     { name: 'Player Analysis', path: '/player', icon: <Activity size={20} /> },
     { name: 'Match Previews', path: '#previews', icon: <Brain size={20} /> },
     { name: 'Win Predictor', path: '#win', icon: <Target size={20} /> },
-    // { name: 'About Us', path: '/about', icon: <Info size={20} /> },
-    // { name: 'Contact Us', path: '/contact', icon: <Mail size={20} /> },
+    { name: 'About Us', path: '/about', icon: <Info size={20} /> },
+    { name: 'Contact Us', path: '/contact', icon: <Mail size={20} /> },
   ];
 
   return (
@@ -43,6 +43,14 @@ const Sidebar = () => {
         <Link to="/settings" className={`nav-item ${currentPath === '/settings' ? 'active' : ''}`}>
           <Settings size={20} />
           Settings
+        </Link>
+        <Link to="/login" className={`nav-item ${currentPath === '/login' ? 'active' : ''}`}>
+          <LogIn size={20} />
+          Login
+        </Link>
+        <Link to="/signup" className={`nav-item ${currentPath === '/signup' ? 'active' : ''}`}>
+          <UserPlus size={20} />
+          Sign Up
         </Link>
         <Link to="/login" className="nav-item" style={{ color: 'var(--danger)' }}>
           <LogOut size={20} />
