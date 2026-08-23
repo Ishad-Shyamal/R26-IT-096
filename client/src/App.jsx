@@ -1,8 +1,7 @@
-import React from 'react';
+import 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
-import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -14,11 +13,13 @@ import Player from './components/Player';
 import Prediction from './components/Prediction';
 import MatchPreviewReview from './components/MatchPreviewReview';
 
+import NewsCurator from './components/NewsCurator';
 
-// A layout component for pages that need the sidebar
+// Layout Component
 const MainLayout = ({ children }) => (
   <div className="app-container">
     <Sidebar />
+
     <main className="main-content">
       {children}
     </main>
@@ -30,6 +31,7 @@ function App() {
     <Router>
       {/* <Navbar /> */}
       <Routes>
+
         {/* Auth Routes */}
         <Route path="/login" element={<Login />} />
 

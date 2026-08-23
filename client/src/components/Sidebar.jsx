@@ -1,6 +1,18 @@
-import React from 'react';
+import 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Home, Newspaper, Activity, Brain, Target, Zap, Settings, LogOut, Info, Mail, LogIn, UserPlus } from 'lucide-react';
+import {
+  LayoutDashboard,
+  Newspaper,
+  Activity,
+  Brain,
+  Target,
+  Settings,
+  LogOut,
+  Info,
+  Mail,
+  LogIn,
+  UserPlus
+} from 'lucide-react';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -31,7 +43,9 @@ const Sidebar = () => {
           <Link
             key={item.name}
             to={item.path}
-            className={`nav-item ${currentPath === item.path ? 'active' : ''}`}
+            className={`nav-item ${
+              currentPath === item.path ? 'active' : ''
+            }`}
           >
             {item.icon}
             {item.name}
@@ -40,11 +54,41 @@ const Sidebar = () => {
       </nav>
 
       <div className="nav-menu">
-        <Link to="/settings" className={`nav-item ${currentPath === '/settings' ? 'active' : ''}`}>
+        <Link
+          to="/settings"
+          className={`nav-item ${
+            currentPath === '/settings' ? 'active' : ''
+          }`}
+        >
           <Settings size={20} />
           Settings
         </Link>
-        <Link to="/login" className="nav-item" style={{ color: 'var(--danger)' }}>
+
+        <Link
+          to="/login"
+          className={`nav-item ${
+            currentPath === '/login' ? 'active' : ''
+          }`}
+        >
+          <LogIn size={20} />
+          Login
+        </Link>
+
+        <Link
+          to="/signup"
+          className={`nav-item ${
+            currentPath === '/signup' ? 'active' : ''
+          }`}
+        >
+          <UserPlus size={20} />
+          Sign Up
+        </Link>
+
+        <Link
+          to="/login"
+          className="nav-item"
+          style={{ color: 'var(--danger)' }}
+        >
           <LogOut size={20} />
           Logout
         </Link>
