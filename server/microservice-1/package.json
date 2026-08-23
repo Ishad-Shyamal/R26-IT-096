@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
-  },
+  "start": "node --dns-result-order=ipv4first server.js",
+  "dev": "nodemon --dns-result-order=ipv4first server.js"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

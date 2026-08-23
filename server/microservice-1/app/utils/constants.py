@@ -1,7 +1,7 @@
 # app/utils/constants.py
 
 # 1. Performance Keywords and Weights (PPI Logic)
-# පුවත් ලිපියක ඇති වචන අනුව ක්‍රීඩකයාට ලැබෙන ලකුණු ප්‍රමාණය
+
 PERFORMANCE_KEYWORDS = {
     "century": 5.0,
     "hundred": 5.0,
@@ -21,7 +21,7 @@ PERFORMANCE_KEYWORDS = {
 }
 
 # 2. Selection Markers (Award Recognition)
-# විශේෂ ඇගයීම් සඳහා ලබා දෙන ලකුණු
+
 AWARD_KEYWORDS = [
     "man of the match",
     "player of the match",
@@ -36,7 +36,7 @@ AWARD_KEYWORDS = [
 ]
 
 # 3. Geopolitical Signal Detection (GSD Logic)
-# භූ-දේශපාලනික අවදානම් හඳුනාගැනීමට අවශ්‍ය වචන
+
 GEOPOLITICAL_KEYWORDS = [
     "visa issue",
     "visa delay",
@@ -52,7 +52,7 @@ GEOPOLITICAL_KEYWORDS = [
 ]
 
 # 4. Country-Specific Risk Weights
-# රටවල් අනුව අවදානම් මට්ටම් (මෙය පර්යේෂණ පත්‍රිකා පදනම් කරගෙන සකස් කළ හැක)
+
 COUNTRY_RISKS = {
     "pakistan": 1.0,
     "afghanistan": 0.7,
