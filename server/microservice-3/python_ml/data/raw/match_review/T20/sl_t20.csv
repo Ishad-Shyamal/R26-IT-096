@@ -1,0 +1,74 @@
+Date,Series,Full Venue Name,Toss Winner,Toss Decis,1st Inn Runs,1st Inn Wk,2nd Inn Runs,2nd Inn Wk,Result,Player of the Match,Start Time
+24/01/14,SL v ZIM,R. Premadasa Stadium,Sri Lanka,Bowl,143,5,144,7,SL (3 wkts),Angelo Mathews,19:00
+24/01/16,SL v ZIM,R. Premadasa Stadium,Zimbabwe,Bowl,173,6,174,6,ZIM (4 wkts),Luke Jongwe,19:00
+24/01/18,SL v ZIM,R. Premadasa Stadium,Sri Lanka,Bowl,82,10,88,1,SL (9 wkts),Wanindu Hasaranga,19:00
+24/02/17,SL v AFG,Rangiri Dambulla Stadium,Afghanistan,Bowl,160,10,156,9,SL (4 runs),Binura Fernando,19:00
+24/02/19,SL v AFG,Rangiri Dambulla Stadium,Afghanistan,Bowl,187,6,115,10,SL (72 runs),Angelo Mathews,19:00
+24/02/21,SL v AFG,Rangiri Dambulla Stadium,Sri Lanka,Bowl,209,5,206,6,AFG (3 runs),Rahmanullah Gurbaz,19:00
+24/03/04,BAN v SL,Sylhet Stadium,Bangladesh,Bowl,206,3,203,8,SL (3 runs),Charith Asalanka,18:00
+24/03/06,BAN v SL,Sylhet Stadium,Bangladesh,Bowl,165,5,170,2,BAN (8 wkts),Najmul Hossain Shanto,18:00
+24/03/09,BAN v SL,Sylhet Stadium,Bangladesh,Bowl,174,7,146,10,SL (28 runs),Nuwan Thushara,15:00
+24/06/03,T20 WC (SA),Nassau County Stadium,Sri Lanka,Bat,77,10,80,4,SA (6 wkts),Anrich Nortje,10:30
+24/06/07,T20 WC (BAN),Grand Prairie Stadium,Bangladesh,Bowl,124,9,125,8,BAN (2 wkts),Rishad Hossain,19:30
+24/06/16,T20 WC (NED),Daren Sammy Stadium,Netherlands,Bowl,201,6,118,10,SL (83 runs),Charith Asalanka,20:30
+24/07/27,SL v IND,Pallekele Stadium,India,Bowl,213,7,170,10,IND (43 runs),Suryakumar Yadav,19:00
+24/07/28,SL v IND,Pallekele Stadium,India,Bowl,161,9,81,3,IND (7 wkts*),Yashasvi Jaiswal,19:00
+24/07/30,SL v IND,Pallekele Stadium,Sri Lanka,Bowl,137,9,137,8,IND (Super Over),Washington Sundar,19:00
+24/10/13,SL v WI,Rangiri Dambulla Stadium,West Indies,Bowl,179,7,180,5,WI (5 wkts),Brandon King,19:00
+24/10/15,SL v WI,Rangiri Dambulla Stadium,Sri Lanka,Bat,162,5,89,10,SL (73 runs),Pathum Nissanka,19:00
+24/10/17,SL v WI,Rangiri Dambulla Stadium,West Indies,Bat,162,8,166,1,SL (9 wkts),Kusal Mendis,19:00
+24/11/09,SL v NZ,Rangiri Dambulla Stadium,New Zealand,Bat,135,10,137,6,SL (4 wkts),Charith Asalanka,19:00
+24/11/10,SL v NZ,Rangiri Dambulla Stadium,Sri Lanka,Bowl,108,10,103,10,NZ (5 runs),Lockie Ferguson,19:00
+24/12/28,NZ v SL,Bay Oval,Sri Lanka,Bowl,182,4,174,7,NZ (8 runs),Glenn Phillips,19:10
+24/12/30,NZ v SL,Bay Oval,Sri Lanka,Bowl,205,5,160,10,NZ (45 runs),Finn Allen,19:10
+25/01/02,NZ v SL,Saxton Oval,New Zealand,Bowl,162,5,155,8,SL (7 runs),Kusal Mendis,13:00
+25/07/10,SL v BAN,Pallekele Stadium,Sri Lanka,Bowl,152,8,153,3,SL (7 wkts),Maheesh Theekshana,19:00
+25/07/13,SL v BAN,Rangiri Dambulla Stadium,Bangladesh,Bat,198,4,115,10,BAN (83 runs),Towhid Hridoy,19:00
+25/07/16,SL v BAN,R. Premadasa Stadium,Sri Lanka,Bowl,165,7,166,2,BAN (8 wkts),Litton Das,19:00
+25/09/03,ZIM v SL,Harare Sports Club,Sri Lanka,Bowl,155,8,156,6,SL (4 wkts),Wanindu Hasaranga,13:00
+25/09/06,ZIM v SL,Harare Sports Club,Zimbabwe,Bowl,148,9,149,5,ZIM (5 wkts),Sikandar Raza,13:00
+25/09/07,ZIM v SL,Harare Sports Club,Sri Lanka,Bowl,124,10,125,2,SL (8 wkts),Matheesha Pathirana,13:00
+25/09/13,Asia Cup (BAN),Sheikh Zayed Stadium,Sri Lanka,Bowl,152,9,153,4,SL (6 wkts),Kamil Mishara,19:30
+25/09/15,Asia Cup (HK),Dubai Intl Stadium,Hong Kong,Bat,143,7,144,6,SL (4 wkts),Pathum Nissanka,19:30
+25/09/18,Asia Cup (AFG),Sheikh Zayed Stadium,Sri Lanka,Bowl,158,8,159,4,SL (6 wkts),Kusal Mendis,19:30
+25/09/20,Asia Cup (BAN),Dubai Intl Stadium,Bangladesh,Bat,168,6,164,8,BAN (4 wkts),Saif Hassan,19:30
+25/09/23,Asia Cup (PAK),Sheikh Zayed Stadium,Sri Lanka,Bat,161,7,162,5,PAK (5 wkts),Hussain Talat,19:30
+25/09/26,Asia Cup (IND),Dubai Intl Stadium,India,Bowl,172,8,172,7,IND (Super Over),Pathum Nissanka,19:30
+25/11/20,Tri-Series (ZIM),Rawalpindi Stadium,Zimbabwe,Bat,185,5,118,10,ZIM (67 runs),Ryan Burl,18:30
+25/11/22,Tri-Series (PAK),Rawalpindi Stadium,Sri Lanka,Bat,159,9,160,3,PAK (7 wkts),Shaheen Afridi,18:30
+25/11/25,Tri-Series (ZIM),Rawalpindi Stadium,Sri Lanka,Bowl,132,9,133,1,SL (9 wkts),Maheesh Theekshana,18:30
+25/11/27,Tri-Series (PAK),Rawalpindi Stadium,Sri Lanka,Bat,162,6,156,9,SL (6 runs),Wanindu Hasaranga,18:30
+25/11/29,Tri-Series Final,Rawalpindi Stadium,Pakistan,Bowl,155,8,156,4,PAK (6 wkts),Mohammad Rizwan,18:30
+26/01/07,SL v PAK,Rangiri Dambulla,Pakistan,Bowl,148,8,149,4,PAK (6 wkts),Haris Rauf,19:00
+26/01/11,SL v PAK,Rangiri Dambulla,Sri Lanka,Bat,172,5,158,9,SL (14 runs),Pathum Nissanka,19:00
+26/01/30,SL v ENG,Pallekele Stadium,England,Bowl,164,8,175,5,ENG (11 runs*),Phil Salt,19:00
+26/02/01,SL v ENG,Pallekele Stadium,Sri Lanka,Bat,155,9,156,4,ENG (6 wkts),Jos Buttler,19:00
+26/02/03,SL v ENG,Pallekele Stadium,England,Bowl,158,7,146,10,ENG (12 runs),Jofra Archer,19:00
+26/02/08,T20 WC (IRE),R. Premadasa Stadium,Sri Lanka,Bat,162,7,142,9,SL (20 runs),Kamindu Mendis,19:00
+26/02/12,T20 WC (OMA),Pallekele Stadium,Oman,Bowl,215,3,110,10,SL (105 runs),Pavan Rathnayake,19:00
+26/02/16,T20 WC (AUS),Pallekele Stadium,Sri Lanka,Bowl,148,9,149,2,SL (8 wkts),Pathum Nissanka,19:00
+26/02/19,T20 WC Super 8 (ZIM),R. Premadasa Stadium,Zimbabwe,Bowl,154,7,155,4,ZIM (6 wkts),Sikandar Raza,19:00
+26/02/22,T20 WC Super 8 (ENG),Pallekele Stadium,England,Bat,192,4,141,10,ENG (51 runs),Will Jacks,19:00
+26/02/25,T20 WC Super 8 (NZ),R. Premadasa Stadium,New Zealand,Bat,188,6,127,10,NZ (61 runs),Rachin Ravindra,19:00
+26/02/28,T20 WC Super 8 (PAK),Pallekele Stadium,Pakistan,Bat,168,6,163,9,PAK (5 runs),Sahibzada Farhan,19:00
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,,,,,
