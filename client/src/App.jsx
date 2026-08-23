@@ -12,6 +12,7 @@ import Signup from './components/Signup';
 import WinPredictor from './components/WinPredictor';
 import Player from './components/Player';
 import Prediction from './components/Prediction';
+import MatchPreviewReview from './components/MatchPreviewReview';
 
 
 // A layout component for pages that need the sidebar
@@ -48,7 +49,11 @@ function App() {
             <Player />
           </MainLayout>
         } />
-
+        <Route path="/matchpreviewreview" element={
+          <MainLayout>
+            <MatchPreviewReview />
+          </MainLayout>
+        } />
         <Route path="/prediction" element={
           <MainLayout>
             <Prediction />
@@ -70,7 +75,7 @@ function App() {
             <WinPredictor />
           </MainLayout>
         } />
-      
+        
         {/* Fallback route */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

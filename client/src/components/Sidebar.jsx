@@ -11,7 +11,7 @@ const Sidebar = () => {
     { name: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard size={20} /> },
     { name: 'News Curator', path: '#news', icon: <Newspaper size={20} /> },
     { name: 'Player Analysis', path: '/player', icon: <Activity size={20} /> },
-    { name: 'Match Previews', path: '#previews', icon: <Brain size={20} /> },
+    { name: 'Match Previews', path: '/matchpreviewreview', icon: <Brain size={20} /> },
     { name: 'Win Predictor', path: '/predictor', icon: <Target size={20} /> },
     { name: 'About Us', path: '/about', icon: <Info size={20} /> },
     { name: 'Contact Us', path: '/contact', icon: <Mail size={20} /> },
