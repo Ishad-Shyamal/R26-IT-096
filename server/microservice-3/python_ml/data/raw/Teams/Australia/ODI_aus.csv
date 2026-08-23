@@ -1,5 +1,5 @@
 Player,Role,Runs 2025,Bat Avg,Wkts 2025,Bowl Avg,Batting SR,Highest Score,Economy,Bowling SR
-Mitchell Marsh,Batting All-rounder,640,40,18,32,105.7,96,5.6,34.3
+Mitchell Marsh,Batter,640,40,18,32,105.7,96,5.6,34.3
 Travis Head,Batter,720,48,6,45,122.4,152,5.5,49.1
 Marnus Labuschagne,Batter,580,36,4,50,84.1,92,5.8,51.7
 Steve Smith,Batter,670,44.6,3,48,88.5,105,5.4,53.3
@@ -10,7 +10,7 @@ Alex Carey,WK,610,38,0,0,92.4,67,0,0
 Josh Inglis,WK,480,34,0,0,108.5,110,0,0
 Glenn Maxwell,Batting All-rounder,700,35,20,42,175.2,201,4.95,50.9
 Marcus Stoinis,Batting All-rounder,430,30,22,38,172,62,5.75,39.7
-Adam Zampa,Bowler,120,15,38,28,78.5,22,5.15,32.6
-Mitchell Starc,Bowler,90,18,42,24,85,24,5.35,26.9
-Josh Hazlewood,Bowler,60,12,28,26,60,10,4.8,32.5
-Pat Cummins,Bowler,40,10,25,25,70,15,5.5,27.3
+Adam Zampa,Spin Bowler,120,15,38,28,78.5,22,5.15,32.6
+Mitchell Starc,Pace Bowler,90,18,42,24,85,24,5.35,26.9
+Josh Hazlewood,Pace Bowler,60,12,28,26,60,10,4.8,32.5
+Pat Cummins,Pace Bowler,40,10,25,25,70,15,5.5,27.3
