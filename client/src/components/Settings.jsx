@@ -67,7 +67,7 @@ const Settings = () => {
       </div>
 
       {/* Right Content Area */}
-      <div style={{ flex: 1, paddingBottom: '100px', paddingRight: '50px' }}>
+      <div style={{ flex: 1, paddingBottom: '100px' }}>
         
         {activeTab === 'account' && (
           <div style={{ animation: 'fadeIn 0.3s ease' }}>

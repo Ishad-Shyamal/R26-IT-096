@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Navbar from './Navbar';
-import { Mail, MapPin, Send, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Mail, MapPin, Send, Activity, Phone } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -8,7 +8,6 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate form submission
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
     setFormData({ name: '', email: '', message: '' });
@@ -17,11 +16,28 @@ const Contact = () => {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-darker)', color: 'var(--text-main)', paddingBottom: '80px', position: 'relative', overflow: 'hidden' }}>
       
-      <Navbar />
-
       {/* Background Glows */}
       <div style={{ position: 'absolute', top: '-10%', right: '-5%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 70%)', filter: 'blur(60px)', zIndex: 0, pointerEvents: 'none' }}></div>
       <div style={{ position: 'absolute', bottom: '-10%', left: '-5%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(58, 123, 213, 0.1) 0%, transparent 70%)', filter: 'blur(60px)', zIndex: 0, pointerEvents: 'none' }}></div>
+
+      {/* Navigation */}
+      <nav style={{ 
+        position: 'fixed', top: 0, left: 0, right: 0, 
+        padding: '20px 40px', 
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
+        background: 'rgba(10, 12, 16, 0.8)', backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        zIndex: 1000 
+      }}>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'inherit' }}>
+          <Activity size={28} color="var(--primary)" />
+          <span style={{ fontSize: '1.4rem', fontWeight: '700', letterSpacing: '-0.02em' }}>InsightCric</span>
+        </Link>
+        <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
+          <Link to="/login" style={{ color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '500' }}>Log In</Link>
+        </div>
+      </nav>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', paddingTop: '160px', paddingLeft: '40px', paddingRight: '40px', position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>

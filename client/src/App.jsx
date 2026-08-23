@@ -8,8 +8,8 @@ import Contact from './components/Contact';
 import Settings from './components/Settings';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import Player from './components/Player';
-import Prediction from './components/Prediction';
+import WinPredictor from './components/WinPredictor';
+
 
 // A layout component for pages that need the sidebar
 const MainLayout = ({ children }) => (
@@ -43,16 +43,12 @@ function App() {
             <Settings />
           </MainLayout>
         } />
-        <Route path="/player" element={
+        <Route path="/predictor" element={
           <MainLayout>
-            <Player />
+            <WinPredictor />
           </MainLayout>
         } />
-        <Route path="/prediction" element={
-          <MainLayout>
-            <Prediction />
-          </MainLayout>
-        } />
+        
         
         {/* Fallback route */}
         <Route path="*" element={<Navigate to="/" replace />} />
