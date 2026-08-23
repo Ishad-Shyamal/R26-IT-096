@@ -36,13 +36,7 @@ server/**/node_modules/
 server/**/dist/
 server/**/build/
 
-############################
-#  PYTHON (ML SERVICE)
-############################
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
+
 
 # Virtual environments
 venv/
@@ -54,14 +48,7 @@ ENV/
 # Jupyter Notebook
 .ipynb_checkpoints/
 
-# ML artifacts
-*.h5
-*.hdf5
-*.pkl
-*.joblib
-*.onnx
-*.pt
-*.pth
+
 
 ############################
 #  ENVIRONMENT VARIABLES (CRITICAL)
@@ -89,7 +76,9 @@ coverage/
 ############################
 #  IDE & EDITORS
 ############################
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 .idea/
 *.suo
 *.ntvs*
@@ -126,3 +115,12 @@ temp/
 *.seed
 *.tgz
 *.gz
+
+############################
+#  DATASETS (Too large for GitHub)
+############################
+**/data/raw/*.csv
+**/data/raw/*.json
+**/data/raw/*.xlsx
+**/data/processed/*.csv
+**/data/processed/*.json
