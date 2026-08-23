@@ -10,7 +10,7 @@ const Sidebar = () => {
     { name: 'Home', path: '/', icon: <Home size={20} /> },
     { name: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard size={20} /> },
     { name: 'News Curator', path: '#news', icon: <Newspaper size={20} /> },
-    { name: 'Player Analysis', path: '#players', icon: <Activity size={20} /> },
+    { name: 'Player Analysis', path: '/player', icon: <Activity size={20} /> },
     { name: 'Match Previews', path: '#previews', icon: <Brain size={20} /> },
     { name: 'Win Predictor', path: '/predictor', icon: <Target size={20} /> },
     { name: 'About Us', path: '/about', icon: <Info size={20} /> },
@@ -19,12 +19,12 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <Link to="/" className="brand" style={{ textDecoration: 'none', color: 'inherit' }}>
+      {/* <Link to="/" className="brand" style={{ textDecoration: 'none', color: 'inherit' }}>
         <div className="brand-icon">
           <Activity size={24} />
         </div>
         <div className="brand-name">InsightCric</div>
-      </Link>
+      </Link> */}
 
       <nav className="nav-menu" style={{ flex: 1 }}>
         {navItems.map((item) => (

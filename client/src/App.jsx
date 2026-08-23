@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
@@ -9,6 +10,8 @@ import Settings from './components/Settings';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import WinPredictor from './components/WinPredictor';
+import Player from './components/Player';
+import Prediction from './components/Prediction';
 
 
 // A layout component for pages that need the sidebar
@@ -24,32 +27,50 @@ const MainLayout = ({ children }) => (
 function App() {
   return (
     <Router>
+      {/* <Navbar /> */}
       <Routes>
         {/* Auth Routes */}
         <Route path="/login" element={<Login />} />
+
         <Route path="/signup" element={<Signup />} />
         
         {/* Main App Routes */}
         <Route path="/" element={<Home />} />
+
         <Route path="/dashboard" element={
           <MainLayout>
             <Dashboard />
           </MainLayout>
         } />
+
+        <Route path="/player" element={
+          <MainLayout>
+            <Player />
+          </MainLayout>
+        } />
+
+        <Route path="/prediction" element={
+          <MainLayout>
+            <Prediction />
+          </MainLayout>
+        } />
+
         <Route path="/about" element={<About />} />
+
         <Route path="/contact" element={<Contact />} />
+
         <Route path="/settings" element={
           <MainLayout>
             <Settings />
           </MainLayout>
         } />
+
         <Route path="/predictor" element={
           <MainLayout>
             <WinPredictor />
           </MainLayout>
         } />
-        
-        
+      
         {/* Fallback route */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

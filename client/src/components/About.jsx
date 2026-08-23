@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Users, Target, Zap, Shield, Activity } from 'lucide-react';
+import Navbar from './Navbar';
 
 const About = () => {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', color: 'var(--text-main)', paddingBottom: '80px' }}>
       {/* Navigation */}
-      <nav style={{ 
+      <Navbar />
+      {/* <nav style={{ 
         position: 'fixed', top: 0, left: 0, right: 0, 
         padding: '20px 40px', 
         display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
@@ -22,7 +24,7 @@ const About = () => {
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
           <Link to="/login" style={{ color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '500' }}>Log In</Link>
         </div>
-      </nav>
+      </nav> */}
 
       <div style={{ maxWidth: '1000px', margin: '0 auto', paddingTop: '120px', paddingLeft: '20px', paddingRight: '20px' }}>
         <div style={{ marginBottom: '40px', textAlign: 'center' }}>

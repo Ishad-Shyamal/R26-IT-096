@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Send, Activity, Phone } from 'lucide-react';
+import Navbar from './Navbar';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -21,7 +22,8 @@ const Contact = () => {
       <div style={{ position: 'absolute', bottom: '-10%', left: '-5%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(58, 123, 213, 0.1) 0%, transparent 70%)', filter: 'blur(60px)', zIndex: 0, pointerEvents: 'none' }}></div>
 
       {/* Navigation */}
-      <nav style={{ 
+      <Navbar />
+      {/* <nav style={{ 
         position: 'fixed', top: 0, left: 0, right: 0, 
         padding: '20px 40px', 
         display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
@@ -37,7 +39,7 @@ const Contact = () => {
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
           <Link to="/login" style={{ color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '500' }}>Log In</Link>
         </div>
-      </nav>
+      </nav> */}
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', paddingTop: '160px', paddingLeft: '40px', paddingRight: '40px', position: 'relative', zIndex: 1 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>

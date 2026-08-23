@@ -1,6 +1,7 @@
 import React from 'react';
 import { TrendingUp } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import Navbar from './Navbar';
 
 const performanceData = [
   { match: 'M1', runs: 45, strikeRate: 130 },
@@ -15,7 +16,8 @@ const performanceData = [
 
 const Dashboard = () => {
   return (
-    <div>
+    <div style={{ paddingTop: '106px' }}>
+      <Navbar />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
         <div>
           <h1 className="page-title">Command Center</h1>
