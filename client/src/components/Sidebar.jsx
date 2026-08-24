@@ -1,6 +1,7 @@
 import 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
+  Home,
   LayoutDashboard,
   Newspaper,
   Activity,
@@ -19,29 +20,24 @@ const Sidebar = () => {
   const currentPath = location.pathname;
 
   const navItems = [
-    { name: 'Dashboard', path: '/', icon: <LayoutDashboard size={20} /> },
-
-    // News Curator Route
-    { name: 'News Curator', path: '/news-curator', icon: <Newspaper size={20} /> },
-
-    { name: 'Player Analysis', path: '#players', icon: <Activity size={20} /> },
-    { name: 'Match Previews', path: '#previews', icon: <Brain size={20} /> },
-    { name: 'Win Predictor', path: '#predictor', icon: <Target size={20} /> },
+    { name: 'Home', path: '/', icon: <Home size={20} /> },
+    { name: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard size={20} /> },
+    { name: 'News Curator', path: '#news', icon: <Newspaper size={20} /> },
+    { name: 'Player Analysis', path: '/player', icon: <Activity size={20} /> },
+    { name: 'Match Previews', path: '/matchpreviewreview', icon: <Brain size={20} /> },
+    { name: 'Win Predictor', path: '/predictor', icon: <Target size={20} /> },
     { name: 'About Us', path: '/about', icon: <Info size={20} /> },
     { name: 'Contact Us', path: '/contact', icon: <Mail size={20} /> },
   ];
 
   return (
     <div className="sidebar">
-      <div className="brand">
+      {/* <Link to="/" className="brand" style={{ textDecoration: 'none', color: 'inherit' }}>
         <div className="brand-icon">
           <Activity size={24} />
         </div>
-
-        <div className="brand-name">
-          InsightCric
-        </div>
-      </div>
+        <div className="brand-name">InsightCric</div>
+      </Link> */}
 
       <nav className="nav-menu" style={{ flex: 1 }}>
         {navItems.map((item) => (

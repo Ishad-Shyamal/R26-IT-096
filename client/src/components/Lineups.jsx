@@ -57,7 +57,7 @@ const Lineups = () => {
   };
 
   const handleBack = () => {
-      navigate('/match-previews', {
+      navigate('/matchpreviewreview', {
         state: {
           restoreMode:   fromMode,
           team1,

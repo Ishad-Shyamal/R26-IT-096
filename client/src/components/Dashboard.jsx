@@ -1,6 +1,17 @@
-import 'react';
+import React from 'react';
+import Navbar from './Navbar';
 import { TrendingUp, AlertCircle, Shield, Play, Brain } from 'lucide-react';
-import { AreaChart, Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { 
+  AreaChart, 
+  Area, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer, 
+  BarChart, 
+  Bar 
+} from 'recharts';
 
 const performanceData = [
   { match: 'M1', runs: 45, strikeRate: 130 },
@@ -11,11 +22,10 @@ const performanceData = [
   { match: 'M6', runs: 94, strikeRate: 165 },
 ];
 
-
-
 const Dashboard = () => {
   return (
-    <div>
+    <div style={{ paddingTop: '106px' }}>
+      <Navbar />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
         <div>
           <h1 className="page-title">Command Center</h1>

@@ -1,0 +1,63 @@
+country,ground_name,city,capacity,pitch_type,pitch_assist,boundary_dist,scoring,Weather & Dew
+India,Narendra Modi Stadium,Ahmedabad,132000,Dry/Hard,Batting/Spin,75-80m,High Scoring,"Windy, Low Dew"
+India,Wankhede Stadium,Mumbai,33000,Red Soil,Batting/Pace,64-68m,High Scoring,"High Dew, Coastal"
+India,Eden Gardens,Kolkata,66000,Black Soil,Batting/Spin,65-72m,High Scoring,Heavy Dew
+India,M. Chinnaswamy,Bengaluru,40000,Flat/Hard,Batting,60-65m,Ultra High,Moderate Dew
+India,Arun Jaitley,Delhi,41000,Dry/Low,Spin,65-70m,Mid Scoring,Heavy Dew/Smog
+India,M.A. Chidambaram,Chennai,50000,Dry/Dusty,Spin,68-75m,Low Scoring,High Humidity/Dew
+India,HPCA Stadium,Dharamshala,23000,Green/Fast,Pace/Swing,65-70m,Mid Scoring,"Cold, No Dew"
+India,Maharaja Yadavindra,New Chandigarh,38000,Hard/True,Batting/Pace,64-74m,High Scoring,Low Dew
+India,Rajiv Gandhi Intl,Hyderabad,55000,Flat,Batting,68-72m,High Scoring,Moderate Dew
+India,MCA Stadium,Pune,37000,Flat/Hard,Batting,68-72m,High Scoring,Heavy Dew
+India,Sawai Mansingh,Jaipur,30000,Flat,Batting,65-70m,High Scoring,Heavy Dew
+India,Shaheed Veer Narayan,Raipur,65000,Slow/Dry,Spin,78-82m,Low Scoring,Moderate Dew
+India,Barsapara Stadium,Guwahati,40000,Flat,Batting,65-68m,High Scoring,Extreme Dew
+India,Ekana Stadium,Lucknow,50000,Black Soil,Spin/Slow,70-75m,Low Scoring,Moderate Dew
+India,IS Bindra Stadium,Mohali,26000,Green/Hard,Pace/Bounce,72-78m,High Scoring,Heavy Dew
+India,VCA Stadium,Nagpur,45000,Dry/Slow,Spin,75-80m,Mid Scoring,Low Dew
+India,JSCA Stadium,Ranchi,40000,Slow/Low,Spin,70-75m,Mid Scoring,Heavy Dew
+India,Holkar Stadium,Indore,30000,Flat,Batting,58-64m,Ultra High,Moderate Dew
+India,SCA Stadium,Rajkot,28000,Flat,Batting,65-70m,High Scoring,Low Dew
+India,Dr. Y.S.R. ACA-VDCA,Vizag,25000,Slow/Dry,Spin,65-72m,Mid Scoring,Coastal/Humid
+Australia,MCG,Melbourne,100000,Drop-in,Pace/Seam,75-82m,Mid Scoring,"Windy, No Dew"
+Australia,SCG,Sydney,48000,Dry/Slow,Spin/Batting,70-78m,Balanced,"Humid, No Dew"
+Australia,Optus Stadium,Perth,60000,Hard/Fast,Extreme Pace,72-80m,Mid Scoring,Very Windy
+Australia,Adelaide Oval,Adelaide,53000,Flat/Hard,Batting,62-80m,High Scoring,"Dry, No Dew"
+Australia,The Gabba,Brisbane,42000,Green/Hard,Pace/Bounce,70-76m,Mid Scoring,"Humid, Stormy"
+Australia,Bellerive Oval,Hobart,20000,Green/Slow,Seam/Swing,68-75m,Mid Scoring,Cold/Windy
+Australia,Manuka Oval,Canberra,13500,Flat,Batting,70-75m,High Scoring,Dry/Chilly
+Australia,Marvel Stadium,Melbourne,53000,Drop-in,Batting,65-72m,High Scoring,Indoor (No Dew)
+Australia,Carrara Stadium,Gold Coast,21000,Flat/Slow,Batting,65-70m,Mid Scoring,Humid
+England,Lord's,London,30000,Green/Slope,Pace/Swing,65-75m,Balanced,Cloudy
+England,The Oval,London,27500,Flat/Hard,Batting,68-75m,High Scoring,Sunny/Dry
+England,Edgbaston,Birmingham,25000,Flat,Batting,65-72m,High Scoring,Windy
+England,Old Trafford,Manchester,26000,Flat/Dry,Batting/Spin,70-78m,High Scoring,Windy
+England,Headingley,Leeds,18000,Green/True,Pace/Swing,65-72m,Mid Scoring,Overcast
+England,Trent Bridge,Nottingham,17500,Flat,Batting,60-68m,High Scoring,Sunny
+England,Rose Bowl,Southampton,25000,Balanced,Pace/Spin,70-78m,Mid Scoring,Open/Windy
+S. Africa,Wanderers,Johannesburg,34000,Hard/Fast,Pace/Bounce,65-72m,Very High,High Altitude
+S. Africa,Newlands,Cape Town,25000,Coastal/Seam,Pace/Swing,65-70m,Low Scoring,Coastal Wind
+S. Africa,Centurion,Pretoria,22000,Hard/Fast,Pace/Bounce,68-74m,High Scoring,Sunny/Dry
+S. Africa,Kingsmead,Durban,25000,Coastal/Slow,Spin/Seam,68-75m,Low Scoring,High Humidity
+S. Africa,St George's Park,Gqeberha,19000,Slow/Dry,Spin,70-75m,Mid Scoring,Windy
+NZ,Eden Park,Auckland,42000,Drop-in,Batting,55-65m,High Scoring,Windy
+NZ,Hagley Oval,Christchurch,18000,Green,Pace/Seam,70-75m,Mid Scoring,Cold/Windy
+NZ,Wellington Basin,Wellington,11000,Green/Hard,Pace/Swing,70-78m,Mid Scoring,Extreme Wind
+NZ,Seddon Park,Hamilton,12000,Flat,Batting,65-72m,High Scoring,Humid
+Pakistan,Gaddafi Stadium,Lahore,34000,Flat,Batting,65-72m,High Scoring,Heavy Dew
+Pakistan,National Stadium,Karachi,30000,Dry/Slow,Spin,68-75m,Balanced,Coastal/No Dew
+Pakistan,Multan Stadium,Multan,35000,Flat/Dusty,Batting/Spin,65-70m,High Scoring,Hot/Dry
+UAE,Dubai Int. Stadium,Dubai,25000,Dry/Slow,Spin/Seam,65-75m,Mid Scoring,Extreme Dew
+UAE,Sheikh Zayed,Abu Dhabi,20000,Flat/Hard,Batting,70-80m,Balanced,Moderate Dew
+UAE,Sharjah Stadium,Sharjah,16000,Slow/Low,Spin,60-65m,Mid Scoring,Low Dew
+Sri Lanka,R. Premadasa,Colombo,35000,Slow/Spin,Spin,70-75m,Low Scoring,Humid
+Sri Lanka,Galle Int.,Galle,35000,Coastal/Spin,Spin,65-70m,Low Scoring,Sea Breeze
+Sri Lanka,Pallekele,Kandy,35000,Seam/Hard,Batting/Pace,65-72m,High Scoring,Humid
+Sri Lanka,Rangiri Dambulla International Stadium,Dambulla,16800,Spin/Slow,Balanced,70-75m,Mid Scoring,Hot/Dry
+Sri Lanka,Sinhalese Sports Club (SSC) Ground,Colombo,10000,Batting/Seam,Batting,70-75m,High Scoring,Humid
+West Indies,Kensington Oval,Bridgetown,28000,Hard/Bounce,Pace,65-75m,Balanced,Windy/Coastal
+West Indies,Daren Sammy,St Lucia,15000,Flat/Fast,Batting,60-68m,High Scoring,Windy
+West Indies,Providence,Guyana,15000,Slow/Low,Spin,70-75m,Low Scoring,Humid
+Bangladesh,Sher-e-Bangla,Dhaka,25000,Slow/Dusty,Spin,65-75m,Low Scoring,High Dew
+Zimbabwe,Harare Sports,Harare,10000,Flat/True,Batting,65-70m,High Scoring,Dry/Sunny
+Ireland,Malahide,Dublin,11500,Green,Seam/Swing,65-70m,Mid Scoring,Cloudy/Windy

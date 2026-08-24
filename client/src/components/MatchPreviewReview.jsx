@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Send,
@@ -150,13 +150,21 @@ const MatchPreviewReview = () => {
   };
 
   // Automatically reset the venue name if the selected country changes
+  // (only when the country ACTUALLY changes — not on mount, and not on
+  // React 18 StrictMode's double-invoked effect, which broke the old
+  // "isFirstRender" boolean-flag approach)
+  const prevVenueCountryRef = useRef(formData.venueCountry);
+
   useEffect(() => {
+    if (prevVenueCountryRef.current === formData.venueCountry) {
+      return; // no real change — skip (covers mount AND double-invoke)
+    }
+    prevVenueCountryRef.current = formData.venueCountry;
     setFormData(prev => ({
       ...prev,
       venue: ''
     }));
   }, [formData.venueCountry]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
