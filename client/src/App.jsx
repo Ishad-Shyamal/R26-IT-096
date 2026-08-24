@@ -1,8 +1,9 @@
-import 'react';
+import React from'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
+import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
 import Settings from './components/Settings';

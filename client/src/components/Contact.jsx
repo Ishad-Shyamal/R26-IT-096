@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Send, Activity, Phone } from 'lucide-react';
+import { Mail, MapPin, Send, Activity, Phone, MessageSquare} from 'lucide-react';
 import Navbar from './Navbar';
 
 const Contact = () => {

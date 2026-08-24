@@ -1,10 +1,17 @@
 import React from 'react';
-import { TrendingUp } from 'lucide-react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import Navbar from './Navbar';
-import 'react';
 import { TrendingUp, AlertCircle, Shield, Play, Brain } from 'lucide-react';
-import { AreaChart, Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { 
+  AreaChart, 
+  Area, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer, 
+  BarChart, 
+  Bar 
+} from 'recharts';
 
 const performanceData = [
   { match: 'M1', runs: 45, strikeRate: 130 },
@@ -14,8 +21,6 @@ const performanceData = [
   { match: 'M5', runs: 67, strikeRate: 145 },
   { match: 'M6', runs: 94, strikeRate: 165 },
 ];
-
-
 
 const Dashboard = () => {
   return (

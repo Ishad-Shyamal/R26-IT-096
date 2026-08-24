@@ -25,7 +25,6 @@ const About = () => {
           <Link to="/login" style={{ color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '500' }}>Log In</Link>
         </div>
       </nav> */}
-
       <div style={{ maxWidth: '1000px', margin: '0 auto', paddingTop: '120px', paddingLeft: '20px', paddingRight: '20px' }}>
         <div style={{ marginBottom: '40px', textAlign: 'center' }}>
           <h1 className="page-title" style={{ fontSize: '3.5rem', marginBottom: '16px' }}>About InsightCric</h1>
@@ -83,6 +82,7 @@ const About = () => {
              </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

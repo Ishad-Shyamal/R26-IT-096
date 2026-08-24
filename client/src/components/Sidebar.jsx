@@ -1,6 +1,7 @@
 import 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
+  Home,
   LayoutDashboard,
   Newspaper,
   Activity,
