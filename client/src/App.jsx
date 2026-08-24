@@ -13,6 +13,7 @@ import WinPredictor from './components/WinPredictor';
 import Player from './components/Player';
 import Prediction from './components/Prediction';
 import MatchPreviewReview from './components/MatchPreviewReview';
+import Lineups from './components/Lineups';
 
 import NewsCurator from './components/NewsCurator';
 
@@ -55,6 +56,12 @@ function App() {
         <Route path="/matchpreviewreview" element={
           <MainLayout>
             <MatchPreviewReview />
+          </MainLayout>
+        } />
+        {/* Add this inside your <Routes> */}
+        <Route path="/lineups" element={
+          <MainLayout>
+            <Lineups />
           </MainLayout>
         } />
         <Route path="/prediction" element={
