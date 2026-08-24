@@ -1,11 +1,23 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { User, Bell, Palette, Key, Save, Shield, Database } from 'lucide-react';
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('account');
   const [saved, setSaved] = useState(false);
 
+  // Load user details from localStorage or fall back to default values
+  const [userData, setUserData] = useState(() => {
+    const savedData = JSON.parse(localStorage.getItem('userData') || '{}');
+    return {
+      firstName: savedData.firstName || 'Cricket',
+      lastName: savedData.lastName || 'Enthusiast',
+      email: savedData.email || 'user@insightcric.com'
+    };
+  });
+
   const handleSave = () => {
+    // Save updated input values back to localStorage
+    localStorage.setItem('userData', JSON.stringify(userData));
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
   };
@@ -83,15 +95,30 @@ const Settings = () => {
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
                 <div>
                   <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>First Name</label>
-                  <input type="text" defaultValue="Cricket" style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} />
+                  <input 
+                    type="text" 
+                    value={userData.firstName} 
+                    onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+                    style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} 
+                  />
                 </div>
                 <div>
                   <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Last Name</label>
-                  <input type="text" defaultValue="Enthusiast" style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} />
+                  <input 
+                    type="text" 
+                    value={userData.lastName} 
+                    onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
+                    style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} 
+                  />
                 </div>
                 <div className="col-span-12" style={{ gridColumn: 'span 2' }}>
                   <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Email Address</label>
-                  <input type="email" defaultValue="user@insightcric.com" style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} />
+                  <input 
+                    type="email" 
+                    value={userData.email} 
+                    onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+                    style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} 
+                  />
                 </div>
               </div>
             </div>
