@@ -46,7 +46,7 @@ export default function PlayerProfileModal({ player, onClose }: Props) {
         {/* Header */}
         <div className="flex justify-between items-center border-b border-slate-800/80 pb-3">
           <div className="flex items-center gap-2 text-xs text-slate-400 font-medium">
-            <span className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[10px] text-white font-bold">G</span>
+            <span className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center text-[10px] text-white font-bold">IC</span>
             <span>AI Player Intelligence Profile</span>
           </div>
           <button onClick={onClose} className="text-slate-400 hover:text-white bg-slate-800 p-2 rounded-full text-xs">
@@ -75,10 +75,10 @@ export default function PlayerProfileModal({ player, onClose }: Props) {
           </div>
         </div>
 
-        {/* Dynamic Gemini AI Overview Section */}
+        {/* Dynamic AI Overview Section */}
         <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 space-y-3">
           <h3 className="text-xs font-bold text-blue-400 uppercase tracking-wider flex items-center gap-2">
-            ✨ Dynamic Career & Sentiment Insights (Gemini AI)
+            ✨ Dynamic Career & Sentiment Insights (InsightCric AI)
           </h3>
           
           {loading ? (

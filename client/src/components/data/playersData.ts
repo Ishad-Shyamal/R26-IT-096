@@ -2,7 +2,7 @@ export interface Player {
   player_name: string;
   performance_score: number;
   marker_score: number;
-  geopolitical: number; // 0=LPL, 1=Ranji, 2=PSL
+  geopolitical: number; // 0=Sheffield Shield/AUS, 1=Ranji Trophy/IND, 2=PSL/PAK, 3=Afghanistan, 4=LPL/SL & others
   was_selected: number; // 0 or 1
   team: string;
   role: string;
@@ -82,30 +82,29 @@ const rawData: [string, number, number, number, number][] = [
   ["Jack Haynes", 4.8, 1.6, 0, 1],
   ["George Hill", 0.23, 1.73, 0, 0],
   ["John Turner", 0.14, 1.47, 0, 0],
-  ["Ben Kellaway", 0.08, 1.6, 0, 0],
-  ["Priyansh Arya", 3.03, 1.73, 4, 1],
-  ["Vaibhav Suryavanshi", 5.61, 2.13, 4, 1],
-  ["Digvesh Rathi", 0.01, 1.33, 4, 0],
-  ["Kartik Sharma", 2.32, 1.47, 4, 0],
-  ["Prashant Veer", 0.0, 0.8, 4, 0],
-  ["Salil Arora", 1.57, 1.87, 4, 0],
-  ["Ashok Sharma", 0.03, 0.8, 4, 0],
-  ["Kumar Kushagra", 0.62, 0.13, 4, 0],
-  ["Anshul Kamboj", 0.02, 1.33, 4, 0],
-  ["Harsh Dubey", 0.04, 1.07, 4, 0],
-  ["Auqib Nabi", 0.02, 0.67, 4, 0],
-  ["Mangesh Yadav", 0.1, 0.8, 4, 0],
-  ["Tejasvi Dahiya", 2.8, 1.33, 4, 1],
-  ["Akshat Raghuwanshi", 2.14, 0.53, 4, 0],
-  ["Ayush Mhatre", 1.92, 0.8, 4, 0],
-  ["Sarthak Ranjan", 1.96, 1.07, 4, 0],
-  ["Sakib Hussain", 0.08, 1.47, 4, 0],
-  ["Manav Suthar", 0.43, 1.07, 4, 0],
-  ["Atharva Taide", 2.58, 1.2, 4, 1],
-  ["Aman Mokhade", 2.18, 1.07, 4, 0],
-  ["Angkrish Raghuwanshi", 3.12, 1.47, 4, 1],
-  ["Prabhsimran Singh", 3.74, 1.87, 4, 1],
-  ["Brijesh Sharma", 0.07, 1.73, 4, 0],
+  ["Priyansh Arya", 3.03, 1.73, 1, 1],
+  ["Vaibhav Suryavanshi", 5.61, 2.13, 1, 1],
+  ["Digvesh Rathi", 0.01, 1.33, 1, 0],
+  ["Kartik Sharma", 2.32, 1.47, 1, 0],
+  ["Prashant Veer", 0.0, 0.8, 1, 0],
+  ["Salil Arora", 1.57, 1.87, 1, 0],
+  ["Ashok Sharma", 0.03, 0.8, 1, 0],
+  ["Kumar Kushagra", 0.62, 0.13, 1, 0],
+  ["Anshul Kamboj", 0.02, 1.33, 1, 0],
+  ["Harsh Dubey", 0.04, 1.07, 1, 0],
+  ["Auqib Nabi", 0.02, 0.67, 1, 0],
+  ["Mangesh Yadav", 0.1, 0.8, 1, 0],
+  ["Tejasvi Dahiya", 2.8, 1.33, 1, 1],
+  ["Akshat Raghuwanshi", 2.14, 0.53, 1, 0],
+  ["Ayush Mhatre", 1.92, 0.8, 1, 0],
+  ["Sarthak Ranjan", 1.96, 1.07, 1, 0],
+  ["Sakib Hussain", 0.08, 1.47, 1, 0],
+  ["Manav Suthar", 0.43, 1.07, 1, 0],
+  ["Atharva Taide", 2.58, 1.2, 1, 1],
+  ["Aman Mokhade", 2.18, 1.07, 1, 0],
+  ["Angkrish Raghuwanshi", 3.12, 1.47, 1, 1],
+  ["Prabhsimran Singh", 3.74, 1.87, 1, 1],
+  ["Brijesh Sharma", 0.07, 1.73, 1, 0],
   ["Jake Egan", 3.21, 1.07, 4, 1],
   ["Reuben Wilson", 0.24, 1.07, 4, 0],
   ["Tom Mayes", 0.31, 1.2, 4, 0],
@@ -154,7 +153,6 @@ const rawData: [string, number, number, number, number][] = [
   ["Mubasir Khan", 0.13, 4.0, 2, 0],
   ["Qasim Akram", 0.22, 4.67, 2, 0],
   ["Abbas Afridi", 0.33, 5.6, 2, 0],
-  ["Naseem Shah (late domestic stage uncapped reference earlier—not applicable internationally at debut stage)", 0.34, 2.67, 2, 0],
   ["Ali Raza", 0.19, 1.6, 2, 0],
   ["Khawaja Nafay", 4.78, 2.4, 2, 1],
   ["Lhuan-dre Pretorius", 3.07, 0.8, 4, 1],
@@ -240,23 +238,20 @@ const rawData: [string, number, number, number, number][] = [
   ["Charlton Tshuma", 0.21, 1.07, 4, 0]
 ];
 
-const tournaments = ["Lanka Premier League", "Ranji Trophy", "Pakistan Super League"];
-const awardsList = ["Man of the Match", "Best Bowler", "Wicket Milestone", "Century Scorer", "Most Valuable Player", "Best Fielder"];
-
-const newsTemplates = [
-  (name: string, score: number, t: string) => `${name} delivered a stellar performance in ${t}, scoring ${(score * 10).toFixed(0)} runs in a crucial match.`,
-  (name: string, _s1: number, t: string) => `${name} was awarded Man of the Match in the recent ${t} fixture with an outstanding display.`,
-  (name: string, _score: number, t: string) => `Selectors keep an eye on ${name} after consistent performances across ${t} matches this season.`,
-  (name: string, score: number, _t: string) => `${name} claimed a five-wicket haul and finished with economy ${(score / 2).toFixed(2)} in the domestic game.`,
-  (name: string, _score: number, t: string) => `${name}'s resilience in ${t} has made him a top contender for the upcoming cricket tournaments.`,
-  (name: string, _score2: number, _t2: string) => `Analysts rate ${name} with a composite performance index of ${_score2.toFixed(2)}, placing him in the top tier.`,
-];
+// Geopolitical Tournament Mapping
+const tournamentMap: Record<number, string> = {
+  0: "Sheffield Shield",
+  1: "Ranji Trophy",
+  2: "Pakistan Super League",
+  3: "Ahmad Shah Abdali 4-Day",
+  4: "Lanka Premier League"
+};
 
 const playerRealData: Record<string, { role: string; team: string }> = {
-  "Abdul Malik": { role: "Top-order Batter", team: "Amo Region " },
+  "Abdul Malik": { role: "Top-order Batter", team: "Amo Region" },
   "Shahidullah Kamal": { role: "Batter", team: "Mis-e Ainak" },
   "Bahir Shah": { role: "Batter", team: "Band-e-Amir" },
-  "Munir Ahmad Kakar": { role: "Wicketkeeper Batter", team: "Mis-e Ainak" },
+  "Munir Ahmad Kakar": { role: "WK Batter", team: "Mis-e Ainak" },
   "Darwish Rasooli": { role: "Top-order Batter", team: "Amo Region" },
   "Zubaid Akbari": { role: "All-rounder", team: "Boost Region" },
   "Rohullah Arab": { role: "All-rounder", team: "Band-e-Amir" },
@@ -287,8 +282,8 @@ const playerRealData: Record<string, { role: string; team: string }> = {
   "Matthew Gilkes": { role: "WK Batter", team: "New South Wales" },
   "Ben Manenti": { role: "Spin All-rounder", team: "South Australia" },
   "Anamul Haque Enam": { role: "Batter", team: "Khulna Division" },
-  "Zakir Hasan": { role: "Wicketkeeper Batter", team: "Sylhet Division" },
-  "Mahidul Islam Ankon": { role: "Wicketkeeper Batter", team: "Dhaka Division" },
+  "Zakir Hasan": { role: "WK Batter", team: "Sylhet Division" },
+  "Mahidul Islam Ankon": { role: "WK Batter", team: "Dhaka Division" },
   "Pritom Kumar": { role: "Batter", team: "Rajshahi Division" },
   "Jishan Alam": { role: "Batter", team: "Sylhet Division" },
   "Saif Hassan": { role: "Top-order Batter", team: "Dhaka Division" },
@@ -302,8 +297,8 @@ const playerRealData: Record<string, { role: string; team: string }> = {
   "Mominul Haque (domestic only status in dataset context)": { role: "Batter", team: "Dhaka Division" },
   "Shadman Islam": { role: "Top-order Batter", team: "Dhaka Division" },
   "Najmul Hossain Apu": { role: "Batter", team: "Barishal Division" },
-  "Akbar Ali": { role: "Wicketkeeper Batter", team: "Rangpur Division" },
-  "Nurul Hasan Sohan": { role: "Wicketkeeper Batter", team: "Rangpur Division" },
+  "Akbar Ali": { role: "WK Batter", team: "Rangpur Division" },
+  "Nurul Hasan Sohan": { role: "WK Batter", team: "Rangpur Division" },
   "Ben McKinney": { role: "Batter", team: "Durham" },
   "Rocky Flintoff": { role: "Batting All-rounder", team: "Lancashire" },
   "Archie Vaughan": { role: "Spin All-rounder", team: "Somerset" },
@@ -331,19 +326,19 @@ const playerRealData: Record<string, { role: string; team: string }> = {
   "Salil Arora": { role: "WK Batter", team: "Punjab" },
   "Ashok Sharma": { role: "Fast Bowler", team: "Rajasthan" },
   "Kumar Kushagra": { role: "WK Batter", team: "Jharkhand" },
-  "Anshul Kamboj": { role: "Fast Bowler", team: "Maharashtra" },
+  "Anshul Kamboj": { role: "Fast Bowler", team: "Haryana" },
   "Harsh Dubey": { role: "All-rounder", team: "Vidarbha" },
   "Auqib Nabi": { role: "Fast Bowler", team: "Jammu & Kashmir" },
   "Mangesh Yadav": { role: "All-rounder", team: "Madhya Pradesh" },
   "Tejasvi Dahiya": { role: "WK Batter", team: "Delhi" },
   "Akshat Raghuwanshi": { role: "Batter", team: "Madhya Pradesh" },
-  "Ayush Mhatre": { role: "Batter", team: "Maharashtra" },
+  "Ayush Mhatre": { role: "Batter", team: "Mumbai" },
   "Sarthak Ranjan": { role: "Batter", team: "Delhi" },
   "Sakib Hussain": { role: "Fast Bowler", team: "Bihar" },
   "Manav Suthar": { role: "Spin Bowler", team: "Rajasthan" },
   "Atharva Taide": { role: "Batter", team: "Vidarbha" },
   "Aman Mokhade": { role: "Batter", team: "Vidarbha" },
-  "Angkrish Raghuwanshi": { role: "WK Batter", team: "Maharashtra" },
+  "Angkrish Raghuwanshi": { role: "WK Batter", team: "Mumbai" },
   "Prabhsimran Singh": { role: "WK Batter", team: "Punjab" },
   "Brijesh Sharma": { role: "Fast Bowler", team: "West Bengal" },
   "Jake Egan": { role: "Batter", team: "Leinster Lightning" },
@@ -385,7 +380,7 @@ const playerRealData: Record<string, { role: string; team: string }> = {
   "Mohammad Huraira": { role: "Top-order Batter", team: "Northern (Pakistan Domestic)" },
   "Abdul Faseeh": { role: "Batter", team: "Central Punjab" },
   "Yasir Khan": { role: "Opener", team: "Khyber Pakhtunkhwa" },
-  "Shahzaib Khan": { role: "Batter", team: "Balochistan U19 / Domestic" },
+  "Shahzaib Khan": { role: "Batter", team: "Balochistan U19" },
   "Hassan Nawaz": { role: "Batter", team: "Northern" },
   "Saad Masood": { role: "Middle-order Batter", team: "Sindh" },
   "Abdul Faseeh Jr (emerging)": { role: "Batter", team: "Lahore Whites" },
@@ -393,8 +388,7 @@ const playerRealData: Record<string, { role: string; team: string }> = {
   "Arafat Minhas": { role: "All-rounder", team: "Southern Punjab" },
   "Mubasir Khan": { role: "All-rounder", team: "Islamabad Region" },
   "Qasim Akram": { role: "All-rounder", team: "Central Punjab" },
-  "Abbas Afridi": { role: "Bowler", team: "Karachi Kings / Domestic" },
-  "Naseem Shah (late domestic stage uncapped reference earlier—not applicable internationally at debut stage)": { role: "Fast Bowler", team: "Balochistan" },
+  "Abbas Afridi": { role: "Bowler", team: "Karachi Kings" },
   "Ali Raza": { role: "Bowler", team: "Khyber Pakhtunkhwa U19" },
   "Khawaja Nafay": { role: "Batter", team: "Karachi Region" },
   "Lhuan-dre Pretorius": { role: "WK Batter", team: "Titans" },
@@ -480,31 +474,55 @@ const playerRealData: Record<string, { role: string; team: string }> = {
   "Charlton Tshuma": { role: "Fast Bowler", team: "Rangers" }
 };
 
-function seedRandom(seed: number) {
-  let s = seed;
-  return () => {
-    s = (s * 9301 + 49297) % 233280;
-    return s / 233280;
-  };
-}
+export const players: Player[] = rawData.map(([name, perf, marker, geo, selected]) => {
+  const tournament = tournamentMap[geo] || "Domestic Championship";
+  const realMappedData = playerRealData[name] || { role: "All-Rounder", team: "Domestic Team" };
+  const roleLower = realMappedData.role.toLowerCase();
 
-export const players: Player[] = rawData.map(([name, perf, marker, geo, selected], idx) => {
-  const rand = seedRandom(idx * 137 + 42);
-  const tournIdx = geo % 3;
-
-  const realMappedData = playerRealData[name] || { role: "All-Rounder", team: "International Free Agent" };
-
-  const numNews = 2 + Math.floor(rand() * 3);
   const newsItems: string[] = [];
-  for (let i = 0; i < numNews; i++) {
-    const template = newsTemplates[Math.floor(rand() * newsTemplates.length)];
-    newsItems.push(template(name, perf, tournaments[tournIdx]));
-  }
-
-  const numAwards = Math.floor(rand() * 3);
   const awards: string[] = [];
-  for (let i = 0; i < numAwards; i++) {
-    awards.push(awardsList[Math.floor(rand() * awardsList.length)]);
+
+  const isBowler = roleLower.includes("bowler") || roleLower.includes("spinner");
+  const isBatter = roleLower.includes("batter") || roleLower.includes("opener");
+
+  // 🎯 Dynamic & Realistic News Generation logic based on exact performance score
+  if (perf >= 10.0) {
+    const runs = Math.round(perf * 15 + 30);
+    newsItems.push(`${name} played a game-changing innings in ${tournament}, scoring ${runs} runs to dominate the fixture.`);
+    newsItems.push(`National selectors have highlighted ${name}'s superb form following multiple match-winning performances.`);
+    awards.push("Century Scorer", "Man of the Match");
+  } else if (perf >= 5.0) {
+    if (isBowler) {
+      const wkts = Math.min(6, Math.max(3, Math.round(perf / 1.5)));
+      newsItems.push(`${name} spearheaded the bowling attack in ${tournament}, taking ${wkts} key wickets.`);
+      newsItems.push(`Coaches praised ${name} for maintaining high consistency and tight line-and-length in recent matches.`);
+      awards.push(wkts >= 5 ? "Wicket Milestone" : "Best Bowler");
+    } else {
+      const runs = Math.round(perf * 10 + 10);
+      newsItems.push(`${name} anchored the innings in ${tournament}, scoring a valuable ${runs} runs under pressure.`);
+      newsItems.push(`Selectors keep a close eye on ${name}'s steady progress across domestic matches this season.`);
+      awards.push("Man of the Match");
+    }
+  } else if (perf >= 1.0) {
+    if (isBowler) {
+      const wkts = Math.max(1, Math.round(perf * 2));
+      newsItems.push(`${name} chipped in with ${wkts} crucial ${wkts === 1 ? 'wicket' : 'wickets'} during a tight spell in ${tournament}.`);
+      newsItems.push(`Analysts note ${name}'s potential to develop into a reliable regular option.`);
+    } else {
+      const runs = Math.round(perf * 12 + 5);
+      newsItems.push(`${name} contributed a handy ${runs} runs for ${realMappedData.team} in the latest ${tournament} match.`);
+      newsItems.push(`Technical team is working with ${name} to convert these starts into big match-winning scores.`);
+    }
+  } else {
+    // Low performance (perf < 1.0)
+    if (isBowler) {
+      newsItems.push(`${name} bowled a compact spell for ${realMappedData.team} in ${tournament}, working on discipline and control.`);
+      newsItems.push(`${name} continues to gain valuable match exposure in competitive domestic fixtures.`);
+    } else {
+      const runs = Math.max(1, Math.round(perf * 20));
+      newsItems.push(`${name} scored ${runs} ${runs === 1 ? 'run' : 'runs'} in ${tournament} as he looks to find consistency in upcoming games.`);
+      newsItems.push(`${name} remains an emerging prospect focusing on refining technique for upcoming fixtures.`);
+    }
   }
 
   return {
@@ -515,34 +533,24 @@ export const players: Player[] = rawData.map(([name, perf, marker, geo, selected
     was_selected: selected,
     team: realMappedData.team,
     role: realMappedData.role,
-    tournament: tournaments[tournIdx],
+    tournament,
     news: newsItems,
     awards,
   };
 });
 
-export const tournamentNames = tournaments;
+export const tournamentNames = Object.values(tournamentMap);
 export const teams = Array.from(new Set(Object.values(playerRealData).map(p => p.team)));
 
-// 5. National Team Selection Probability Model
 export function getNationalSelectionProbability(player: Player): number {
-  // Performance Score Weight (50% - Current form/stats)
   const perfWeight = player.performance_score * 0.5;
-
-  // Marker Score Weight (25% - Consistency/Fitness/Potential)
   const markerWeight = player.marker_score * 0.25;
-
-  // Previous Selection Bonus (15% - Selector Trust/Past Squad Inclusion)
   const priorSelectionBonus = player.was_selected === 1 ? 2.5 : 0;
-
-  // Awards/Individual Recognition Bonus (10% - Impact Performances)
   const awardBonus = Math.min(1.5, player.awards.length * 0.5);
 
-  // Raw score normalisation against max expected threshold (~18 points max)
   const rawScore = perfWeight + markerWeight + priorSelectionBonus + awardBonus;
   const normalizedProb = rawScore / 16.5;
 
-  // Clamp values strictly between 2% and 98%
   return Math.min(0.98, Math.max(0.02, normalizedProb));
 }
 

@@ -162,7 +162,7 @@ export default function NewsFeed() {
         })}
       </div>
 
-      {/* 🎯 2. Import කළ PlayerProfileModal Component එක Render කිරීම */}
+      {}
       {modalPlayer && (
         <PlayerProfileModal
           player={modalPlayer}

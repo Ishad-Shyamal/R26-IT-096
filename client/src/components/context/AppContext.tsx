@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import { players, Player, teams } from "../data/playersData";
 
-// 1. "intelligence" කියන Tab Type එක මෙතනට ඇතුලත් කර ඇත
+
 export type Tab = "feed" | "prediction" | "intelligence" | "query";
 
 interface UserPrefs {

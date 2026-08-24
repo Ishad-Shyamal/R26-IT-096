@@ -38,7 +38,7 @@ export default function NewsCurator() {
         {/* News Feed Section */}
         <div className="bg-gray-900 rounded-2xl shadow-lg p-6">
           <h2 className="text-2xl font-bold mb-4 text-cyan-400">
-            News Feed
+            Plyers Profile
           </h2>
 
           <NewsFeed
