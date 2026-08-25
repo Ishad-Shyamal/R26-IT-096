@@ -187,7 +187,7 @@ const Dashboard = () => {
           <div className="news-item">
             <img src={under19Img} alt="Rising Talent" className="news-image" />
             <div className="news-content">
-              <div className="news-title">Ben Mayers scored 191 runs in under 19 world cup against Scotland in Hare</div>
+              <div className="news-title">Ben Mayes scored 191 runs in under 19 world cup against Scotland in Harare</div>
               <div className="news-meta">
                 <span className="news-tag">Tournament Stars</span>
               </div>

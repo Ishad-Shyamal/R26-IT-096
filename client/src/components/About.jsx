@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Target, Zap, Shield, Activity } from 'lucide-react';
+import { Users, Target, Shield, Activity, Cpu, UserCheck, TrendingUp } from 'lucide-react';
 import Navbar from './Navbar';
 
 const About = () => {
@@ -65,21 +65,21 @@ const About = () => {
         <div className="glass-panel col-span-12" style={{ marginTop: '24px' }}>
           <h3 style={{ color: 'var(--text-main)', marginBottom: '24px' }}>What Powers Us</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
-             <div className="news-item" style={{ flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <Zap size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
-                <h4 style={{ marginBottom: '8px' }}>Real-Time Processing</h4>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>MERN stack architecture optimized for low-latency live data feeds.</p>
-             </div>
-             <div className="news-item" style={{ flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <Users size={32} color="var(--secondary)" style={{ marginBottom: '16px' }} />
-                <h4 style={{ marginBottom: '8px' }}>Personalization</h4>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Tailored news and insights based on your favorite teams and players.</p>
-             </div>
-             <div className="news-item" style={{ flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <Target size={32} color="var(--danger)" style={{ marginBottom: '16px' }} />
-                <h4 style={{ marginBottom: '8px' }}>Predictive Modeling</h4>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Advanced neural networks to project match outcomes with high accuracy.</p>
-             </div>
+            <div className="news-item" style={{ flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <Cpu size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
+              <h4 style={{ marginBottom: '8px' }}>Real-Time Processing</h4>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>MERN stack architecture optimized for low-latency live data feeds.</p>
+            </div>
+            <div className="news-item" style={{ flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <UserCheck size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
+              <h4 style={{ marginBottom: '8px' }}>Personalization</h4>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Tailored news and insights based on your favorite teams and players.</p>
+            </div>
+            <div className="news-item" style={{ flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <TrendingUp size={32} color="var(--primary)" style={{ marginBottom: '16px' }} />
+              <h4 style={{ marginBottom: '8px' }}>Predictive Modeling</h4>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Advanced neural networks to project match outcomes with high accuracy.</p>
+            </div>
           </div>
         </div>
       </div>
