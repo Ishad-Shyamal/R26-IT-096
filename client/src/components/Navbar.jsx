@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Activity } from 'lucide-react';
+import logoImg from '../assets/InsightCric-logo.png';
 
 const Navbar = () => {
   const location = useLocation();
@@ -24,7 +25,11 @@ const Navbar = () => {
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '60px' }}>
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'inherit' }}>
-          <Activity size={32} color="var(--primary)" />
+          <img 
+            src={logoImg} 
+            alt="InsightCric Logo" 
+            style={{ width: '36px', height: '36px', objectFit: 'contain', borderRadius: '8px' }} 
+          />
           <span style={{ fontSize: '1.6rem', fontWeight: '800', letterSpacing: '-0.03em', color: '#fff' }}>InsightCric</span>
         </Link>
         

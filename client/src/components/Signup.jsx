@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, User, ArrowRight, Activity, ArrowLeft } from 'lucide-react';
+import logoImg from '../assets/InsightCric-logo.png';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -53,8 +54,12 @@ const Signup = () => {
 
       <div className="auth-card glass-panel">
         <div className="auth-header">
-          <div className="brand-icon auth-logo">
-            <Activity size={28} />
+          <div className="brand-icon auth-logo" style={{ padding: 0, overflow: 'hidden', border: 'none', background: 'transparent' }}>
+            <img 
+              src={logoImg} 
+              alt="InsightCric Logo" 
+              style={{ width: '48px', height: '48px', objectFit: 'contain', borderRadius: '10px' }} 
+            />
           </div>
           <h2>Create Account</h2>
           <p>Join InsightCric to unlock premium insights</p>
