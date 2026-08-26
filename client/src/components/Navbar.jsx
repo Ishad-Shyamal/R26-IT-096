@@ -2,9 +2,27 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Activity } from 'lucide-react';
 import logoImg from '../assets/InsightCric-logo.png';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const location = useLocation();
+    const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const checkLogin = () => {
+      const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      if (loggedIn) {
+        setUserData(JSON.parse(localStorage.getItem('userData') || '{}'));
+      } else {
+        setUserData(null);
+      }
+    };
+    checkLogin();
+    window.addEventListener('storage', checkLogin);
+    return () => window.removeEventListener('storage', checkLogin);
+  }, [location]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -65,37 +83,71 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-
       <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
-        <Link 
-          to="/login" 
-          style={{ 
-            color: '#fff', 
-            textDecoration: 'none', 
-            fontSize: '0.95rem', 
-            fontWeight: '600',
-            padding: '10px 24px',
-            borderRadius: '12px',
-            border: '1px solid rgba(0, 210, 255, 0.3)',
-            background: 'rgba(0, 210, 255, 0.05)',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(0, 210, 255, 0.15)';
-            e.currentTarget.style.borderColor = 'var(--primary)';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 210, 255, 0.2)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(0, 210, 255, 0.05)';
-            e.currentTarget.style.borderColor = 'rgba(0, 210, 255, 0.3)';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
-          }}
-        >
-          Sign In
-        </Link>
+        {userData ? (
+          <Link
+            to="/settings"
+            style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              border: '2px solid var(--primary)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'rgba(0, 210, 255, 0.1)',
+              textDecoration: 'none',
+              flexShrink: 0,
+            }}
+          >
+            {userData.avatar ? (
+              userData.avatar.startsWith('data:image') ? (
+                <img
+                  src={userData.avatar}
+                  alt="Profile"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              ) : (
+                <span style={{ fontSize: '1.3rem' }}>{userData.avatar}</span>
+              )
+            ) : (
+              <span style={{ color: '#fff', fontWeight: '700' }}>
+                {(userData.firstName || 'U').charAt(0).toUpperCase()}
+              </span>
+            )}
+          </Link>
+        ) : (
+          <Link 
+            to="/login" 
+            style={{ 
+              color: '#fff', 
+              textDecoration: 'none', 
+              fontSize: '0.95rem', 
+              fontWeight: '600',
+              padding: '10px 24px',
+              borderRadius: '12px',
+              border: '1px solid rgba(0, 210, 255, 0.3)',
+              background: 'rgba(0, 210, 255, 0.05)',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(0, 210, 255, 0.15)';
+              e.currentTarget.style.borderColor = 'var(--primary)';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 210, 255, 0.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(0, 210, 255, 0.05)';
+              e.currentTarget.style.borderColor = 'rgba(0, 210, 255, 0.3)';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+            }}
+          >
+            Sign In
+          </Link>
+        )}
       </div>
     </nav>
   );

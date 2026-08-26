@@ -25,9 +25,10 @@ const Signup = () => {
       password: password.trim()
     };
     localStorage.setItem('userData', JSON.stringify(userData));
+    localStorage.setItem('isLoggedIn', 'true');
 
-    // Navigate to Settings Page
-    navigate('/settings');
+    // Navigate to Dashboard
+    navigate('/dashboard');
   };
 
   return (

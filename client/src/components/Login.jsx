@@ -35,6 +35,8 @@ const Login = () => {
     }
 
     // Credentials valid -> Navigate to Dashboard
+    // Credentials valid -> Navigate to Dashboard
+    localStorage.setItem('isLoggedIn', 'true');
     navigate('/dashboard');
   };
 
