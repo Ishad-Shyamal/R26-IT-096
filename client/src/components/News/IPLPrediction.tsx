@@ -70,17 +70,22 @@ export default function NationalTeamPrediction() {
       .sort((a, b) => sortByProb ? (b.nationalProb ?? b.iplProb) - (a.nationalProb ?? a.iplProb) : b.performance_score - a.performance_score);
   }, [dynamicPlayers, selectedTournament, sortByProb, searchQuery, selectedCountry]);
 
-  const highProbPlayers = playersWithProb.filter(p => (p.nationalProb ?? p.iplProb) >= threshold);
-  const lowProbPlayers = playersWithProb.filter(p => (p.nationalProb ?? p.iplProb) < threshold);
+  const highProbPlayers = useMemo(() => {
+    return playersWithProb.filter(p => (p.nationalProb ?? p.iplProb) >= threshold);
+  }, [playersWithProb, threshold]);
+
+  const lowProbPlayers = useMemo(() => {
+    return playersWithProb.filter(p => (p.nationalProb ?? p.iplProb) < threshold);
+  }, [playersWithProb, threshold]);
 
   // Pie chart
   const selectionPie = useMemo(() => {
-    const sel = dynamicPlayers.filter(p => (p.nationalProb ?? p.iplProb) >= threshold).length;
+    const sel = highProbPlayers.length;
     return [
       { name: "Predicted Selected", value: sel },
-      { name: "Below Threshold", value: dynamicPlayers.length - sel },
+      { name: "Below Threshold", value: playersWithProb.length - sel },
     ];
-  }, [dynamicPlayers, threshold]);
+  }, [highProbPlayers, playersWithProb]);
 
   // Probability distribution bins
   const probDistribution = useMemo(() => {
@@ -91,17 +96,17 @@ export default function NationalTeamPrediction() {
       { range: "60-80%", min: 0.6, max: 0.8, count: 0 },
       { range: "80-100%", min: 0.8, max: 1.1, count: 0 }, 
     ];
-    dynamicPlayers.forEach(p => {
+    playersWithProb.forEach(p => {
       const prob = p.nationalProb ?? p.iplProb;
       const bin = bins.find(b => prob >= b.min && prob < b.max);
       if (bin) bin.count++;
     });
     return bins;
-  }, [dynamicPlayers]);
+  }, [playersWithProb]);
 
   // Performance score trend
   const trendData = useMemo(() => {
-    return [...dynamicPlayers]
+    return [...playersWithProb]
       .sort((a, b) => b.performance_score - a.performance_score)
       .slice(0, 20)
       .map((p, i) => ({
@@ -110,7 +115,7 @@ export default function NationalTeamPrediction() {
         prob: +((p.nationalProb ?? p.iplProb) * 100).toFixed(1),
         name: p.player_name,
       }));
-  }, [dynamicPlayers]);
+  }, [playersWithProb]);
 
   if (loading) {
     return (
@@ -153,10 +158,10 @@ export default function NationalTeamPrediction() {
       {/* ─── STATS CARDS ─── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Predicted Selected", value: dynamicPlayers.filter(p => (p.nationalProb ?? p.iplProb) >= threshold).length, color: "from-emerald-500/20 to-emerald-900/10", textColor: "text-emerald-400", borderColor: "border-emerald-500/20" },
-          { label: "High Prob (>70%)", value: dynamicPlayers.filter(p => (p.nationalProb ?? p.iplProb) >= 0.7).length, color: "from-amber-500/20 to-amber-900/10", textColor: "text-amber-400", borderColor: "border-amber-500/20" },
-          { label: "Selected Players", value: dynamicPlayers.filter(p => p.was_selected === 1).length, color: "from-sky-500/20 to-sky-900/10", textColor: "text-sky-400", borderColor: "border-sky-500/20" },
-          { label: "Avg National Prob", value: dynamicPlayers.length ? (dynamicPlayers.reduce((s, p) => s + (p.nationalProb ?? p.iplProb), 0) / dynamicPlayers.length * 100).toFixed(1) + "%" : "0%", color: "from-purple-500/20 to-purple-900/10", textColor: "text-purple-400", borderColor: "border-purple-500/20" },
+          { label: "Predicted Selected", value: highProbPlayers.length, color: "from-emerald-500/20 to-emerald-900/10", textColor: "text-emerald-400", borderColor: "border-emerald-500/20" },
+          { label: "High Prob (>70%)", value: playersWithProb.filter(p => (p.nationalProb ?? p.iplProb) >= 0.7).length, color: "from-amber-500/20 to-amber-900/10", textColor: "text-amber-400", borderColor: "border-amber-500/20" },
+          { label: "Actual Selected", value: playersWithProb.filter(p => p.was_selected === 1).length, color: "from-sky-500/20 to-sky-900/10", textColor: "text-sky-400", borderColor: "border-sky-500/20" },
+          { label: "Avg National Prob", value: playersWithProb.length ? (playersWithProb.reduce((s, p) => s + (p.nationalProb ?? p.iplProb), 0) / playersWithProb.length * 100).toFixed(1) + "%" : "0%", color: "from-purple-500/20 to-purple-900/10", textColor: "text-purple-400", borderColor: "border-purple-500/20" },
         ].map(s => (
           <div key={s.label} className={`bg-gradient-to-br ${s.color} bg-slate-900/60 backdrop-blur-md border ${s.borderColor} rounded-2xl p-5 shadow-lg flex flex-col justify-between transition-transform hover:-translate-y-1`}>
             <p className="text-slate-400 text-xs font-semibold tracking-wider uppercase">{s.label}</p>
@@ -245,7 +250,7 @@ export default function NationalTeamPrediction() {
           </h3>
 
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
-            {/* 🔍 Prominent Search Field */}
+            {/* 🔍 Search Field */}
             <div className="relative flex-1 min-w-[240px] sm:w-72">
               <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -338,7 +343,7 @@ export default function NationalTeamPrediction() {
                 playersWithProb.map((player, idx) => {
                   const prob = player.nationalProb ?? player.iplProb;
                   const tier = getPerformanceTier(player.performance_score);
-                  const isSelected = player.was_selected === 1;
+                  const isPredictedSelected = prob >= threshold;
 
                   return (
                     <tr key={player.player_name + idx} className="hover:bg-slate-800/30 transition-colors">
@@ -374,13 +379,20 @@ export default function NationalTeamPrediction() {
                         </div>
                       </td>
                       <td className="py-3 px-4 text-center">
-                        <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold border ${
-                          isSelected 
-                            ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30" 
-                            : "bg-slate-800/60 text-slate-400 border-slate-700/50"
-                        }`}>
-                          {isSelected ? "✓ Selected" : "✕ Not Selected"}
-                        </span>
+                        <div className="flex flex-col items-center gap-1">
+                          <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold border transition-all ${
+                            isPredictedSelected 
+                              ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30" 
+                              : "bg-rose-500/10 text-rose-400 border-rose-500/30"
+                          }`}>
+                            {isPredictedSelected ? "✓ Selected" : "✕ Not Selected"}
+                          </span>
+                          {player.was_selected !== undefined && (
+                            <span className="text-[10px] text-slate-500 font-medium">
+                              Actual: {player.was_selected === 1 ? "Selected" : "Not Selected"}
+                            </span>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   );

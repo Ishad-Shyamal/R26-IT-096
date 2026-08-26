@@ -1,24 +1,66 @@
-import  { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Mail, Lock, User, ArrowRight, Activity } from 'lucide-react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Mail, Lock, User, ArrowRight, Activity, ArrowLeft } from 'lucide-react';
+import logoImg from '../assets/InsightCric-logo.png';
 
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle signup logic
-    console.log('Signup attempt:', { name, email, password });
+
+    // Split full name into first and last name
+    const nameParts = name.trim().split(' ');
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
+
+    // Fixed: Added `password` to userData object
+    const userData = {
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: email.trim().toLowerCase(),
+      password: password.trim()
+    };
+    localStorage.setItem('userData', JSON.stringify(userData));
+    localStorage.setItem('isLoggedIn', 'true');
+
+    // Navigate to Dashboard
+    navigate('/dashboard');
   };
 
   return (
     <div className="auth-container">
+      {/* Back Button */}
+      <button 
+        onClick={() => navigate('/')} 
+        className="back-btn"
+        style={{
+          position: 'absolute',
+          top: '20px',
+          left: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          background: 'transparent',
+          border: 'none',
+          color: '#fff',
+          cursor: 'pointer'
+        }}
+      >
+        <ArrowLeft size={20} /> Back to Home
+      </button>
+
       <div className="auth-card glass-panel">
         <div className="auth-header">
-          <div className="brand-icon auth-logo">
-            <Activity size={28} />
+          <div className="brand-icon auth-logo" style={{ padding: 0, overflow: 'hidden', border: 'none', background: 'transparent' }}>
+            <img 
+              src={logoImg} 
+              alt="InsightCric Logo" 
+              style={{ width: '48px', height: '48px', objectFit: 'contain', borderRadius: '10px' }} 
+            />
           </div>
           <h2>Create Account</h2>
           <p>Join InsightCric to unlock premium insights</p>

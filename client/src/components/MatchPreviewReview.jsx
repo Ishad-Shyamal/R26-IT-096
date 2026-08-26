@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Send,
@@ -16,7 +16,7 @@ import {
   ArrowLeft,
   Users
 } from 'lucide-react';
-
+import Navbar from './Navbar';
 // Dictionary mapping the exact dropdown team strings to their precise asset file extension / path formats
 const flagMap = {
   "India": "/flags/india.webp",
@@ -150,13 +150,21 @@ const MatchPreviewReview = () => {
   };
 
   // Automatically reset the venue name if the selected country changes
+  // (only when the country ACTUALLY changes — not on mount, and not on
+  // React 18 StrictMode's double-invoked effect, which broke the old
+  // "isFirstRender" boolean-flag approach)
+  const prevVenueCountryRef = useRef(formData.venueCountry);
+
   useEffect(() => {
+    if (prevVenueCountryRef.current === formData.venueCountry) {
+      return; // no real change — skip (covers mount AND double-invoke)
+    }
+    prevVenueCountryRef.current = formData.venueCountry;
     setFormData(prev => ({
       ...prev,
       venue: ''
     }));
   }, [formData.venueCountry]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -314,36 +322,110 @@ const MatchPreviewReview = () => {
   };
 
   if (!mode) {
+    // Shared style for each selectable mode card — visible border,
+    // subtle background tint, and a hover lift so users can actually
+    // tell these are two distinct clickable options.
+    const modeCardStyle = {
+      cursor: 'pointer',
+      textAlign: 'center',
+      padding: '50px 40px',
+      background: 'rgba(255, 255, 255, 0.03)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      borderRadius: '18px',
+      backdropFilter: 'blur(10px)',
+      transition: 'all 0.25s ease',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '14px'
+    };
+
+    const iconBadgeStyle = {
+      width: '72px',
+      height: '72px',
+      borderRadius: '50%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'rgba(0, 243, 255, 0.08)',
+      border: '1px solid rgba(0, 243, 255, 0.25)',
+      marginBottom: '8px'
+    };
+
     return (
-      <div className="dashboard-grid">
-        <div
-          className="glass-panel col-span-6"
-          onClick={() => setMode('preview')}
-          style={{
-            cursor: 'pointer',
-            textAlign: 'center',
-            padding: '40px'
-          }}
-        >
-          <Send size={48} color="var(--primary)" />
-          <h2>Match Preview</h2>
-          <p>Generate intelligence for upcoming matches</p>
+      <>
+        <Navbar />
+        <div style={{ maxWidth: '1100px', margin: '0 auto', paddingTop: '140px', paddingLeft: '20px', paddingRight: '20px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '45px' }}>
+          <h1 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '10px' }}>
+            Choose an Analysis Mode
+          </h1>
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem' }}>
+            Select how you'd like to explore this match
+          </p>
         </div>
 
         <div
-          className="glass-panel col-span-6"
-          onClick={() => setMode('review')}
           style={{
-            cursor: 'pointer',
-            textAlign: 'center',
-            padding: '40px'
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '28px'
           }}
         >
-          <History size={48} color="var(--primary)" />
-          <h2>Match Review</h2>
-          <p>Analyze completed matches from historical data</p>
+          <div
+            className="glass-panel"
+            onClick={() => setMode('preview')}
+            style={modeCardStyle}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-6px)';
+              e.currentTarget.style.borderColor = 'rgba(0, 243, 255, 0.4)';
+              e.currentTarget.style.background = 'rgba(0, 243, 255, 0.05)';
+              e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 243, 255, 0.12)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <div style={iconBadgeStyle}>
+              <Send size={32} color="var(--primary)" />
+            </div>
+            <h2 style={{ margin: 0, fontSize: '1.3rem' }}>Match Preview</h2>
+            <p style={{ margin: 0, color: 'rgba(255,255,255,0.55)', fontSize: '0.92rem', lineHeight: '1.5' }}>
+              Generate intelligence for upcoming matches
+            </p>
+          </div>
+
+          <div
+            className="glass-panel"
+            onClick={() => setMode('review')}
+            style={modeCardStyle}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-6px)';
+              e.currentTarget.style.borderColor = 'rgba(0, 243, 255, 0.4)';
+              e.currentTarget.style.background = 'rgba(0, 243, 255, 0.05)';
+              e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 243, 255, 0.12)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <div style={iconBadgeStyle}>
+              <History size={32} color="var(--primary)" />
+            </div>
+            <h2 style={{ margin: 0, fontSize: '1.3rem' }}>Match Review</h2>
+            <p style={{ margin: 0, color: 'rgba(255,255,255,0.55)', fontSize: '0.92rem', lineHeight: '1.5' }}>
+              Analyze completed matches from historical data
+            </p>
+          </div>
         </div>
       </div>
+      </>
     );
   }
 

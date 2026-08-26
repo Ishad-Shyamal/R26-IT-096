@@ -1,13 +1,70 @@
-import  { useState } from 'react';
-import { User, Bell, Palette, Key, Save, Shield, Database } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { User, Bell, Palette, Key, Save, Shield, Database, Upload, Trash2 } from 'lucide-react';
+
+const AVATAR_OPTIONS = ['🏏', '🧢', '🏆', '⚡', '🎯', '👑', '🔥', '🛡️'];
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('account');
   const [saved, setSaved] = useState(false);
+  const fileInputRef = useRef(null);
+
+  // Load user details & avatar from localStorage
+  const [userData, setUserData] = useState(() => {
+    const savedData = JSON.parse(localStorage.getItem('userData') || '{}');
+    return {
+      firstName: savedData.firstName || 'Cricket',
+      lastName: savedData.lastName || 'Enthusiast',
+      email: savedData.email || 'user@insightcric.com',
+      avatar: savedData.avatar || null // Stores Base64 string or Emoji string
+    };
+  });
+
+  // Handle local image file selection
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        alert("Image size should be less than 2MB");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setUserData(prev => ({ ...prev, avatar: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSelectEmojiAvatar = (emoji) => {
+    setUserData(prev => ({ ...prev, avatar: emoji }));
+  };
+
+  const handleRemoveAvatar = () => {
+    setUserData(prev => ({ ...prev, avatar: null }));
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
 
   const handleSave = () => {
+    localStorage.setItem('userData', JSON.stringify(userData));
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
+  };
+
+  const renderAvatarPreview = () => {
+    if (!userData.avatar) {
+      return <User size={40} color="var(--text-muted)" />;
+    }
+    // Check if avatar string is an image URL/DataURI or a simple emoji/character
+    if (userData.avatar.startsWith('data:image')) {
+      return (
+        <img 
+          src={userData.avatar} 
+          alt="Avatar Preview" 
+          style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} 
+        />
+      );
+    }
+    return <span style={{ fontSize: '2.5rem' }}>{userData.avatar}</span>;
   };
 
   return (
@@ -68,30 +125,90 @@ const Settings = () => {
                 <User size={20} color="var(--primary)" /> Account Profile
               </h3>
               
-              <div style={{ display: 'flex', gap: '24px', marginBottom: '32px' }}>
-                <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: 'var(--panel-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, position: 'relative' }}>
-                  <User size={40} color="var(--text-muted)" />
-                  <button style={{ position: 'absolute', bottom: '0', right: '0', background: 'var(--primary)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>+</button>
+              <div style={{ display: 'flex', gap: '24px', marginBottom: '32px', alignItems: 'center' }}>
+                <div style={{ width: '100px', height: '100px', borderRadius: '50%', background: 'var(--panel-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, position: 'relative', overflow: 'hidden', border: '2px solid var(--primary)' }}>
+                  {renderAvatarPreview()}
                 </div>
+
                 <div>
-                  <h4 style={{ marginBottom: '8px' }}>Profile Picture</h4>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '12px' }}>Upload a new avatar. Larger images will be resized.</p>
-                  <button className="btn">Upload Image</button>
+                  <h4 style={{ marginBottom: '6px' }}>Profile Picture</h4>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '12px' }}>
+                    Upload an image file (Max 2MB) or select an avatar below.
+                  </p>
+                  
+                  {/* Hidden File Input */}
+                  <input 
+                    type="file" 
+                    ref={fileInputRef} 
+                    onChange={handleImageUpload} 
+                    accept="image/*" 
+                    style={{ display: 'none' }} 
+                  />
+
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    <button className="btn" onClick={() => fileInputRef.current?.click()} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <Upload size={16} /> Upload Image
+                    </button>
+                    {userData.avatar && (
+                      <button className="btn" onClick={handleRemoveAvatar} style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#ff4d4d', borderColor: 'rgba(255, 77, 77, 0.3)' }}>
+                        <Trash2 size={16} /> Remove
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Preset Avatar Selectors */}
+                  <div style={{ marginTop: '16px' }}>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginBottom: '6px' }}>Or choose an avatar icon:</p>
+                    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                      {AVATAR_OPTIONS.map((emoji) => (
+                        <button
+                          key={emoji}
+                          onClick={() => handleSelectEmojiAvatar(emoji)}
+                          style={{
+                            background: userData.avatar === emoji ? 'rgba(0, 210, 255, 0.2)' : 'rgba(255,255,255,0.05)',
+                            border: userData.avatar === emoji ? '1px solid var(--primary)' : '1px solid var(--panel-border)',
+                            borderRadius: '8px',
+                            padding: '6px 10px',
+                            cursor: 'pointer',
+                            fontSize: '1.2rem',
+                            transition: 'all 0.2s ease'
+                          }}
+                        >
+                          {emoji}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
                 <div>
                   <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>First Name</label>
-                  <input type="text" defaultValue="Cricket" style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} />
+                  <input 
+                    type="text" 
+                    value={userData.firstName} 
+                    onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
+                    style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} 
+                  />
                 </div>
                 <div>
                   <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Last Name</label>
-                  <input type="text" defaultValue="Enthusiast" style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} />
+                  <input 
+                    type="text" 
+                    value={userData.lastName} 
+                    onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
+                    style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} 
+                  />
                 </div>
                 <div className="col-span-12" style={{ gridColumn: 'span 2' }}>
                   <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Email Address</label>
-                  <input type="email" defaultValue="user@insightcric.com" style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} />
+                  <input 
+                    type="email" 
+                    value={userData.email} 
+                    onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+                    style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} 
+                  />
                 </div>
               </div>
             </div>

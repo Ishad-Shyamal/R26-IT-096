@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Activity, Brain, Target, BarChart2, Zap } from 'lucide-react';
+import Navbar from './Navbar';
 
 const Home = () => {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', color: 'var(--text-main)', fontFamily: 'inherit', overflowX: 'hidden' }}>
       
       {/* Navigation */}
-      <nav style={{ 
+      <Navbar />
+      {/* <nav style={{ 
         position: 'fixed', top: 0, left: 0, right: 0, 
         padding: '20px 40px', 
         display: 'flex', justifyContent: 'space-between', alignItems: 'center', 
@@ -23,7 +25,7 @@ const Home = () => {
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
           <Link to="/login" style={{ color: 'var(--text-main)', textDecoration: 'none', fontSize: '0.95rem', fontWeight: '500' }}>Log In</Link>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Hero Section */}
       <section style={{ 

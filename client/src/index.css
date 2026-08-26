@@ -1,9 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 /* Root Variables */
 :root {
@@ -636,7 +634,6 @@ h4 {
 .auth-footer a:hover {
   color: var(--secondary);
 }
-
 
 :root {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;

@@ -6,7 +6,7 @@ import {
 import { getPerformanceTier, getTierColor } from "../data/playersData";
 import { useApp } from "../context/AppContext";
 
-// Player Object එක සඳහා Type Definition එකක්
+
 type Player = {
   player_name: string;
   role: string;
@@ -30,13 +30,13 @@ export default function PerformanceIntelligence() {
   const [sortField, setSortField] = useState<"performance_score" | "marker_score">("performance_score");
   const [searchName, setSearchName] = useState("");
   
-  // 🌐 Backend එකෙන් එන Dataset එක රඳවා ගන්නා State එක
+  
   const [dynamicPlayers, setDynamicPlayers] = useState<Player[]>([]);
   const [isLoadingData, setIsLoadingData] = useState(true);
 
   const roles = ["All", "Batsman", "Bowler", "All-Rounder", "Wicket-Keeper", "Opener"];
 
-  // 1. Component එක Mount වන විටම Backend එකෙන් මුළු Dataset එකම Fetch කිරීම
+  
   useEffect(() => {
     fetch("http://localhost:5000/api/players")
       .then(res => {
@@ -81,14 +81,14 @@ export default function PerformanceIntelligence() {
     }));
   }, [dynamicPlayers]);
 
-  // Award distribution
+  
   const awardStats = useMemo(() => {
     const map: Record<string, number> = {};
     dynamicPlayers.forEach(p => p.awards.forEach(a => { map[a] = (map[a] || 0) + 1; }));
     return Object.entries(map).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
   }, [dynamicPlayers]);
 
-  // Calculate National Selection Probability
+  
   const getIPLProbability = (player: Player): number => {
     const performanceWeight = (player.performance_score / 10) * 0.4;
     const markerWeight = (player.marker_score / 5) * 0.3;
@@ -97,7 +97,7 @@ export default function PerformanceIntelligence() {
     return Math.min((performanceWeight + markerWeight + geoWeight + selectionWeight), 1);
   };
 
-  // Radar data for selected player
+  
   const radarData = selectedPlayer ? [
     { metric: "Performance", value: (selectedPlayer.performance_score / 10) * 100 },
     { metric: "Marker", value: (selectedPlayer.marker_score / 5) * 100 },
@@ -106,7 +106,7 @@ export default function PerformanceIntelligence() {
     { metric: "Geo Factor", value: (selectedPlayer.geopolitical / 5) * 100 },
   ] : [];
 
-  // Scatter data
+  
   const scatterData = useMemo(() =>
     filteredPlayers.slice(0, 40).map(p => ({
       x: +p.performance_score.toFixed(2),
@@ -116,7 +116,7 @@ export default function PerformanceIntelligence() {
       selected: p.was_selected,
     })), [filteredPlayers]);
 
-  // Data ටික load වෙනකම් සරල loading skeleton එකක්
+  
   if (isLoadingData) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-16 flex flex-col items-center justify-center space-y-4">
