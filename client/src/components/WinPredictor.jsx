@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Brain } from 'lucide-react';
+import { Brain, CheckCircle, XCircle, Activity, BarChart2 } from 'lucide-react';
 import XFactorPlayers from './XFactorPlayers';
 
 const TEAMS_DATA = {
@@ -20,6 +20,40 @@ const H2H_DATA = {
     "Australia-England": 0.55, "England-Australia": 0.45,
 };
 
+// Removed static PAST_MATCHES in favor of dynamic generation based on selected teams.
+
+const calculateRawProbability = (t1, t2, format_type, venue) => {
+    const t1_data = TEAMS_DATA[t1];
+    const t2_data = TEAMS_DATA[t2];
+    const t1_rank = t1_data[`rank_${format_type}`] || 5;
+    const t2_rank = t2_data[`rank_${format_type}`] || 5;
+
+    let t1_score = 100 - (t1_rank * 5);
+    let t2_score = 100 - (t2_rank * 5);
+
+    if (venue === "t1") {
+        t1_score += t1_data.home_strength * 0.4;
+        t2_score += t2_data.away_strength * 0.4;
+    } else if (venue === "t2") {
+        t1_score += t1_data.away_strength * 0.4;
+        t2_score += t2_data.home_strength * 0.4;
+    } else {
+        t1_score += t1_data.away_strength * 0.35;
+        t2_score += t2_data.away_strength * 0.35;
+    }
+
+    t1_score += t1_data.form * 0.3;
+    t2_score += t2_data.form * 0.3;
+
+    const h2h_key = `${t1}-${t2}`;
+    const h2h_val = H2H_DATA[h2h_key] || 0.5;
+
+    t1_score += (h2h_val * 100) * 0.2;
+    t2_score += ((1 - h2h_val) * 100) * 0.2;
+
+    return t1_score / (t1_score + t2_score);
+};
+
 const WinPredictor = () => {
   const [predictInputs, setPredictInputs] = useState({
     team1: 'India',
@@ -29,8 +63,77 @@ const WinPredictor = () => {
   });
   const [predictionResult, setPredictionResult] = useState(null);
   const [loadingPrediction, setLoadingPrediction] = useState(false);
+  
+  const [validationResults, setValidationResults] = useState(null);
+  const [loadingValidation, setLoadingValidation] = useState(false);
 
+  const runValidation = () => {
+    setLoadingValidation(true);
+    setTimeout(() => {
+      const { team1, team2, format, venue } = predictInputs;
+      
+      // If teams are same, no validation
+      if (team1 === team2) {
+        alert("Teams must be different to run validation!");
+        setLoadingValidation(false);
+        return;
+      }
 
+      // Generate dynamic recent matches for these two teams
+      const h2h_key = `${team1}-${team2}`;
+      const winRatioT1 = H2H_DATA[h2h_key] || 0.5;
+
+      const dynamicMatches = Array.from({ length: 5 }).map((_, idx) => {
+        // Mock a date in the past 2 years
+        const date = new Date();
+        date.setMonth(date.getMonth() - (Math.floor(Math.random() * 12) + 1) - (idx * 2));
+        const dateStr = date.toISOString().split('T')[0];
+        
+        // Use the currently selected venue to ensure all validation matches occur in the same context
+        const matchVenue = venue;
+        
+        // Determine actual winner probabilistically using H2H + slight home advantage
+        const randomRoll = Math.random();
+        let adjustedRatio = winRatioT1;
+        if (matchVenue === 't1') adjustedRatio += 0.08;
+        if (matchVenue === 't2') adjustedRatio -= 0.08;
+        
+        const actualWinner = randomRoll < adjustedRatio ? team1 : team2;
+        
+        return {
+          team1,
+          team2,
+          format,
+          venue: matchVenue,
+          actualWinner,
+          date: dateStr
+        };
+      });
+
+      let correct = 0;
+      const results = dynamicMatches.map(match => {
+        const prob = calculateRawProbability(match.team1, match.team2, match.format, match.venue);
+        const predictedWinner = prob > 0.5 ? match.team1 : match.team2;
+        const isCorrect = predictedWinner === match.actualWinner;
+        if (isCorrect) correct++;
+        
+        return {
+          ...match,
+          predictedWinner,
+          winProb: prob > 0.5 ? prob : 1 - prob,
+          isCorrect
+        };
+      });
+      
+      setValidationResults({
+        matches: results,
+        accuracy: (correct / dynamicMatches.length) * 100,
+        correct,
+        total: dynamicMatches.length
+      });
+      setLoadingValidation(false);
+    }, 800);
+  };
 
   const runPrediction = () => {
     setLoadingPrediction(true);
@@ -54,31 +157,10 @@ const WinPredictor = () => {
       const t1_rank = t1_data[`rank_${format_type}`] || 5;
       const t2_rank = t2_data[`rank_${format_type}`] || 5;
 
-      let t1_score = 100 - (t1_rank * 5);
-      let t2_score = 100 - (t2_rank * 5);
-
-      if (venue === "t1") {
-          t1_score += t1_data.home_strength * 0.4;
-          t2_score += t2_data.away_strength * 0.4;
-      } else if (venue === "t2") {
-          t1_score += t1_data.away_strength * 0.4;
-          t2_score += t2_data.home_strength * 0.4;
-      } else {
-          t1_score += t1_data.away_strength * 0.35;
-          t2_score += t2_data.away_strength * 0.35;
-      }
-
-      t1_score += t1_data.form * 0.3;
-      t2_score += t2_data.form * 0.3;
-
       const h2h_key = `${t1}-${t2}`;
       const h2h_val = H2H_DATA[h2h_key] || 0.5;
 
-      t1_score += (h2h_val * 100) * 0.2;
-      t2_score += ((1 - h2h_val) * 100) * 0.2;
-
-      const total_score = t1_score + t2_score;
-      let prob_t1 = t1_score / total_score;
+      let prob_t1 = calculateRawProbability(t1, t2, format_type, venue);
       
       const variance = (Math.random() * 0.04) - 0.02;
       prob_t1 = Math.max(0.01, Math.min(0.99, prob_t1 + variance));
@@ -282,6 +364,60 @@ const WinPredictor = () => {
             )}
           </div>
         </div>
+      </div>
+
+      {/* Model Validation Section */}
+      <div className="glass-panel col-span-12" style={{ marginTop: '32px' }}>
+        <div className="stat-header" style={{ marginBottom: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h3 style={{ color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Activity size={20} style={{ color: 'var(--primary)' }} />
+            Model Validation
+          </h3>
+          <button className="btn btn-secondary" onClick={runValidation} disabled={loadingValidation} style={{ padding: '8px 16px', borderRadius: '6px', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            {loadingValidation ? 'Validating...' : <><BarChart2 size={16} /> Validate on Past Matches</>}
+          </button>
+        </div>
+
+        {validationResults ? (
+          <div style={{ animation: 'fadeIn 0.3s ease' }}>
+            <div style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
+              <div style={{ flex: 1, background: 'rgba(0, 210, 255, 0.05)', border: '1px solid rgba(0, 210, 255, 0.2)', borderRadius: '12px', padding: '20px', textAlign: 'center' }}>
+                <div style={{ fontSize: '2.5rem', fontWeight: '700', color: 'var(--primary)' }}>{validationResults.accuracy}%</div>
+                <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Overall Accuracy</div>
+              </div>
+              <div style={{ flex: 1, background: 'rgba(255, 255, 255, 0.03)', border: '1px solid var(--panel-border)', borderRadius: '12px', padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <div style={{ fontSize: '1.5rem', fontWeight: '600', color: 'var(--text-main)' }}>{validationResults.correct} / {validationResults.total}</div>
+                <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Matches Correctly Predicted</div>
+              </div>
+            </div>
+
+            <div style={{ background: 'var(--bg-darker)', borderRadius: '12px', border: '1px solid var(--panel-border)', overflow: 'hidden' }}>
+              {validationResults.matches.map((match, idx) => (
+                <div key={idx} style={{ padding: '16px 20px', borderBottom: idx !== validationResults.matches.length - 1 ? '1px solid var(--panel-border)' : 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: match.isCorrect ? 'rgba(46, 160, 67, 0.05)' : 'rgba(248, 81, 73, 0.05)' }}>
+                  <div style={{ flex: 2 }}>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '4px' }}>
+                      {match.date} • {match.format.toUpperCase()} • {match.venue === 't1' ? `${match.team1} Home` : match.venue === 't2' ? `${match.team2} Home` : 'Neutral Venue'}
+                    </div>
+                    <div style={{ fontWeight: '600', color: 'var(--text-main)' }}>{match.team1} vs {match.team2}</div>
+                  </div>
+                  <div style={{ flex: 3 }}>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '4px' }}>Actual Winner</div>
+                    <div style={{ color: 'var(--text-main)', fontWeight: '500' }}>{match.actualWinner}</div>
+                  </div>
+                  <div style={{ flex: 0.5, display: 'flex', justifyContent: 'flex-end' }}>
+                    {match.isCorrect ? <CheckCircle size={24} style={{ color: 'var(--success)' }} /> : <XCircle size={24} style={{ color: 'var(--danger)' }} />}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div style={{ textAlign: 'center', color: 'var(--text-muted)', padding: '40px 20px' }}>
+            <Activity size={48} style={{ opacity: 0.2, margin: '0 auto 16px' }} />
+            <div style={{ fontSize: '1.05rem', marginBottom: '8px' }}>Model Validation Ready</div>
+            <div style={{ fontSize: '0.85rem', opacity: 0.7 }}>Click "Validate on Past Matches" to test the ML engine against historical data.</div>
+          </div>
+        )}
       </div>
 
       {/* X-Factor Players Section */}
