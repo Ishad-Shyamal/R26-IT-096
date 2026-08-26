@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { User, Bell, Palette, Key, Save, Shield, Database, Upload, Trash2 } from 'lucide-react';
+import { User, Bell, Palette, Key, Save, Shield, Database, Upload, Trash2, Eye, EyeOff } from 'lucide-react';
 
 const AVATAR_OPTIONS = ['🏏', '🧢', '🏆', '⚡', '🎯', '👑', '🔥', '🛡️'];
 
@@ -44,12 +44,42 @@ const Settings = () => {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
+  const [currentPassword, setCurrentPassword] = useState(() => {
+    const savedData = JSON.parse(localStorage.getItem('userData') || '{}');
+    return savedData.password || '';
+  });
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const passwordsDontMatch = newPassword && confirmPassword && newPassword !== confirmPassword;
+
   const handleSave = () => {
-    localStorage.setItem('userData', JSON.stringify(userData));
+    if (newPassword || confirmPassword) {
+      if (newPassword !== confirmPassword) {
+        return;
+      }
+    }
+
+    const storedUser = JSON.parse(localStorage.getItem('userData') || '{}');
+    const updatedUser = {
+      ...storedUser,
+      ...userData,
+      password: newPassword ? newPassword : currentPassword,
+    };
+    localStorage.setItem('userData', JSON.stringify(updatedUser));
+
+    if (newPassword) {
+      setCurrentPassword(newPassword);
+      setNewPassword('');
+      setConfirmPassword('');
+    }
+
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
   };
-
   const renderAvatarPreview = () => {
     if (!userData.avatar) {
       return <User size={40} color="var(--text-muted)" />;
@@ -333,16 +363,63 @@ const Settings = () => {
               <div style={{ display: 'grid', gap: '20px', marginBottom: '32px' }}>
                 <div>
                   <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Current Password</label>
-                  <input type="password" placeholder="••••••••" style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} />
+                  <div style={{ position: 'relative' }}>
+                    <input
+                      type={showCurrentPassword ? 'text' : 'password'}
+                      readOnly
+                      value={currentPassword}
+                      style={{ width: '100%', padding: '12px 44px 12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowCurrentPassword(v => !v)}
+                      style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', display: 'flex' }}
+                    >
+                      {showCurrentPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                   <div>
                     <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>New Password</label>
-                    <input type="password" style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} />
+                    <div style={{ position: 'relative' }}>
+                      <input
+                        type={showNewPassword ? 'text' : 'password'}
+                        value={newPassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        style={{ width: '100%', padding: '12px 44px 12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowNewPassword(v => !v)}
+                        style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', display: 'flex' }}
+                      >
+                        {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                      </button>
+                    </div>
                   </div>
                   <div>
                     <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Confirm New Password</label>
-                    <input type="password" style={{ width: '100%', padding: '12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }} />
+                    <div style={{ position: 'relative' }}>
+                      <input
+                        type={showConfirmPassword ? 'text' : 'password'}
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        style={{ width: '100%', padding: '12px 44px 12px 16px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none' }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowConfirmPassword(v => !v)}
+                        style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', display: 'flex' }}
+                      >
+                        {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                      </button>
+                    </div>
+                    {passwordsDontMatch && (
+                      <p style={{ color: 'var(--danger)', fontSize: '0.8rem', marginTop: '6px' }}>
+                        New password and confirmation don't match.
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
