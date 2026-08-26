@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Zap, Crown, Shield, Crosshair, Loader2, AlertCircle } from 'lucide-react';
+import RANKINGS_CACHE from '../data/rankingsCache';
 
 // Predicted Playing XIs per team per format (from ML-Driven Match Previews module)
 const PLAYING_XI = {
@@ -59,13 +60,48 @@ const ROLE_COLORS = {
 
 const FORMAT_LABELS = { t20: 'T20I', odi: 'ODI', test: 'Test' };
 
+// --- Client-side name matching (mirrors backend logic) ---
+const normalize = (name) => name.toLowerCase().replace(/[^a-z ]/g, '').trim();
+
+const nameMatch = (xiName, rankedName) => {
+  const n1 = normalize(xiName);
+  const n2 = normalize(rankedName);
+  if (n1 === n2) return true;
+  const parts1 = n1.split(' ');
+  const parts2 = n2.split(' ');
+  if (parts1.length && parts2.length && parts1[parts1.length - 1] === parts2[parts2.length - 1] && parts1[parts1.length - 1].length > 3) return true;
+  if (n1.length > 4 && n2.length > 4 && (n1.includes(n2) || n2.includes(n1))) return true;
+  return false;
+};
+
+const findXFactor = (playingXI, fmt) => {
+  const results = [];
+  for (const [roleKey, roleLabel] of [['batting', 'Batter'], ['bowling', 'Bowler'], ['allrounder', 'All-Rounder']]) {
+    const rankings = RANKINGS_CACHE[fmt]?.[roleKey] || [];
+    let best = null;
+    for (let xiIdx = 0; xiIdx < playingXI.length; xiIdx++) {
+      for (const [rank, rankedName, country, rating] of rankings) {
+        if (nameMatch(playingXI[xiIdx], rankedName)) {
+          const candidate = { xiIdx, rank, rating, name: rankedName, country };
+          if (!best || rank < best.rank || (rank === best.rank && rating > best.rating) || (rank === best.rank && rating === best.rating && xiIdx < best.xiIdx)) {
+            best = candidate;
+          }
+          break;
+        }
+      }
+    }
+    if (best) results.push({ name: best.name, role: roleLabel, rank: best.rank, rating: best.rating, country: best.country });
+  }
+  return results;
+};
+
 const XFactorPlayers = () => {
   const [inputs, setInputs] = useState({ team1: 'India', team2: 'Australia', format: 't20' });
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchXFactor = async () => {
+  const fetchXFactor = () => {
     const { team1, team2, format } = inputs;
     if (team1 === team2) { alert('Teams must be different!'); return; }
 
@@ -76,20 +112,22 @@ const XFactorPlayers = () => {
     const t1_xi = PLAYING_XI[team1]?.[format] || [];
     const t2_xi = PLAYING_XI[team2]?.[format] || [];
 
-    try {
-      const res = await fetch('http://127.0.0.1:5000/xfactor/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ team1, team2, format, team1_xi: t1_xi, team2_xi: t2_xi }),
-      });
-      if (!res.ok) throw new Error(`Server error: ${res.status}`);
-      const data = await res.json();
-      setResult(data);
-    } catch (err) {
-      setError(err.message || 'Failed to fetch X-Factor players.');
-    } finally {
-      setLoading(false);
-    }
+    // Simulate brief delay for UX, then compute locally
+    setTimeout(() => {
+      try {
+        const t1_players = findXFactor(t1_xi, format);
+        const t2_players = findXFactor(t2_xi, format);
+        setResult({
+          team1_xfactor: { team: team1, players: t1_players },
+          team2_xfactor: { team: team2, players: t2_players },
+          format: format.toUpperCase(),
+        });
+      } catch (err) {
+        setError('Failed to compute X-Factor players.');
+      } finally {
+        setLoading(false);
+      }
+    }, 400);
   };
 
   const selectStyle = {
