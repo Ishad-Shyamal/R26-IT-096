@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Zap, Crown, Shield, Crosshair, Loader2, AlertCircle } from 'lucide-react';
-import RANKINGS_CACHE from '../data/rankingsCache';
+import RANKINGS_CACHE from './data/rankingsCache';
 
 // Predicted Playing XIs per team per format (from ML-Driven Match Previews module)
 const PLAYING_XI = {
