@@ -1,6 +1,6 @@
 import  { useState } from "react";
 
-import Navbar from "./News/Navbar";
+import NewsNavbar from "./News/Navbar";
 import NewsFeed from "./News/NewsFeed";
 import IPLPrediction from "./News/IPLPrediction";
 //import PerformanceIntelligence from "./News/PerformanceIntelligence";
@@ -19,11 +19,11 @@ export default function NewsCurator() {
 
   return (
     <AppProvider>
-      <div className="min-h-screen bg-black text-white p-6 space-y-8">
+      <div className="min-h-screen bg-black text-white p-6 space-y-8" style={{ paddingTop: '90px' }}>
 
-        {/* Top Navbar */}
+        {/* Sub-module Navigation Header */}
         <div className="bg-gray-900 rounded-2xl shadow-lg p-4">
-          <Navbar />
+          <NewsNavbar />
         </div>
 
         {/* IPL Prediction Section */}

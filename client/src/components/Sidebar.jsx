@@ -43,7 +43,7 @@ const Sidebar = () => {
   const navItems = [
     { name: 'Home', path: '/', icon: <Home size={20} /> },
     { name: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard size={20} /> },
-    { name: 'News Curator', path: '#news', icon: <Newspaper size={20} /> },
+    { name: 'News Curator', path: '/news', icon: <Newspaper size={20} /> },
     { name: 'Player Analysis', path: '/player', icon: <Activity size={20} /> },
     { name: 'Match Previews', path: '/matchpreviewreview', icon: <Brain size={20} /> },
     { name: 'Win Predictor', path: '/predictor', icon: <Target size={20} /> },

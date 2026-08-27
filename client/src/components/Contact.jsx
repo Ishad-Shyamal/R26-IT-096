@@ -1,16 +1,37 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Send, MessageSquare } from 'lucide-react';
 import Navbar from './Navbar';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormData({ name: '', email: '', message: '' });
+
+    emailjs
+      .send(
+        'service_cx58ylg',
+        'template_p1qmjsu',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        'R_pLkCN2siWwtMh0e'
+      )
+      .then(() => {
+        setSubmitted(true);
+        setError(false);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setSubmitted(false), 3000);
+      })
+      .catch((err) => {
+        console.error('EmailJS error:', err);
+        setError(true);
+      });
   };
 
   return (
@@ -59,7 +80,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div style={{ fontWeight: '600', fontSize: '1rem', marginBottom: '4px' }}>Social Media</div>
-                    <div style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>@InsightCric on X / Twitter</div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>@InsightCric</div>
                   </div>
                 </div>
 
@@ -68,8 +89,8 @@ const Contact = () => {
                     <MapPin size={20} />
                   </div>
                   <div>
-                    <div style={{ fontWeight: '600', fontSize: '1rem', marginBottom: '4px' }}>Office Location</div>
-                    <div style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>Innovation Hub, Tech Park, City</div>
+                    <div style={{ fontWeight: '600', fontSize: '1rem', marginBottom: '4px' }}>Location</div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>Malabe, Colombo, Sri Lanka</div>
                   </div>
                 </div>
 
@@ -91,6 +112,12 @@ const Contact = () => {
                 <p style={{ fontSize: '0.95rem', opacity: 0.9 }}>Thank you for reaching out. We will get back to you shortly.</p>
               </div>
             ) : (
+              <>
+              {error && (
+                <div style={{ marginBottom: '16px', padding: '12px 16px', background: 'rgba(248, 81, 73, 0.1)', border: '1px solid var(--danger)', borderRadius: '8px', color: 'var(--danger)', fontSize: '0.9rem' }}>
+                  Something went wrong sending your message. Please try again or email us directly.
+                </div>
+              )}
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                   <div>
@@ -133,6 +160,7 @@ const Contact = () => {
                   <Send size={16} /> Send Message
                 </button>
               </form>
+              </>
             )}
           </div>
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Brain, CheckCircle, XCircle, Activity, BarChart2 } from 'lucide-react';
 import XFactorPlayers from './XFactorPlayers';
+import Navbar from './Navbar'; // Adjust the relative path if Navbar is in another folder (e.g., '../components/Navbar')
 
 const TEAMS_DATA = {
     "India": { rank_t20: 1, rank_odi: 1, rank_test: 2, form: 85, home_strength: 95, away_strength: 75 },
@@ -63,6 +64,9 @@ const WinPredictor = () => {
   });
   const [predictionResult, setPredictionResult] = useState(null);
   const [loadingPrediction, setLoadingPrediction] = useState(false);
+ 
+  const [probableXI, setProbableXI] = useState(null);
+  const [loadingXI, setLoadingXI] = useState(false);
   
   const [validationResults, setValidationResults] = useState(null);
   const [loadingValidation, setLoadingValidation] = useState(false);
@@ -133,6 +137,38 @@ const WinPredictor = () => {
       });
       setLoadingValidation(false);
     }, 800);
+  };
+
+  const fetchProbableXI = async (t1, t2, format_type) => {
+    setLoadingXI(true);
+    try {
+      const response = await fetch('http://127.0.0.1:8000/predict/probable11', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          team1: t1,
+          team2: t2,
+          venue: 'Neutral Venue',
+          format: format_type.toUpperCase()
+        })
+      });
+      const data = await response.json();
+      if (data.success) {
+        setProbableXI({
+          team1: t1,
+          team2: t2,
+          team1Players: data.data.team1_results.players || [],
+          team2Players: data.data.team2_results.players || []
+        });
+      } else {
+        setProbableXI(null);
+      }
+    } catch (error) {
+      console.error('Error fetching probable XI:', error);
+      setProbableXI(null);
+    } finally {
+      setLoadingXI(false);
+    }
   };
 
   const runPrediction = () => {
@@ -259,11 +295,13 @@ const WinPredictor = () => {
         explanation: insights.join('\n\n')
       });
       setLoadingPrediction(false);
+      fetchProbableXI(t1, t2, format_type);
     }, 800);
   };
 
-  return (
-    <div>
+    return (
+    <div style={{ paddingTop: '90px' }}>
+      <Navbar />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '32px' }}>
         <div>
           <h1 className="page-title">Win Predictor</h1>
@@ -331,6 +369,48 @@ const WinPredictor = () => {
             <button className="btn btn-primary" onClick={runPrediction} disabled={loadingPrediction} style={{ marginTop: '8px', padding: '14px', borderRadius: '8px', fontSize: '1.05rem' }}>
               {loadingPrediction ? 'Analyzing...' : 'Run ML Prediction'}
             </button>
+
+            {/* Horizontal Probable XI located inside left input column */}
+            {probableXI && (
+              <div style={{ marginTop: '16px', background: 'var(--bg-darker)', padding: '16px', borderRadius: '8px', border: '1px solid var(--panel-border)' }}>
+                <h4 style={{ color: 'var(--text-main)', marginBottom: '12px', fontSize: '0.95rem' }}>Probable XI</h4>
+                {loadingXI ? (
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Loading lineups...</div>
+                ) : (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div>
+                      <div style={{ color: 'var(--primary)', fontWeight: '600', fontSize: '0.85rem', marginBottom: '4px' }}>
+                        {probableXI.team1} Lineup
+                      </div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                        {probableXI.team1Players.map((p, i) => (
+                          <span key={i}>
+                            <strong style={{ color: 'var(--text-main)' }}>{p.player_name}</strong> ({p.role})
+                            {i < probableXI.team1Players.length - 1 ? ', ' : ''}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <div style={{ color: 'var(--danger)', fontWeight: '600', fontSize: '0.85rem', marginBottom: '4px' }}>
+                        {probableXI.team2} Lineup
+                      </div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                        {probableXI.team2Players.map((p, i) => (
+                          <span key={i}>
+                            <strong style={{ color: 'var(--text-main)' }}>{p.player_name}</strong> ({p.role})
+                            {i < probableXI.team2Players.length - 1 ? ', ' : ''}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+          {/* Results */}
           </div>
 
           {/* Results */}
@@ -365,6 +445,7 @@ const WinPredictor = () => {
           </div>
         </div>
       </div>
+
 
       {/* Model Validation Section */}
       <div className="glass-panel col-span-12" style={{ marginTop: '32px' }}>

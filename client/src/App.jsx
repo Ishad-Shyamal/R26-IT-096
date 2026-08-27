@@ -14,15 +14,16 @@ import Player from './components/Player';
 import Prediction from './components/Prediction';
 import MatchPreviewReview from './components/MatchPreviewReview';
 import Lineups from './components/Lineups';
-
 import NewsCurator from './components/NewsCurator';
+
 
 // Layout Component
 const MainLayout = ({ children }) => (
   <div className="app-container">
+    <Navbar />
     <Sidebar />
 
-    <main className="main-content">
+    <main className="main-content" style={{ paddingTop: '80px' }}>
       {children}
     </main>
   </div>
@@ -85,7 +86,11 @@ function App() {
             <WinPredictor />
           </MainLayout>
         } />
-        
+        <Route path="/news" element={
+          <MainLayout>
+            <NewsCurator />
+          </MainLayout>
+        } />
         {/* Fallback route */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
