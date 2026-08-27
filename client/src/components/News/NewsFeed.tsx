@@ -15,13 +15,11 @@ const roleIcons: Record<string, string> = {
   "Opener": "🚀",
 };
 
-// Interface definition supporting direct feed usage & optional card props
 export interface NewsFeedProps {
   newsText?: string;
   playerName?: string;
 }
 
-// Helper functions for dynamic performance tier styling
 const getPerformanceTier = (score: number): string => {
   if (score >= 80) return "Elite";
   if (score >= 60) return "High";
@@ -50,6 +48,7 @@ const getTierBg = (tier: string): string => {
 export default function NewsFeed({ newsText, playerName: propPlayerName }: NewsFeedProps) {
   const { engagedArticles, engageArticle, setSelectedPlayer: setCtxPlayer } = useApp();
   const [sortBy, setSortBy] = useState<"performance" | "marker" | "recent">("performance");
+  const [selectedCountry, setSelectedCountry] = useState<string>("All Countries");
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
   const [dynamicPlayers, setDynamicPlayers] = useState<any[]>([]);
@@ -73,8 +72,28 @@ export default function NewsFeed({ newsText, playerName: propPlayerName }: NewsF
     fetchPlayerData();
   }, []);
 
+  // API එකෙන් එන සියලු රටවල් එකතු කර Dynamic List එකක් සාදාගැනීම
+  const countriesList = useMemo(() => {
+    const countries = new Set<string>();
+    dynamicPlayers.forEach((player) => {
+      const country = player.country || player.team;
+      if (country) countries.add(country);
+    });
+    return ["All Countries", ...Array.from(countries).sort()];
+  }, [dynamicPlayers]);
+
+  // Country filter & Sorting දෙකම යෙදීම
   const processedPlayers = useMemo(() => {
-    return [...dynamicPlayers].sort((a, b) => {
+    let filtered = [...dynamicPlayers];
+
+    if (selectedCountry !== "All Countries") {
+      filtered = filtered.filter((player) => {
+        const country = player.country || player.team;
+        return country?.toLowerCase() === selectedCountry.toLowerCase();
+      });
+    }
+
+    return filtered.sort((a, b) => {
       const perfA = a.performance_score ?? a.performance_metric ?? 0;
       const perfB = b.performance_score ?? b.performance_metric ?? 0;
       const markA = a.marker_score ?? a.markerScore ?? 0;
@@ -83,9 +102,8 @@ export default function NewsFeed({ newsText, playerName: propPlayerName }: NewsF
       if (sortBy === "marker") return markB - markA;
       return perfB - perfA;
     });
-  }, [dynamicPlayers, sortBy]);
+  }, [dynamicPlayers, selectedCountry, sortBy]);
 
-  // Handle single embedded inline card view when invoked from QueryEngine
   if (newsText !== undefined || propPlayerName !== undefined) {
     return (
       <div className="flex items-start gap-2 pt-2 border-t border-slate-800 text-xs text-slate-400">
@@ -110,27 +128,46 @@ export default function NewsFeed({ newsText, playerName: propPlayerName }: NewsF
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      {/* Filters & Sorting Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      {/* Filters & Country Selection Dropdown Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-900/80 p-4 rounded-xl border border-slate-800">
         <p className="text-slate-400 text-sm">
-          Showing <span className="text-white font-medium">{processedPlayers.length}</span> articles
+          Showing <span className="text-cyan-400 font-semibold">{processedPlayers.length}</span> players
         </p>
 
-        <div className="flex items-center gap-2">
-          <span className="text-slate-400 text-sm">Sort:</span>
-          {(["performance", "marker", "recent"] as const).map((s) => (
-            <button
-              key={s}
-              onClick={() => setSortBy(s)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all capitalize ${
-                sortBy === s
-                  ? "bg-slate-600 border-slate-500 text-white"
-                  : "bg-slate-800/50 border-slate-700 text-slate-400 hover:border-slate-600"
-              }`}
+        <div className="flex items-center gap-4 flex-wrap">
+          {/* Country Dropdown */}
+          <div className="flex items-center gap-2">
+            <span className="text-slate-400 text-sm font-medium">Country:</span>
+            <select
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              className="bg-slate-800 border border-cyan-500/40 text-cyan-300 text-xs font-semibold rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 cursor-pointer"
             >
-              {s}
-            </button>
-          ))}
+              {countriesList.map((country) => (
+                <option key={country} value={country} className="bg-slate-900 text-slate-200">
+                  {country}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Sort Buttons */}
+          <div className="flex items-center gap-2 border-l border-slate-700 pl-4">
+            <span className="text-slate-400 text-sm font-medium">Sort:</span>
+            {(["performance", "marker", "recent"] as const).map((s) => (
+              <button
+                key={s}
+                onClick={() => setSortBy(s)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all capitalize ${
+                  sortBy === s
+                    ? "bg-cyan-500/20 border-cyan-500/50 text-cyan-300 font-semibold"
+                    : "bg-slate-800/50 border-slate-700 text-slate-400 hover:border-slate-600"
+                }`}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -235,7 +272,6 @@ export default function NewsFeed({ newsText, playerName: propPlayerName }: NewsF
                   {isExpanded ? "Show Less" : "Read More"} {isEngaged && "✓"}
                 </button>
                 
-                {/* Profile Modal Trigger */}
                 <button
                   onClick={() => {
                     setCtxPlayer(player);
@@ -246,7 +282,6 @@ export default function NewsFeed({ newsText, playerName: propPlayerName }: NewsF
                   📊 Profile
                 </button>
 
-                {/* Validation Modal Trigger */}
                 <button
                   onClick={() => setValidationPlayer(player)}
                   className="px-3 py-2 rounded-xl text-xs font-medium bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 hover:bg-cyan-500/30 transition-all flex items-center justify-center gap-1"
