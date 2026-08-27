@@ -1,34 +1,112 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import axios from "axios";
 import { useApp } from "../context/AppContext";
-import { players, getPerformanceTier, getTierColor, getTierBg } from "../data/playersData";
-import PlayerProfileModal from "./PlayerProfileModal"; // 👈 1. Custom Modal Component එක Import කළා
+import PlayerProfileModal from "./PlayerProfileModal";
+import PlayerValidationModal from "./PlayerValidationModal";
 
-const getIPLProbability = (player: typeof players[0]): number => {
-  return Math.min(player.performance_score / 100, 1);
-};
+const API_URL = "http://127.0.0.1:5001/players-predictions";
 
 const roleIcons: Record<string, string> = {
   "Batsman": "🏏",
+  "Batter": "🏏",
   "Bowler": "⚡",
   "All-Rounder": "🌟",
   "Wicket-Keeper": "🧤",
   "Opener": "🚀",
 };
 
-export default function NewsFeed() {
-  const { engagedArticles, engageArticle, setActiveTab, setSelectedPlayer: setCtxPlayer } = useApp();
+// Interface definition supporting direct feed usage & optional card props
+export interface NewsFeedProps {
+  newsText?: string;
+  playerName?: string;
+}
+
+// Helper functions for dynamic performance tier styling
+const getPerformanceTier = (score: number): string => {
+  if (score >= 80) return "Elite";
+  if (score >= 60) return "High";
+  if (score >= 40) return "Moderate";
+  return "Low";
+};
+
+const getTierColor = (tier: string): string => {
+  switch (tier) {
+    case "Elite": return "text-emerald-400";
+    case "High": return "text-blue-400";
+    case "Moderate": return "text-yellow-400";
+    default: return "text-slate-400";
+  }
+};
+
+const getTierBg = (tier: string): string => {
+  switch (tier) {
+    case "Elite": return "bg-emerald-500/10 border-emerald-500/30";
+    case "High": return "bg-blue-500/10 border-blue-500/30";
+    case "Moderate": return "bg-yellow-500/10 border-yellow-500/30";
+    default: return "bg-slate-500/10 border-slate-500/30";
+  }
+};
+
+export default function NewsFeed({ newsText, playerName: propPlayerName }: NewsFeedProps) {
+  const { engagedArticles, engageArticle, setSelectedPlayer: setCtxPlayer } = useApp();
   const [sortBy, setSortBy] = useState<"performance" | "marker" | "recent">("performance");
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
-  
-  // 🎯 Selected Player for Gemini Profile Modal
-  const [modalPlayer, setModalPlayer] = useState<typeof players[0] | null>(null);
+
+  const [dynamicPlayers, setDynamicPlayers] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const [modalPlayer, setModalPlayer] = useState<any | null>(null);
+  const [validationPlayer, setValidationPlayer] = useState<any | null>(null);
+
+  useEffect(() => {
+    async function fetchPlayerData() {
+      try {
+        setIsLoading(true);
+        const response = await axios.get(API_URL);
+        setDynamicPlayers(response.data);
+      } catch (error) {
+        console.error("Error fetching player data from ML API:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchPlayerData();
+  }, []);
 
   const processedPlayers = useMemo(() => {
-    return [...players].sort((a, b) => {
-      if (sortBy === "marker") return b.marker_score - a.marker_score;
-      return b.performance_score - a.performance_score;
+    return [...dynamicPlayers].sort((a, b) => {
+      const perfA = a.performance_score ?? a.performance_metric ?? 0;
+      const perfB = b.performance_score ?? b.performance_metric ?? 0;
+      const markA = a.marker_score ?? a.markerScore ?? 0;
+      const markB = b.marker_score ?? b.markerScore ?? 0;
+
+      if (sortBy === "marker") return markB - markA;
+      return perfB - perfA;
     });
-  }, [sortBy]);
+  }, [dynamicPlayers, sortBy]);
+
+  // Handle single embedded inline card view when invoked from QueryEngine
+  if (newsText !== undefined || propPlayerName !== undefined) {
+    return (
+      <div className="flex items-start gap-2 pt-2 border-t border-slate-800 text-xs text-slate-400">
+        <span className="text-base">📰</span>
+        <div className="leading-relaxed">
+          <strong className="text-slate-300">
+            News{propPlayerName ? ` (${propPlayerName})` : ""}:
+          </strong>{" "}
+          <span>{newsText || "No recent news available in current context."}</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-12 text-center text-slate-400">
+        <p className="animate-pulse">Loading Live ML Predictions & Player News...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
@@ -37,10 +115,10 @@ export default function NewsFeed() {
         <p className="text-slate-400 text-sm">
           Showing <span className="text-white font-medium">{processedPlayers.length}</span> articles
         </p>
-        
+
         <div className="flex items-center gap-2">
           <span className="text-slate-400 text-sm">Sort:</span>
-          {(["performance", "marker", "recent"] as const).map(s => (
+          {(["performance", "marker", "recent"] as const).map((s) => (
             <button
               key={s}
               onClick={() => setSortBy(s)}
@@ -58,14 +136,25 @@ export default function NewsFeed() {
 
       {/* News Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {processedPlayers.map(player => {
-          const tier = getPerformanceTier(player.performance_score);
-          const prob = getIPLProbability(player);
-          const isExpanded = expandedCard === player.player_name;
-          const isEngaged = engagedArticles.has(player.player_name);
+        {processedPlayers.map((player) => {
+          const playerName = player.player_name ?? player.name ?? player.PlayerName ?? "Unknown Player";
+          const perfScore = Number(player.performance_score ?? player.performance_metric ?? player.perf_score ?? 0);
+          const markerScore = Number(player.marker_score ?? player.markerScore ?? player.marker ?? 0);
+          const rawProb = player.nationalProb ?? player.iplProb ?? player.national_prob ?? (perfScore / 100);
+          const nationalProb = Math.min(Math.max(rawProb > 1 ? rawProb / 100 : rawProb, 0), 1);
+          
+          const tier = player.tier || getPerformanceTier(perfScore);
+          const awards: string[] = player.awards || player.nlp_markers || [];
+          const newsList: string[] = Array.isArray(player.news)
+            ? player.news
+            : [player.news_preview || player.summary || player.news || "No recent news available."];
+
+          const isExpanded = expandedCard === playerName;
+          const isEngaged = engagedArticles.has(playerName);
+
           return (
             <div
-              key={player.player_name}
+              key={playerName}
               className="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 space-y-3 transition-all hover:shadow-xl hover:shadow-black/20 hover:border-slate-600"
             >
               {/* Header */}
@@ -75,15 +164,15 @@ export default function NewsFeed() {
                     {roleIcons[player.role] || "🏏"}
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold text-sm leading-tight">{player.player_name}</h3>
-                    <p className="text-slate-400 text-xs">{player.role} · {player.team}</p>
+                    <h3 className="text-white font-semibold text-sm leading-tight">{playerName}</h3>
+                    <p className="text-slate-400 text-xs">{player.role || "Player"} · {player.team || player.country || "Domestic"}</p>
                   </div>
                 </div>
                 <div className="flex flex-col items-end gap-1">
                   <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${getTierBg(tier)} ${getTierColor(tier)}`}>
                     {tier}
                   </span>
-                  {player.was_selected === 1 && (
+                  {(player.was_selected === 1 || player.was_selected === true || player.is_national === true) && (
                     <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 font-medium">
                       National ✓
                     </span>
@@ -91,10 +180,10 @@ export default function NewsFeed() {
                 </div>
               </div>
 
-              {/* Awards Badges */}
-              {player.awards.length > 0 && (
+              {/* Awards / NLP Badges */}
+              {awards.length > 0 && (
                 <div className="flex items-center gap-2 flex-wrap">
-                  {player.awards.slice(0, 2).map(award => (
+                  {awards.slice(0, 2).map((award) => (
                     <span key={award} className="text-[10px] px-2 py-1 rounded-lg border bg-yellow-500/10 border-yellow-500/30 text-yellow-300">
                       🏆 {award}
                     </span>
@@ -102,40 +191,40 @@ export default function NewsFeed() {
                 </div>
               )}
 
-              {/* Stats Row */}
+              {/* API Stats Row */}
               <div className="grid grid-cols-3 gap-2">
                 <div className="bg-slate-900/60 rounded-xl p-2 text-center">
-                  <p className="text-orange-400 font-bold text-sm">{player.performance_score.toFixed(2)}</p>
+                  <p className="text-orange-400 font-bold text-sm">{perfScore.toFixed(2)}</p>
                   <p className="text-slate-500 text-[10px]">Perf Score</p>
                 </div>
                 <div className="bg-slate-900/60 rounded-xl p-2 text-center">
-                  <p className="text-blue-400 font-bold text-sm">{player.marker_score}</p>
+                  <p className="text-blue-400 font-bold text-sm">{markerScore.toFixed(2)}</p>
                   <p className="text-slate-500 text-[10px]">Marker</p>
                 </div>
                 <div className="bg-slate-900/60 rounded-xl p-2 text-center">
-                  <p className="text-purple-400 font-bold text-sm">{(prob * 100).toFixed(0)}%</p>
+                  <p className="text-purple-400 font-bold text-sm">{(nationalProb * 100).toFixed(0)}%</p>
                   <p className="text-slate-500 text-[10px]">National Prob</p>
                 </div>
               </div>
 
-              {/* News Preview */}
+              {/* News Content */}
               <div className="space-y-1.5">
                 <p className="text-slate-300 text-xs leading-relaxed">
-                  {player.news[0]}
+                  {newsList[0]}
                 </p>
-                {isExpanded && player.news.slice(1).map((n, i) => (
+                {isExpanded && newsList.slice(1).map((n, i) => (
                   <p key={i} className="text-slate-400 text-xs leading-relaxed border-t border-slate-700/50 pt-1.5">
                     {n}
                   </p>
                 ))}
               </div>
 
-              {/* Actions */}
+              {/* Action Buttons */}
               <div className="flex items-center gap-2 pt-1">
                 <button
                   onClick={() => {
-                    engageArticle(player.player_name);
-                    setExpandedCard(isExpanded ? null : player.player_name);
+                    engageArticle(playerName);
+                    setExpandedCard(isExpanded ? null : playerName);
                   }}
                   className={`flex-1 py-2 rounded-xl text-xs font-medium transition-all ${
                     isEngaged
@@ -146,15 +235,23 @@ export default function NewsFeed() {
                   {isExpanded ? "Show Less" : "Read More"} {isEngaged && "✓"}
                 </button>
                 
-                {/* Profile Button */}
+                {/* Profile Modal Trigger */}
                 <button
                   onClick={() => {
                     setCtxPlayer(player);
                     setModalPlayer(player);
                   }}
-                  className="flex-1 py-2 rounded-xl text-xs font-medium bg-orange-500/20 border border-orange-500/40 text-orange-400 hover:bg-orange-500/30 transition-all flex items-center justify-center gap-1"
+                  className="px-3 py-2 rounded-xl text-xs font-medium bg-orange-500/20 border border-orange-500/40 text-orange-400 hover:bg-orange-500/30 transition-all flex items-center justify-center gap-1"
                 >
                   📊 Profile
+                </button>
+
+                {/* Validation Modal Trigger */}
+                <button
+                  onClick={() => setValidationPlayer(player)}
+                  className="px-3 py-2 rounded-xl text-xs font-medium bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 hover:bg-cyan-500/30 transition-all flex items-center justify-center gap-1"
+                >
+                  🔍 Validate
                 </button>
               </div>
             </div>
@@ -162,11 +259,19 @@ export default function NewsFeed() {
         })}
       </div>
 
-      {}
+      {/* Dynamic Profile Modal */}
       {modalPlayer && (
         <PlayerProfileModal
           player={modalPlayer}
           onClose={() => setModalPlayer(null)}
+        />
+      )}
+
+      {/* Dynamic Validation Modal */}
+      {validationPlayer && (
+        <PlayerValidationModal
+          player={validationPlayer}
+          onClose={() => setValidationPlayer(null)}
         />
       )}
     </div>
