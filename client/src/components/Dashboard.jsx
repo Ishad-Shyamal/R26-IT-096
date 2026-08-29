@@ -6,6 +6,7 @@ import playing11Img from '../assets/playing11.jpg';
 import newTalentImg from '../assets/newtalent.jpg';
 import risingStarImg from '../assets/mayankyadav.jpg';
 import under19Img from '../assets/benmayes.webp';
+import { useNavigate } from 'react-router-dom';
 
 import { TrendingUp, AlertCircle, Shield, Play, Brain } from 'lucide-react';
 import { 
@@ -15,9 +16,7 @@ import {
   YAxis, 
   CartesianGrid, 
   Tooltip, 
-  ResponsiveContainer, 
-  BarChart, 
-  Bar 
+  ResponsiveContainer 
 } from 'recharts';
 
 const performanceData = [
@@ -30,6 +29,8 @@ const performanceData = [
 ];
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
   return (
     <div style={{ paddingTop: '106px' }}>
       <Navbar />
@@ -41,8 +42,12 @@ const Dashboard = () => {
       </div>
 
       <div className="dashboard-grid">
-        {/* Win Predictor - Top left */}
-        <div className="glass-panel col-span-4">
+        {/* Win Predictor - Navigates to /predictor */}
+        <div 
+          className="glass-panel col-span-4"
+          onClick={() => navigate('/predictor')}
+          style={{ cursor: 'pointer' }}
+        >
           <div className="stat-header" style={{ marginBottom: '24px' }}>
             <h3 style={{ color: 'var(--text-main)' }}>Win Predictor</h3>
             <span className="ml-tag">ML Model</span>
@@ -57,8 +62,12 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Player Analyzer - Top right */}
-        <div className="glass-panel col-span-8">
+        {/* Player Analyzer - Navigates to /player */}
+        <div 
+          className="glass-panel col-span-8"
+          onClick={() => navigate('/player')}
+          style={{ cursor: 'pointer' }}
+        >
           <div className="stat-header" style={{ marginBottom: '16px' }}>
             <h3 style={{ color: 'var(--text-main)' }}>Player Performance Analyzer</h3>
             <span className="stat-change positive">
@@ -104,8 +113,12 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* ML Match Previews - Bottom left */}
-        <div className="glass-panel col-span-6">
+        {/* ML Match Previews - Navigates to /matchpreviewreview */}
+        <div 
+          className="glass-panel col-span-6"
+          onClick={() => navigate('/matchpreviewreview')}
+          style={{ cursor: 'pointer' }}
+        >
           <div className="stat-header" style={{ marginBottom: '16px' }}>
             <h3 style={{ color: 'var(--text-main)' }}>ML Match Preview and Review</h3>
             <span className="ml-tag"><Brain size={14} style={{marginRight: '4px'}}/> Deep Analysis</span>
@@ -150,8 +163,12 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* News Curator - Bottom right */}
-        <div className="glass-panel col-span-6">
+        {/* News Curator - Navigates to /news */}
+        <div 
+          className="glass-panel col-span-6"
+          onClick={() => navigate('/news')}
+          style={{ cursor: 'pointer' }}
+        >
           <div className="stat-header" style={{ marginBottom: '24px' }}>
             <h3 style={{ color: 'var(--text-main)' }}>Personalized News Curator</h3>
             <span style={{ color: 'var(--primary)', fontSize: '0.9rem', cursor: 'pointer' }}>View All</span>
@@ -179,7 +196,7 @@ const Dashboard = () => {
             <img src={risingStarImg} alt="Rising Talent" className="news-image" />
             <div className="news-content">
               <div className="news-title">Pacer from Lucknow Supergiants clocks 155kmph</div>
-              <div className="news-meta">                
+              <div className="news-meta">        
                 <span className="news-tag">Talent Watch</span>
               </div>
             </div>

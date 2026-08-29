@@ -118,9 +118,9 @@ const Login = () => {
                 required
               />
             </div>
-            <div className="forgot-password">
-              <a href="#forgot">Forgot Password?</a>
-            </div>
+              <div className="forgot-password">
+                <Link to="/signup">Forgot Password?</Link>
+              </div>
           </div>
 
           <button type="submit" className="btn btn-primary auth-submit">
