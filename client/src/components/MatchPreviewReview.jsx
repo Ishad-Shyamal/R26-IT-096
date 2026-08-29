@@ -17,6 +17,9 @@ import {
   Users
 } from 'lucide-react';
 import Navbar from './Navbar';
+import axios from 'axios';
+
+const PLAYER_API_URL = 'http://localhost:5002';
 // Dictionary mapping the exact dropdown team strings to their precise asset file extension / path formats
 const flagMap = {
   "India": "/flags/india.webp",
@@ -55,6 +58,9 @@ const MatchPreviewReview = () => {
   const [loading, setLoading] = useState(false);
   // ── Snapshot of teams at the moment Generate Analysis was clicked ──
   const [submittedTeams, setSubmittedTeams] = useState({ team1: '', team2: '' });
+  const [playerPredictions, setPlayerPredictions] = useState({});
+  const [showTeam1Score, setShowTeam1Score] = useState(false);
+  const [showTeam2Score, setShowTeam2Score] = useState(false);
 
   // Hardcoded list of international cricket teams requested
   const teamsList = Object.keys(flagMap);
@@ -202,6 +208,11 @@ const MatchPreviewReview = () => {
       const data = await response.json();
       setResult(data);
 
+      if (mode === 'preview' && data.success) {
+        fetchPlayerPredictions(data.data.team1_results.players || [], formData.team1, formData.format);
+        fetchPlayerPredictions(data.data.team2_results.players || [], formData.team2, formData.format);
+      }
+
     } catch (error) {
       console.error('Error connecting to backend:', error);
     } finally {
@@ -209,54 +220,152 @@ const MatchPreviewReview = () => {
     }
   };
 
-  const PlayerCard = ({ player }) => (
-    <div
-      className="player-card glass-panel"
-      style={{
-        marginBottom: '10px',
-        padding: '15px',
-        borderLeft: '4px solid var(--primary)'
-      }}
-    >
+  const matchesPlayerName = (fullName, csvName) => {
+    if (!fullName || !csvName) return false;
+
+    const normFull = fullName.toLowerCase().trim();
+    const normCsv = csvName.toLowerCase().trim();
+
+    // 1. Direct match check
+    if (normFull === normCsv) return true;
+
+    const fullParts = normFull.split(/\s+/);
+    const csvParts = normCsv.replace(/[^a-z\s]/g, '').trim().split(/\s+/);
+
+    const fullLastName = fullParts[fullParts.length - 1];
+    const csvLastName = csvParts[csvParts.length - 1];
+
+    // Primary check: Last names MUST match
+    if (fullLastName !== csvLastName) return false;
+
+    // 2. Check if any non-last-name part of the full name matches any character or word in CSV initials/names
+    const fullFirstName = fullParts[0]; // e.g., "kusal"
+    const csvInitials = csvParts[0];    // e.g., "bkg" or "kic" or "a"
+
+    // Check if first initial or first name appears anywhere in CSV initials or vice versa
+    const hasFirstInitialMatch = csvInitials.includes(fullFirstName[0]);
+    const hasFirstNameMatch = fullParts.some(part => csvParts.some(csvPart => csvPart.includes(part) || part.includes(csvPart)));
+
+    return hasFirstInitialMatch || hasFirstNameMatch;
+  };
+const fetchPlayerPredictions = async (players, country, matchType) => {
+    const predictions = {};
+
+    await Promise.all(
+      players.map(async (p) => {
+        const originalName = p.player_name; // e.g. "Kusal Mendis"
+        const parts = originalName.trim().split(/\s+/);
+        const lastName = parts[parts.length - 1]; // "Mendis"
+        const firstInitial = parts[0][0]; // "K"
+
+        // Expanded variations to catch Sri Lankan initial patterns like "BKG Mendis"
+        const nameVariations = [
+          originalName,
+          `${firstInitial} ${lastName}`,
+          lastName
+        ];
+
+        let matchedPrediction = null;
+
+        for (const nameToTry of nameVariations) {
+          try {
+            const response = await axios.post(`${PLAYER_API_URL}/api/predict`, {
+              country,
+              playerName: nameToTry,
+              category: matchType
+            });
+
+            if (response.data?.status === 'success' && response.data?.prediction) {
+              matchedPrediction = response.data.prediction;
+              break; 
+            }
+          } catch (err) {
+            // Continue trying fallback name variations
+          }
+        }
+
+        if (matchedPrediction) {
+          predictions[originalName] = matchedPrediction;
+        }
+      })
+    );
+
+    setPlayerPredictions((prev) => ({ ...prev, ...predictions }));
+  };
+
+  // Re-fetch predictions if we landed here with a restored result
+  // (e.g. navigating back from the Lineups page) but no predictions yet.
+  useEffect(() => {
+    if (
+      result?.success &&
+      mode === 'preview' &&
+      Object.keys(playerPredictions).length === 0
+    ) {
+      fetchPlayerPredictions(result.data.team1_results.players || [], formData.team1, formData.format);
+      fetchPlayerPredictions(result.data.team2_results.players || [], formData.team2, formData.format);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const PlayerCard = ({ player, showScore }) => {
+    const pred = playerPredictions[player.player_name];
+
+    return (
       <div
+        className="player-card glass-panel"
         style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
+          marginBottom: '10px',
+          padding: '15px',
+          borderLeft: '4px solid var(--primary)'
         }}
       >
-        <div>
-          <h4 style={{ margin: 0, color: 'white' }}>
-            {player.player_name}
-          </h4>
-          <span
-            style={{
-              fontSize: '0.85rem',
-              color: 'var(--primary)',
-              fontWeight: 'bold'
-            }}
-          >
-            {player.role}
-          </span>
-        </div>
-      </div>
-
-      {player.reason && (
-        <p
+        <div
           style={{
-            fontSize: '0.78rem',
-            marginTop: '8px',
-            opacity: 0.9,
-            lineHeight: '1.4',
-            borderTop: '1px solid rgba(255,255,255,0.1)',
-            paddingTop: '8px'
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
           }}
         >
-          {player.reason}
-        </p>
-      )}
-    </div>
-  );
+          <div>
+            <h4 style={{ margin: 0, color: 'white' }}>
+              {player.player_name}
+            </h4>
+            <span
+              style={{
+                fontSize: '0.85rem',
+                color: 'var(--primary)',
+                fontWeight: 'bold'
+              }}
+            >
+              {player.role}
+            </span>
+          </div>
+
+          {showScore && pred && (
+            <div style={{ textAlign: 'right', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              <div><strong style={{ color: '#fff' }}>{pred.predicted_next_match_runs ?? pred.Predicted_Next_Match_Runs ?? 'N/A'}</strong> runs</div>
+              <div><strong style={{ color: '#fff' }}>{pred.predicted_next_match_wickets ?? pred.Predicted_Next_Match_Wickets ?? 'N/A'}</strong> wkts</div>
+            </div>
+          )}
+        </div>
+
+        {player.reason && (
+          <p
+            style={{
+              fontSize: '0.78rem',
+              marginTop: '8px',
+              opacity: 0.9,
+              lineHeight: '1.4',
+              borderTop: '1px solid rgba(255,255,255,0.1)',
+              paddingTop: '8px'
+            }}
+          >
+            {player.reason}
+          </p>
+        )}
+      </div>
+    );
+  };
 
   // Beautiful Modern Styled Input Container styles
   const inputContainerStyle = {
@@ -976,36 +1085,70 @@ const MatchPreviewReview = () => {
             }}
           >
             <div>
-              <h3
-                style={{
-                  marginBottom: '15px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px'
-                }}
-              >
-                <Zap size={18} color="#FFD700" />
-                {result.data.match_info.team1} Lineup
-              </h3>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '15px' }}>
+                <h3
+                  style={{
+                    margin: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
+                  }}
+                >
+                  <Zap size={18} color="#FFD700" />
+                  {result.data.match_info.team1} Lineup
+                </h3>
+                <button
+                  onClick={() => setShowTeam1Score(!showTeam1Score)}
+                  style={{
+                    padding: '6px 14px',
+                    borderRadius: '6px',
+                    fontSize: '0.8rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    border: '1px solid var(--primary)',
+                    background: showTeam1Score ? 'var(--primary)' : 'transparent',
+                    color: showTeam1Score ? 'black' : 'var(--primary)'
+                  }}
+                >
+                  Score
+                </button>
+              </div>
               {result.data.team1_results.players?.map((p, idx) => (
-                <PlayerCard key={idx} player={p} />
+                <PlayerCard key={idx} player={p} showScore={showTeam1Score} />
               ))}
             </div>
 
             <div>
-              <h3
-                style={{
-                  marginBottom: '15px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px'
-                }}
-              >
-                <Zap size={18} color="#FFD700" />
-                {result.data.match_info.team2} Lineup
-              </h3>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '15px' }}>
+                <h3
+                  style={{
+                    margin: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
+                  }}
+                >
+                  <Zap size={18} color="#FFD700" />
+                  {result.data.match_info.team2} Lineup
+                </h3>
+                <button
+                  onClick={() => setShowTeam2Score(!showTeam2Score)}
+                  style={{
+                    padding: '6px 14px',
+                    borderRadius: '6px',
+                    fontSize: '0.8rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    border: '1px solid var(--primary)',
+                    background: showTeam2Score ? 'var(--primary)' : 'transparent',
+                    color: showTeam2Score ? 'black' : 'var(--primary)'
+                  }}
+                >
+                  Score
+                </button>
+              </div>
               {result.data.team2_results.players?.map((p, idx) => (
-                <PlayerCard key={idx} player={p} />
+                <PlayerCard key={idx} player={p} showScore={showTeam2Score} />
               ))}
             </div>
           </div>

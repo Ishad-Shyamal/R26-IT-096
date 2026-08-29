@@ -460,7 +460,40 @@ const getValidationStatus = (value) => {
     icon: null
   };
 };
+const getMetricComparison = (predictedValue, actualValue) => {
+  const isMissing = (value) =>
+    value === null ||
+    value === undefined ||
+    value === '' ||
+    String(value).toLowerCase().startsWith('n/a');
 
+  if (isMissing(predictedValue) || isMissing(actualValue)) {
+    return { label: 'N/A', color: 'var(--text-muted)' };
+  }
+
+  const predictedNumber = Number(predictedValue);
+  const actualNumber = Number(actualValue);
+
+  if (Number.isNaN(predictedNumber) || Number.isNaN(actualNumber)) {
+    return { label: 'N/A', color: 'var(--text-muted)' };
+  }
+
+  const diff = Math.abs(actualNumber - predictedNumber);
+
+  if (diff === 0) {
+    return { label: 'Matching', color: '#00e676' };
+  }
+
+  if (diff <= 5) {
+    return { label: 'Very Close', color: '#00e676' };
+  }
+
+  if (diff <= 10) {
+    return { label: 'Close', color: '#00e676' };
+  }
+
+  return { label: 'Not Matching', color: '#e94057' };
+};
 const Prediction = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -1023,15 +1056,15 @@ const ValidationRecord = ({ result }) => {
 
           <tbody>
             {metrics.map((metric) => {
-              const status = getValidationStatus(metric.status);
+              const comparison = getMetricComparison(metric.predicted, metric.actual);
 
               return (
                 <tr key={metric.label}>
                   <td>{metric.label}</td>
                   <td>{formatValidationValue(metric.predicted)}</td>
                   <td>{formatValidationValue(metric.actual)}</td>
-                  <td style={{ color: status.color }}>
-                    {metric.status ? status.label : 'Compared'}
+                  <td style={{ color: comparison.color, fontWeight: 600 }}>
+                    {comparison.label}
                   </td>
                 </tr>
               );
