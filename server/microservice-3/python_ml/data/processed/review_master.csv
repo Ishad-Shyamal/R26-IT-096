@@ -1061,6 +1061,7 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 25/12/17,AUS v ENG,Adelaide Oval,Australia,Bat,405,10,215,10,182,6,290,10,AUS (82 runs),0,Test,AUS V ENG AUSTRALIA AUS (82 RUNS),1,2
 25/12/26,AUS v ENG,Melbourne Cricket Ground,Australia,Bowl,185,10,220,10,310,10,276,6,ENG (4 wkts),0,Test,AUS V ENG AUSTRALIA ENG (4 WKTS),1,70
 26/01/04,AUS v ENG,Sydney Cricket Ground,England,Bat,384,10,567,10,342,10,161,5,AUS (5 wkts),0,Test,AUS V ENG ENGLAND AUS (5 WKTS),4,128
+26/08/22,AUS v BAN,Great Barrier Reef Arena,Australia,Bowl,64,10,210,10,95,10,0,0,AUS (Inn & 51 runs),0,Test,AUS V ENG AUSTRALIA AUS (INN & 51 RUNS),4,128
 24/03/22,BAN v SL,Sylhet Stadium,Bangladesh,Bowl,280,10,188,10,418,10,182,10,SL (328 runs),0,Test,BAN V SL BANGLADESH SL (328 RUNS),2,131
 24/03/30,BAN v SL,Zahur Ahmed Stadium,Sri Lanka,Bat,531,10,178,10,157,7,318,10,SL (192 runs),0,Test,BAN V SL SRI LANKA SL (192 RUNS),21,146
 24/08/21,PAK v BAN,Rawalpindi Stadium,Bangladesh,Bowl,448,6,565,10,146,10,30,0,BAN (10 wkts),0,Test,PAK V BAN BANGLADESH BAN (10 WKTS),2,101
@@ -1077,6 +1078,7 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 25/06/25,SL v BAN,Sinhalese Sports Club,Sri Lanka,Bat,485,10,192,10,215,10,0,0,SL (Inn & 78 runs),0,Test,SL V BAN SRI LANKA SL (INN & 78 RUNS),21,119
 25/11/11,BAN v IRE,Sylhet Stadium,Ireland,Bowl,398,10,162,10,189,10,0,0,BAN (Inn & 47 runs),0,Test,BAN V IRE IRELAND BAN (INN & 47 RUNS),7,131
 25/11/19,BAN v IRE,Shere Bangla Stadium,Bangladesh,Bat,315,10,185,10,258,6,171,10,BAN (217 runs),0,Test,BAN V IRE BANGLADESH BAN (217 RUNS),2,117
+26/08/22,AUS v BAN,Great Barrier Reef Arena,Australia,Bowl,64,10,210,10,95,10,0,0,AUS (Inn & 51 runs),0,Test,AUS V ENG AUSTRALIA AUS (INN & 51 RUNS),4,128
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
@@ -1128,6 +1130,7 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 25/07/23,ENG v IND,Old Trafford,England,Bat,390,10,405,10,210,6,0,0,Match Drawn,0,Test,ENG V IND ENGLAND MATCH DRAWN,4,81
 25/07/31,ENG v IND,Kennington Oval,England,Bowl,312,10,295,10,215,10,226,10,IND (6 runs),0,Test,ENG V IND ENGLAND IND (6 RUNS),4,54
 26/08/15,SL v IND,Galle International Stadium,India,Bat,462,10,193,10,284,10,206,10,IND (165 runs),0,Test,SL V IND INDIA IND (165 RUNS),5,120
+26/08/23,SL v IND,Sinhalese Sports Club Colombo,India,Bat,503,9,290,10,0,0,429,9,Match Drawn,0,Test,SL V IND IND SL MATCH DRAWN,10,153
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
@@ -1268,6 +1271,7 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 25/06/26,SL v WI,Sir Vivian Richards Stadium,West Indies,Bowl,308,10,626,9,101,10,0,0,WI (Inn & 217 runs),0,Test,SL V WI WEST INDIES SL (INN & 217 RUNS),3,165
 25/07/03,SL v WI,Sir Vivian Richards Stadium,Sri Lanka,Bat,549,9,499,10,251,9,109,0,Match Drawn,0,Test,SL V WI WI SL MATCH DRAWN,2,120
 26/08/15,SL v IND,Galle International Stadium,India,Bat,462,10,193,10,284,10,206,10,IND (165 runs),0,Test,SL V IND INDIA IND (165 RUNS),5,120
+26/08/23,SL v IND,Sinhalese Sports Club Colombo,India,Bat,503,9,290,10,0,0,429,9,Match Drawn,0,Test,SL V IND IND SL MATCH DRAWN,10,153
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
