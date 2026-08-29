@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
-import { User, Bell, Palette, Key, Save, Shield, Database, Upload, Trash2, Eye, EyeOff } from 'lucide-react';
-
+import { User, Bell, Key, Save, Shield, Upload, Trash2, Eye, EyeOff } from 'lucide-react';
 const AVATAR_OPTIONS = ['🏏', '🧢', '🏆', '⚡', '🎯', '👑', '🔥', '🛡️'];
 
 const Settings = () => {
@@ -115,13 +114,7 @@ const Settings = () => {
             >
               <User size={18} /> Account Profile
             </button>
-            <button 
-              className={`nav-item ${activeTab === 'preferences' ? 'active' : ''}`}
-              onClick={() => setActiveTab('preferences')}
-              style={{ width: '100%', border: 'none', background: activeTab === 'preferences' ? 'linear-gradient(90deg, rgba(0, 210, 255, 0.1), transparent)' : 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', fontSize: '1rem' }}
-            >
-              <Palette size={18} /> Display & UI
-            </button>
+
             <button 
               className={`nav-item ${activeTab === 'notifications' ? 'active' : ''}`}
               onClick={() => setActiveTab('notifications')}
@@ -129,13 +122,7 @@ const Settings = () => {
             >
               <Bell size={18} /> Notifications
             </button>
-            <button 
-              className={`nav-item ${activeTab === 'api' ? 'active' : ''}`}
-              onClick={() => setActiveTab('api')}
-              style={{ width: '100%', border: 'none', background: activeTab === 'api' ? 'linear-gradient(90deg, rgba(0, 210, 255, 0.1), transparent)' : 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', fontSize: '1rem' }}
-            >
-              <Database size={18} /> Data & API
-            </button>
+
             <button 
               className={`nav-item ${activeTab === 'security' ? 'active' : ''}`}
               onClick={() => setActiveTab('security')}
@@ -244,48 +231,6 @@ const Settings = () => {
             </div>
           )}
 
-          {activeTab === 'preferences' && (
-            <div>
-              <h3 style={{ color: 'var(--text-main)', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Palette size={20} color="var(--primary)" /> Display & UI
-              </h3>
-              
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '16px', borderBottom: '1px solid var(--panel-border)' }}>
-                  <div>
-                    <h4 style={{ marginBottom: '4px' }}>Theme</h4>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>InsightCric is optimized for Dark Mode.</p>
-                  </div>
-                  <select style={{ padding: '8px 16px', background: 'var(--bg-dark)', border: '1px solid var(--panel-border)', color: 'var(--text-main)', borderRadius: '8px', outline: 'none' }}>
-                    <option>Dark Theme</option>
-                    <option>Midnight Blue</option>
-                    <option>Pitch Black</option>
-                  </select>
-                </div>
-                
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '16px', borderBottom: '1px solid var(--panel-border)' }}>
-                  <div>
-                    <h4 style={{ marginBottom: '4px' }}>Accent Color</h4>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Choose the primary color for buttons and charts.</p>
-                  </div>
-                  <div style={{ display: 'flex', gap: '8px' }}>
-                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#00d2ff', border: '2px solid white', cursor: 'pointer' }}></div>
-                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#ff3366', cursor: 'pointer' }}></div>
-                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#00cc66', cursor: 'pointer' }}></div>
-                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#ff9900', cursor: 'pointer' }}></div>
-                  </div>
-                </div>
-                
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div>
-                    <h4 style={{ marginBottom: '4px' }}>Compact Dashboard</h4>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Reduce spacing to show more data on screen.</p>
-                  </div>
-                  <input type="checkbox" style={{ width: '20px', height: '20px', accentColor: 'var(--primary)' }} />
-                </div>
-              </div>
-            </div>
-          )}
 
           {activeTab === 'notifications' && (
             <div>
@@ -297,23 +242,23 @@ const Settings = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '8px' }}>
                   <div>
                     <h4 style={{ marginBottom: '4px' }}>Live Match Alerts</h4>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Get notified about wickets, boundaries, and milestones.</p>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Get notified about upcoming matches.</p>
                   </div>
                   <input type="checkbox" defaultChecked style={{ width: '20px', height: '20px', accentColor: 'var(--primary)' }} />
                 </div>
                 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '8px' }}>
                   <div>
-                    <h4 style={{ marginBottom: '4px' }}>ML Prediction Shifts</h4>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Alert me when the Win Predictor swings by more than 10%.</p>
+                    <h4 style={{ marginBottom: '4px' }}>User Encouragement</h4>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Alert me when I didn,t use the application for more than 7 days</p>
                   </div>
                   <input type="checkbox" defaultChecked style={{ width: '20px', height: '20px', accentColor: 'var(--primary)' }} />
                 </div>
                 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '8px' }}>
                   <div>
-                    <h4 style={{ marginBottom: '4px' }}>Daily News Digest</h4>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Receive a daily summary of personalized cricket news.</p>
+                    <h4 style={{ marginBottom: '4px' }}>Update alerts</h4>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Get notified about new updates</p>
                   </div>
                   <input type="checkbox" style={{ width: '20px', height: '20px', accentColor: 'var(--primary)' }} />
                 </div>
@@ -321,38 +266,6 @@ const Settings = () => {
             </div>
           )}
 
-          {activeTab === 'api' && (
-            <div>
-              <h3 style={{ color: 'var(--text-main)', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Database size={20} color="var(--primary)" /> Data & API Integrations
-              </h3>
-              
-              <div style={{ background: 'rgba(0, 210, 255, 0.05)', border: '1px solid rgba(0, 210, 255, 0.2)', padding: '20px', borderRadius: '12px', marginBottom: '24px' }}>
-                <h4 style={{ marginBottom: '8px', color: 'var(--primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Key size={16} /> API Access Key
-                </h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '16px' }}>Use this key to access InsightCric's raw ML predictions and data via our REST API.</p>
-                <div style={{ display: 'flex', gap: '12px' }}>
-                  <input type="text" readOnly value="sk_test_51Nx...v8M2k" style={{ flex: 1, padding: '12px 16px', background: 'rgba(0,0,0,0.4)', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-main)', outline: 'none', fontFamily: 'monospace' }} />
-                  <button className="btn">Copy</button>
-                  <button className="btn btn-primary">Regenerate</button>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '16px', borderBottom: '1px solid var(--panel-border)' }}>
-                <div>
-                  <h4 style={{ marginBottom: '4px' }}>Data Refresh Rate</h4>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>How often should the dashboard fetch live data?</p>
-                </div>
-                <select style={{ padding: '8px 16px', background: 'var(--bg-dark)', border: '1px solid var(--panel-border)', color: 'var(--text-main)', borderRadius: '8px', outline: 'none' }}>
-                  <option>Every 5 seconds</option>
-                  <option>Every 15 seconds</option>
-                  <option>Every 30 seconds</option>
-                  <option>Manual Refresh</option>
-                </select>
-              </div>
-            </div>
-          )}
 
           {activeTab === 'security' && (
             <div>
@@ -422,14 +335,6 @@ const Settings = () => {
                     )}
                   </div>
                 </div>
-              </div>
-              
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '8px' }}>
-                <div>
-                  <h4 style={{ marginBottom: '4px' }}>Two-Factor Authentication</h4>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Add an extra layer of security to your account.</p>
-                </div>
-                <button className="btn">Enable 2FA</button>
               </div>
             </div>
           )}
