@@ -1,13 +1,11 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Activity } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logoImg from '../assets/InsightCric-logo.png';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const location = useLocation();
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -26,10 +24,18 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Command Center', path: '/dashboard' },
+    { name: 'Command Center', path: '/dashboard', protected: true },
     { name: 'Contact', path: '/contact' },
     { name: 'About Us', path: '/about' },
   ];
+
+  const handleNavClick = (e, link) => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (link.protected && !isLoggedIn) {
+      e.preventDefault();
+      navigate('/login');
+    }
+  };
 
   return (
     <nav style={{ 
@@ -56,6 +62,7 @@ const Navbar = () => {
             <Link 
               key={link.name} 
               to={link.path} 
+              onClick={(e) => handleNavClick(e, link)}
               style={{ 
                 color: location.pathname === link.path ? 'var(--primary)' : 'var(--text-muted)', 
                 textDecoration: 'none', 
