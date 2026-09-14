@@ -31,7 +31,7 @@ export default function Navbar() {
             Live Data
           </span>
           <span className="px-2.5 py-1 rounded-full bg-blue-500/20 border border-blue-500/40 text-blue-400 text-xs font-medium">
-            NLP Engine Active
+            
           </span>
         </div>
       </div>
