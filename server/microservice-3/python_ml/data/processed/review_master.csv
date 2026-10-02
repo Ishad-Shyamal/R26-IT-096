@@ -93,6 +93,12 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 26/01/22,SL v ENG,R. Premadasa International Cricket Stadium,Sri Lanka,Bat,271,6,252,10,0,0,0,0,SL (19 runs),Dunith Wellalage,ODI,SL V ENG SRI LANKA SL (19 RUNS),21,93
 26/01/24,SL v ENG,R. Premadasa International Cricket Stadium,Sri Lanka,Bat,210,10,214,5,0,0,0,0,ENG (5 wkts),Adil Rashid,ODI,SL V ENG SRI LANKA ENG (5 WKTS),21,93
 26/01/27,SL v ENG,R. Premadasa International Cricket Stadium,England,Bat,305,7,252,10,0,0,0,0,ENG (53 runs),Jos Buttler,ODI,SL V ENG ENGLAND ENG (53 RUNS),4,93
+26/09/22,SL v ENG,Riverside Ground,England,Bat,265,10,176,10,0,0,0,0,ENG (89 runs),Will Jacks,ODI,SL V ENG ENGLAND ENG (89 RUNS),8,935
+26/09/24,SL v ENG,Headingley Carnegie,Sri Lanka,Bat,321,6,305,9,0,0,0,0,SL (16 runs),Kusal Mendis,ODI,SL V ENG ENGLAND SL (16 RUNS),10,454
+26/09/27,SL v ENG,The Oval,England,Bat,355,7,132,10,0,0,0,0,ENG (223 runs),Tom Banton,ODI,SL V ENG ENGLAND ENG (223 RUNS),12,915
+
+
+
 24/08/02,SL v IND,R. Premadasa Stadium,Sri Lanka,Bat,230,8,230,10,0,0,0,0,Match Tied,D. Wellalage,ODI,SL V IND SRI LANKA MATCH TIED,21,94
 24/08/04,SL v IND,R. Premadasa Stadium,Sri Lanka,Bat,240,9,208,10,0,0,0,0,SL (32 runs),J. Vandersay,ODI,SL V IND SRI LANKA SL (32 RUNS),21,94
 24/08/07,SL v IND,R. Premadasa Stadium,Sri Lanka,Bat,248,7,138,10,0,0,0,0,SL (110 runs),D. Wellalage,ODI,SL V IND SRI LANKA SL (110 RUNS),21,94
@@ -113,6 +119,9 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 26/01/11,IND v NZ,Kotambi Stadium,India,Bowl,300,8,306,6,0,0,0,0,IND (4 wkts),Rishabh Pant,ODI,IND V NZ INDIA IND (4 WKTS),6,57
 26/01/14,IND v NZ,Saurashtra Cricket Association Stadium,New Zealand,Bat,284,7,286,3,0,0,0,0,NZ (7 wkts*),Rachin Ravindra,ODI,IND V NZ NEW ZEALAND NZ (7 WKTS*),13,107
 26/01/18,IND v NZ,Holkar Cricket Stadium,New Zealand,Bat,337,8,296,10,0,0,0,0,NZ (41 runs),Mitchell Santner,ODI,IND V NZ NEW ZEALAND NZ (41 RUNS),13,49
+26/09/27,IND v WI,Greenfield Stadium,India,Bowl,295,7,300,2,0,0,0,0,IND (8 wkts),Kuldeep Yadav,ODI,IND V WI WEST INDIES IND (8 WKTS),22,864
+26/09/30,IND v WI,Barsapara Stadium,India,Bowl,405,7,406,2,0,0,0,0,IND (8 wkts),Shubman Gill,ODI,IND V WI WEST INDIES IND (8 WKTS),20,719
+
 24/03/07,AFG v IRE,Sharjah Cricket Stadium,Ireland,Bowl,310,5,275,8,0,0,0,0,AFG (35 runs),Rahmanullah Gurbaz,ODI,AFG V IRE IRELAND AFG (35 RUNS),7,112
 24/03/12,AFG v IRE,Sharjah Cricket Stadium,Ireland,Bowl,236,9,119,10,0,0,0,0,AFG (117 runs),Mohammad Nabi,ODI,AFG V IRE IRELAND AFG (117 RUNS),7,112
 24/10/02,IRE v SA,Sheikh Zayed Stadium,South Africa,Bat,271,9,132,10,0,0,0,0,SA (139 runs),Ryan Rickelton,ODI,IRE V SA SOUTH AFRICA SA (139 RUNS),20,114
@@ -246,6 +255,11 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 26/01/24,SL v ENG,R. Premadasa International Cricket Stadium,Sri Lanka,Bat,210,10,214,0,0,0,0,0,ENG (5 wkts),Adil Rashid,ODI,SL V ENG SRI LANKA ENG (5 WKTS),21,93
 26/01/27,SL v ENG,R. Premadasa International Cricket Stadium,England,Bat,305,7,252,0,0,0,0,0,ENG (53 runs),Jos Butler,ODI,SL V ENG ENGLAND ENG (53 RUNS),4,93
 26/06/03,SL v WI,Sabina Park,West Indies,Bowl,303,7,262,10,0,0,0,0,SL (41 runs),Kusal Mendis,ODI,SL V WI WEST INDIES SL (41 RUNS),4,419
+26/09/22,SL v ENG,Riverside Ground,England,Bat,265,10,176,10,0,0,0,0,ENG (89 runs),Will Jacks,ODI,SL V ENG ENGLAND ENG (89 RUNS),8,935
+26/09/24,SL v ENG,Headingley Carnegie,Sri Lanka,Bat,321,6,305,9,0,0,0,0,SL (16 runs),Kusal Mendis,ODI,SL V ENG ENGLAND SL (16 RUNS),10,454
+26/09/27,SL v ENG,The Oval,England,Bat,355,7,132,10,0,0,0,0,ENG (223 runs),Tom Banton,ODI,SL V ENG ENGLAND ENG (223 RUNS),12,915
+
+
 24/02/02,AUS v WI,Melbourne Cricket Ground,Australia,Bowl,231,10,232,2,0,0,0,0,AUS (8 wkts),Xavier Bartlett,ODI,AUS V WI AUSTRALIA AUS (8 WKTS),1,70
 24/02/04,AUS v WI,Sydney Cricket Ground,West Indies,Bowl,258,9,175,10,0,0,0,0,AUS (83 runs),Sean Abbott,ODI,AUS V WI WEST INDIES AUS (83 RUNS),25,128
 24/02/06,AUS v WI,Manuka Oval,Australia,Bowl,86,10,87,2,0,0,0,0,AUS (8 wkts),Xavier Bartlett,ODI,AUS V WI AUSTRALIA AUS (8 WKTS),1,66
@@ -274,6 +288,8 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 25/11/19,NZ v WI,McLean Park,West Indies,Bat,208,10,210,5,0,0,0,0,NZ (5 wkts),Ish Sodhi,ODI,NZ V WI WEST INDIES NZ (5 WKTS),25,69
 25/11/22,NZ v WI,Seddon Park,New Zealand,Bowl,256,8,258,6,0,0,0,0,NZ (4 wkts),Will Young,ODI,NZ V WI NEW ZEALAND NZ (4 WKTS),13,109
 26/06/03,SL v WI,Sabina Park,West Indies,Bowl,303,7,262,10,0,0,0,0,SL (41 runs),Kusal Mendis,ODI,SL V WI WEST INDIES SL (41 RUNS),4,419
+26/09/27,IND v WI,Greenfield Stadium,India,Bowl,295,7,300,2,0,0,0,0,IND (8 wkts),Kuldeep Yadav,ODI,IND V WI WEST INDIES IND (8 WKTS),22,864
+26/09/30,IND v WI,Barsapara Stadium,India,Bowl,405,7,406,2,0,0,0,0,IND (8 wkts),Shubman Gill,ODI,IND V WI WEST INDIES IND (8 WKTS),20,719
 
 ,,,,,0,0,0,0,0,0,0,0,,,ODI,,27,147
 24/01/06,SL v ZIM,R. Premadasa Stadium,Zimbabwe,Bat,273,9,12,2,0,0,0,0,No Result,,ODI,SL V ZIM ZIMBABWE NO RESULT,26,94
@@ -492,6 +508,9 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 26/07/07,IND v ENG,Trent Bridge,England,Bat,201,7,76,10,0,0,0,0,ENG (125 runs),Jofra Archer,T20,ENG V IND ENGLAND ENG (125 RUNS),30,114
 26/07/09,IND v ENG,Gloucestershire Cricket,India,Bat,158,7,159,1,0,0,0,0,ENG (9 wickets),Harry Brook,T20,ENG V IND ENGLAND ENG (9 WKTS),19,155
 26/07/11,IND v ENG,West End,India,Bowl,257,3,201,8,0,0,0,0,ENG (56 runs),Jos Buttler,T20,ENG V IND ENGLAND ENG (56 RUNS),24,127
+26/09/15,SL v ENG,The Ageas Bowl,Sri Lanka,Bowl,254,4,135,10,0,0,0,0,ENG (119 runs),Harry Brook,T20,SL V ENG ENGLAND SL (119 RUNS),9,146
+26/06/17,SL v ENG,Sophia Gardens,England,Bowl,145,9,146,4,0,0,0,0,ENG (6 wkts),Liam Dawson,T20,SL V ENG ENGLAND SL (6 WKTS),7,545
+26/06/19,SL v ENG,Old Trafford,England,Bowl,124,10,126,2,0,0,0,0,ENG (8 wkts),Sonny Baker,T20,SL V ENG ENGLAND SL (8 WKTS),10,569
 ,,,,,0,0,0,0,0,0,0,0,,,T20,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,,T20,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,,T20,,27,147
@@ -894,6 +913,13 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 26/06/12,SL v WI,Sabina Park,Sri Lanka,Bat,147,9,149,3,0,0,0,0,WI (7 wkts),Jason Holder,T20,SL V WI SRI LANKA WI (7 WKTS),7,147
 26/06/14,SL v WI,Sabina Park,West Indies,Bowl,194,6,157,10,0,0,0,0,SL (37 runs),Dasun Shanaka,T20,SL V WI WEST INDIES SL (37 RUNS),7,146
 26/06/15,SL v WI,Sabina Park,West Indies,Bowl,169,10,170,5,0,0,0,0,WI (5 wkts),Shamar Joseph,T20,SL V WI WEST INDIES SL (5 WKTS),7,146
+26/09/15,SL v ENG,The Ageas Bowl,Sri Lanka,Bowl,254,4,135,10,0,0,0,0,ENG (119 runs),Harry Brook,T20,SL V ENG ENGLAND SL (119 RUNS),9,146
+26/06/17,SL v ENG,Sophia Gardens,England,Bowl,145,9,146,4,0,0,0,0,ENG (6 wkts),Liam Dawson,T20,SL V ENG ENGLAND SL (6 WKTS),7,545
+26/06/19,SL v ENG,Old Trafford,England,Bowl,124,10,126,2,0,0,0,0,ENG (8 wkts),Sonny Baker,T20,SL V ENG ENGLAND SL (8 WKTS),10,569
+
+
+
+
 
 24/02/09,AUS v WI,Bellerive Oval,West Indies,Bowl,213,7,202,8,0,0,0,0,AUS (11 runs),Adam Zampa,T20,AUS V WI WEST INDIES AUS (11 RUNS),25,12
 24/02/11,AUS v WI,Adelaide Oval,West Indies,Bowl,241,4,207,9,0,0,0,0,AUS (34 runs),Glenn Maxwell,T20,AUS V WI WEST INDIES AUS (34 RUNS),25,2

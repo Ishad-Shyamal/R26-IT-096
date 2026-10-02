@@ -1,0 +1,42 @@
+{
+  "base_year": 2026,
+  "future_years": [
+    2027,
+    2028,
+    2029,
+    2030
+  ],
+  "lineup_min_by_year": {
+    "2027": 9,
+    "2028": 8,
+    "2029": 7,
+    "2030": 5
+  },
+  "hard_age_cap": {
+    "2030": 36
+  },
+  "bowler_quota": {
+    "default": 4,
+    "low_scoring": 3,
+    "high_scoring": 4
+  },
+  "pace_spin_skew": 0.75,
+  "high_scoring_extra_bowler": 1,
+  "low_scoring_extra_batter": 1,
+  "role_default_slot": {
+    "Top Order Batter": 2,
+    "Batter": 4,
+    "Middle Order Batter": 5,
+    "Wicketkeeper": 5,
+    "Batting All-Rounder": 6,
+    "All-Rounder": 7,
+    "Bowling All-Rounder": 8,
+    "Spin Bowler": 9,
+    "Pace Bowler": 10,
+    "Bowler": 10
+  },
+  "half_labels": {
+    "H1": "Jan-Jun",
+    "H2": "Jul-Dec"
+  }
+}

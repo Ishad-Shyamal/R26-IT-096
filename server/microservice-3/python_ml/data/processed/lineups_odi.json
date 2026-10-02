@@ -436,30 +436,30 @@
   },
   "England": {
     "Afghanistan": [
-      "Phil Salt",
+      "Tom Banton",
       "Ben Duckett",
       "Joe Root",
       "Harry Brook",
       "Jos Buttler",
-      "Liam Livingstone",
+      "Jordan Cox",
       "Jacob Bethell",
       "Adil Rashid",
       "Jofra Archer",
-      "Reece Topley",
-      "Mark Wood"
+      "Rehan Ahmed",
+      "Sonny Baker"
     ],
     "Australia": [
-      "Phil Salt",
+      "Tom Banton",
       "Ben Duckett",
       "Joe Root",
       "Harry Brook",
       "Jos Buttler",
-      "Jacob Bethell",
-      "Liam Livingstone",
-      "Brydon Carse",
+      "Jordan Cox",
+      "Will Jacks",
+      "Gus Atkinson",
       "Adil Rashid",
       "Jofra Archer",
-      "Mark Wood"
+      "Josh Tongue"
     ],
     "Bangladesh": [
       "Phil Salt",
@@ -468,11 +468,11 @@
       "Harry Brook",
       "Jos Buttler",
       "Liam Livingstone",
-      "Jacob Bethell",
+      "Rehan Ahmed",
       "Adil Rashid",
       "Jofra Archer",
       "Gus Atkinson",
-      "Mark Wood"
+      "Sonny Baker"
     ],
     "India": [
       "Phil Salt",
@@ -482,10 +482,10 @@
       "Jos Buttler",
       "Jacob Bethell",
       "Liam Livingstone",
-      "Brydon Carse",
+      "Gus Atkinson",
       "Adil Rashid",
       "Jofra Archer",
-      "Mark Wood"
+      "Josh Tongue"
     ],
     "Ireland": [
       "Phil Salt",
@@ -494,11 +494,11 @@
       "Harry Brook",
       "Jos Buttler",
       "Liam Livingstone",
-      "Jacob Bethell",
+      "Jordan Cox",
       "Adil Rashid",
-      "Brydon Carse",
-      "Reece Topley",
-      "Mark Wood"
+      "Rehan Ahmed",
+      "Josh Tongue",
+      "Sonny Baker"
     ],
     "New Zealand": [
       "Phil Salt",
@@ -508,10 +508,10 @@
       "Jacob Bethell",
       "Jos Buttler",
       "Jamie Overton",
-      "Brydon Carse",
+      "Gus Atkinson",
       "Adil Rashid",
       "Jofra Archer",
-      "Mark Wood"
+      "Sonny Baker"
     ],
     "Pakistan": [
       "Phil Salt",
@@ -519,12 +519,12 @@
       "Joe Root",
       "Harry Brook",
       "Jos Buttler",
-      "Liam Livingstone",
+      "Will Jacks",
       "Jacob Bethell",
-      "Brydon Carse",
+      "Gus Atkinson",
       "Adil Rashid",
       "Jofra Archer",
-      "Mark Wood"
+      "Josh Tongue"
     ],
     "South Africa": [
       "Phil Salt",
@@ -532,51 +532,51 @@
       "Joe Root",
       "Harry Brook",
       "Jos Buttler",
-      "Jacob Bethell",
-      "Liam Livingstone",
-      "Brydon Carse",
-      "Adil Rashid",
+      "Jordan Cox",
+      "Will Jacks",
+      "Gus Atkison",
+      "Rehan Ahmed",
       "Jofra Archer",
-      "Mark Wood"
+      "Sonny Baker"
     ],
     "Sri Lanka": [
-      "Phil Salt",
+      "Tom Banton",
       "Ben Duckett",
       "Joe Root",
       "Harry Brook",
-      "Jacob Bethell",
+      "Will Jacks",
       "Jos Buttler",
       "Jamie Overton",
-      "Sam Curran",
-      "Adil Rashid",
+      "Liam Dawson",
+      "Gus Atkinson",
       "Jofra Archer",
-      "Mark Wood"
+      "Sonny Baker"
     ],
     "West Indies": [
-      "Phil Salt",
+      "Tom Banton",
       "Ben Duckett",
       "Joe Root",
       "Harry Brook",
       "Jacob Bethell",
       "Jos Buttler",
       "Jamie Overton",
-      "Brydon Carse",
+      "Gus Atkinson",
       "Adil Rashid",
       "Jofra Archer",
-      "Mark Wood"
+      "Josh Tongue"
     ],
     "Zimbabwe": [
-      "Phil Salt",
+      "Tom Banton",
       "Ben Duckett",
       "Joe Root",
       "Harry Brook",
       "Jos Buttler",
-      "Liam Livingstone",
+      "Will Jacks",
       "Jacob Bethell",
-      "Brydon Carse",
+      "Gus Atkinson",
       "Adil Rashid",
-      "Reece Topley",
-      "Mark Wood"
+      "Josh Tongue",
+      "Sonny Baker"
     ]
   },
   "India": {
@@ -1346,16 +1346,16 @@
     ],
     "England": [
       "Pathum Nissanka",
-      "Kamil Mishara",
-      "Kamil Mishara",
+      "Kamindu Mendis",
+      "Kusal Mendis",
       "Pavan Rathnayake",
       "Charith Asalanka",
-      "Kamindu Mendis",
       "Janith Liyanage",
-      "Wanindu Hasaranga",
-      "Maheesh Theekshana",
+      "Dunith Wellalage",
+      "Sachindu Colombage",
+      "Eshan Malinga",
       "Asitha Fernando",
-      "Eshan Malinga"
+      "Dilshan Madushanka"
     ],
     "India": [
       "Pathum Nissanka",
@@ -1367,8 +1367,8 @@
       "Wanindu Hasaranga",
       "Dunith Wellalage",
       "Maheesh Theekshana",
-      "Dilshan Madushanka",
-      "Asitha Fernando"
+      "Asitha Fernando",
+      "Dilshan Madushanka"
     ],
     "Ireland": [
       "Pathum Nissanka",
@@ -1425,9 +1425,9 @@
     "West Indies": [
       "Pathum Nissanka",
       "Kamil Mishara",
-      "Avishka Fernando",
-      "Pavan Rathnayake",
       "Kamindu Mendis",
+      "Pavan Rathnayake",
+      "Dasun Shanaka",
       "Janith Liyanage",
       "Wanindu Hasaranga",
       "Dunith Wellalage",
@@ -1445,7 +1445,7 @@
       "Wanindu Hasaranga",
       "Dunith Wellalage",
       "Maheesh Theekshana",
-      "Dushmantha Chameera",
+      "Eshan Malinga",
       "Asitha Fernando"
     ]
   },
