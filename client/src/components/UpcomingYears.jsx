@@ -31,15 +31,15 @@ const venuesData = {
     "Bellerive Oval","Manuka Oval","Marvel Stadium","Carrara Stadium"],
   "England": ["Lord's","Kennington Oval","Edgbaston","Old Trafford","Headingley",
     "Trent Bridge","Rose Bowl"],
-  "South Africa": ["Wanderers","Newlands","Centurion","Kingsmead","St George's Park"],
+  "South Africa": ["Wanderers","Newlands","Centurion","Kingsmead","St George's Park","Boland Park"],
   "New Zealand": ["Eden Park","Hagley Oval","Wellington Basin","Seddon Park"],
-  "Pakistan": ["Gaddafi Stadium","National Stadium","Multan Stadium"],
+  "Pakistan": ["Gaddafi Stadium","National Stadium","Multan Stadium","Rawalpindi Cricket Stadium"],
   "UAE": ["Dubai Int. Stadium","Sheikh Zayed","Sharjah Stadium"],
   "Sri Lanka": ["R. Premadasa","Galle Int.","Pallekele",
     "Rangiri Dambulla International Stadium","Sinhalese Sports Club Ground"],
   "West Indies": ["Kensington Oval","Daren Sammy","Providence"],
   "Bangladesh": ["Sher-e-Bangla"],
-  "Zimbabwe": ["Harare Sports"],
+  "Zimbabwe": ["Harare Sports","Bulawayo Athletic Club","Kwekwe Sports Club"],
   "Ireland": ["Malahide"]
 };
 
@@ -321,7 +321,7 @@ const UpcomingYears = () => {
                 </div>
 
                 <div style={{ fontSize: '0.8rem', opacity: 0.75, marginTop: '4px' }}>
-                  📍 England (Lord's Cricket Ground)
+                  📍 England (Kennington Oval)
                 </div>
               </div>
               <div

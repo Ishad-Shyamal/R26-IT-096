@@ -139,13 +139,13 @@ const Lineups = () => {
                 <div style={{
                   height:'100%', borderRadius:'3px',
                   width:`${(matchCount / 11) * 100}%`,
-                  background: matchCount >= 8 ? '#34d399' : matchCount >= 5 ? '#fbbf24' : '#f87171',
+                  background: matchCount >= 7 ? '#34d399' : matchCount >= 5 ? '#fbbf24' : '#f87171',
                   transition:'width 0.4s ease',
                 }} />
               </div>
               <span style={{
                 fontSize:'1rem', fontWeight:800,
-                color: matchCount >= 8 ? '#34d399' : matchCount >= 5 ? '#fbbf24' : '#f87171',
+                color: matchCount >= 7 ? '#34d399' : matchCount >= 5 ? '#fbbf24' : '#f87171',
               }}>
                 {matchCount}/11
               </span>
