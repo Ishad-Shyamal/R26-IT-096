@@ -121,6 +121,7 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 26/01/18,IND v NZ,Holkar Cricket Stadium,New Zealand,Bat,337,8,296,10,0,0,0,0,NZ (41 runs),Mitchell Santner,ODI,IND V NZ NEW ZEALAND NZ (41 RUNS),13,49
 26/09/27,IND v WI,Greenfield Stadium,India,Bowl,295,7,300,2,0,0,0,0,IND (8 wkts),Kuldeep Yadav,ODI,IND V WI WEST INDIES IND (8 WKTS),22,864
 26/09/30,IND v WI,Barsapara Stadium,India,Bowl,405,7,406,2,0,0,0,0,IND (8 wkts),Shubman Gill,ODI,IND V WI WEST INDIES IND (8 WKTS),20,719
+26/10/03,IND v WI,PCA New Cricket Stadium,India,Bat,351,7,352,5,0,0,0,0,WI (5 wkts),Shai Hope,ODI,IND V WI WEST INDIES WI (5 WKTS),22,815
 
 24/03/07,AFG v IRE,Sharjah Cricket Stadium,Ireland,Bowl,310,5,275,8,0,0,0,0,AFG (35 runs),Rahmanullah Gurbaz,ODI,AFG V IRE IRELAND AFG (35 RUNS),7,112
 24/03/12,AFG v IRE,Sharjah Cricket Stadium,Ireland,Bowl,236,9,119,10,0,0,0,0,AFG (117 runs),Mohammad Nabi,ODI,AFG V IRE IRELAND AFG (117 RUNS),7,112
@@ -509,8 +510,8 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 26/07/09,IND v ENG,Gloucestershire Cricket,India,Bat,158,7,159,1,0,0,0,0,ENG (9 wickets),Harry Brook,T20,ENG V IND ENGLAND ENG (9 WKTS),19,155
 26/07/11,IND v ENG,West End,India,Bowl,257,3,201,8,0,0,0,0,ENG (56 runs),Jos Buttler,T20,ENG V IND ENGLAND ENG (56 RUNS),24,127
 26/09/15,SL v ENG,The Ageas Bowl,Sri Lanka,Bowl,254,4,135,10,0,0,0,0,ENG (119 runs),Harry Brook,T20,SL V ENG ENGLAND SL (119 RUNS),9,146
-26/06/17,SL v ENG,Sophia Gardens,England,Bowl,145,9,146,4,0,0,0,0,ENG (6 wkts),Liam Dawson,T20,SL V ENG ENGLAND SL (6 WKTS),7,545
-26/06/19,SL v ENG,Old Trafford,England,Bowl,124,10,126,2,0,0,0,0,ENG (8 wkts),Sonny Baker,T20,SL V ENG ENGLAND SL (8 WKTS),10,569
+26/09/17,SL v ENG,Sophia Gardens,England,Bowl,145,9,146,4,0,0,0,0,ENG (6 wkts),Liam Dawson,T20,SL V ENG ENGLAND SL (6 WKTS),7,545
+26/09/19,SL v ENG,Old Trafford,England,Bowl,124,10,126,2,0,0,0,0,ENG (8 wkts),Sonny Baker,T20,SL V ENG ENGLAND SL (8 WKTS),10,569
 ,,,,,0,0,0,0,0,0,0,0,,,T20,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,,T20,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,,T20,,27,147
@@ -585,6 +586,10 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 26/07/07,IND v ENG,Trent Bridge,England,Bat,201,7,76,10,0,0,0,0,ENG (125 runs),Jofra Archer,T20,ENG V IND ENGLAND ENG (125 RUNS),50,114
 26/07/09,IND v ENG,Gloucestershire Cricket,India,Bat,158,7,159,1,0,0,0,0,ENG (9 wickets),Harry Brook,T20,ENG V IND ENGLAND ENG (9 WKTS),19,155
 26/07/11,IND v ENG,West End,India,Bowl,257,3,201,8,0,0,0,0,ENG (56 runs),Jos Buttler,T20,ENG V IND ENGLAND ENG (56 RUNS),24,127
+26/10/06,IND v WI,Ekana Stadium,India,Bowl,171,10,172,2,0,0,0,0,IND (8 wkts),Shreyas Iyer,T20,WI V IND WEST INDIES IND (8 WKTS),28,132
+26/10/09,IND v WI,JSCA Stadium,West Indies,Bowl,249,5,252,4,0,0,0,0,WI (6 wkts),Shai Hope,T20,WI V IND WEST INDIES WI (6 WKTS),30,157
+26/10/11,IND v WI,Holkar Stadium,West Indies,Bowl,223,10,209,7,0,0,0,0,IND (14 runs),Arshdeep Singh,T20,WI V IND INDIA IND (14 RUNS),27,537
+
 
 24/03/15,AFG v IRE,Sharjah Cricket Stadium,Afghanistan,Bowl,149,6,111,10,0,0,0,0,IRE (38 runs),Ben White,T20,AFG V IRE AFGHANISTAN IRE (38 RUNS),0,112
 24/03/17,AFG v IRE,Sharjah Cricket Stadium,Afghanistan,Bat,152,9,142,8,0,0,0,0,AFG (10 runs),Rashid Khan,T20,AFG V IRE AFGHANISTAN AFG (10 RUNS),0,112
@@ -785,6 +790,10 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 26/02/21,T20 WC Super 8 (NZ),R. Premadasa Stadium,Pakistan,Bat,12,1,0,0,0,0,0,0,No Result,,T20,T20 WC SUPER 8 (NZ) PAKISTAN NO RESULT,15,94
 26/02/24,T20 WC Super 8 (ENG),Pallekele Stadium,England,Bowl,164,9,166,8,0,0,0,0,ENG (2 wkts),Harry Brook,T20,T20 WC SUPER 8 (ENG) ENGLAND ENG (2 WKTS),4,86
 26/02/28,T20 WC Super 8 (SL),Pallekele Stadium,Pakistan,Bat,212,8,207,6,0,0,0,0,PAK (5 runs),Sahibzada Farhan,T20,T20 WC SUPER 8 (SL) PAKISTAN PAK (5 RUNS),15,86
+26/10/09,SL v PAK,Rawalpindi Cricket Stadium,Sri Lanka,Bat,182,8,187,6,0,0,0,0,PAK (4 wkts),Sahibzada Farhan,T20,SL V PAK PAKISTAN PAK (4 WKTS),16,879
+26/10/11,SL v PAK,Rawalpindi Cricket Stadium,Sri Lanka,Bowl,215,3,133,7,0,0,0,0,PAK (82 runs),Maaz Sadaqat,T20,SL V PAK PAKISTAN PAK (82 RUNS),15,654
+26/10/13,SL v PAK,Rawalpindi Cricket Stadium,Sri Lanka,Bowl,168,8,172,2,0,0,0,0,SL (8 wkts),Kusal Mendis,T20,SL V PAK SRI LANKA SL (8 WKTS),12,915
+
 24/05/23,WI v SA,Sabina Park,South Africa,Bowl,175,8,147,10,0,0,0,0,WI (28 runs),Brandon King,T20,WI V SA SOUTH AFRICA WI (28 RUNS),20,105
 24/05/25,WI v SA,Sabina Park,South Africa,Bowl,207,7,191,7,0,0,0,0,WI (16 runs),Roston Chase,T20,WI V SA SOUTH AFRICA WI (16 RUNS),20,105
 24/05/26,WI v SA,Sabina Park,West Indies,Bowl,163,7,165,2,0,0,0,0,WI (8 wkts),Johnson Charles,T20,WI V SA WEST INDIES WI (8 WKTS),25,105
@@ -914,8 +923,11 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 26/06/14,SL v WI,Sabina Park,West Indies,Bowl,194,6,157,10,0,0,0,0,SL (37 runs),Dasun Shanaka,T20,SL V WI WEST INDIES SL (37 RUNS),7,146
 26/06/15,SL v WI,Sabina Park,West Indies,Bowl,169,10,170,5,0,0,0,0,WI (5 wkts),Shamar Joseph,T20,SL V WI WEST INDIES SL (5 WKTS),7,146
 26/09/15,SL v ENG,The Ageas Bowl,Sri Lanka,Bowl,254,4,135,10,0,0,0,0,ENG (119 runs),Harry Brook,T20,SL V ENG ENGLAND SL (119 RUNS),9,146
-26/06/17,SL v ENG,Sophia Gardens,England,Bowl,145,9,146,4,0,0,0,0,ENG (6 wkts),Liam Dawson,T20,SL V ENG ENGLAND SL (6 WKTS),7,545
-26/06/19,SL v ENG,Old Trafford,England,Bowl,124,10,126,2,0,0,0,0,ENG (8 wkts),Sonny Baker,T20,SL V ENG ENGLAND SL (8 WKTS),10,569
+26/09/17,SL v ENG,Sophia Gardens,England,Bowl,145,9,146,4,0,0,0,0,ENG (6 wkts),Liam Dawson,T20,SL V ENG ENGLAND SL (6 WKTS),7,545
+26/09/19,SL v ENG,Old Trafford,England,Bowl,124,10,126,2,0,0,0,0,ENG (8 wkts),Sonny Baker,T20,SL V ENG ENGLAND SL (8 WKTS),10,569
+26/10/09,SL v PAK,Rawalpindi Cricket Stadium,Sri Lanka,Bat,182,8,187,6,0,0,0,0,PAK (4 wkts),Sahibzada Farhan,T20,SL V PAK PAKISTAN PAK (4 WKTS),16,879
+26/10/11,SL v PAK,Rawalpindi Cricket Stadium,Sri Lanka,Bowl,215,3,133,7,0,0,0,0,PAK (82 runs),Maaz Sadaqat,T20,SL V PAK PAKISTAN PAK (82 RUNS),15,654
+26/10/13,SL v PAK,Rawalpindi Cricket Stadium,Sri Lanka,Bowl,168,8,172,2,0,0,0,0,SL (8 wkts),Kusal Mendis,T20,SL V PAK SRI LANKA SL (8 WKTS),12,915
 
 
 
@@ -987,6 +999,9 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 26/06/12,SL v WI,Sabina Park,Sri Lanka,Bat,147,9,149,3,0,0,0,0,WI (7 wkts),Jason Holder,T20,SL V WI SRI LANKA WI (7 WKTS),7,147
 26/06/14,SL v WI,Sabina Park,West Indies,Bowl,194,6,157,10,0,0,0,0,SL (37 runs),Dasun Shanaka,T20,SL V WI WEST INDIES SL (37 RUNS),7,146
 26/06/15,SL v WI,Sabina Park,West Indies,Bowl,169,10,170,5,0,0,0,0,WI (5 wkts),Shamar Joseph,T20,SL V WI WEST INDIES SL (5 WKTS),7,146
+26/10/06,IND v WI,Ekana Stadium,India,Bowl,171,10,172,2,0,0,0,0,IND (8 wkts),Shreyas Iyer,T20,WI V IND WEST INDIES IND (8 WKTS),28,132
+26/10/09,IND v WI,JSCA Stadium,West Indies,Bowl,249,5,252,4,0,0,0,0,WI (6 wkts),Shai Hope,T20,WI V IND WEST INDIES WI (6 WKTS),30,157
+26/10/11,IND v WI,Holkar Stadium,West Indies,Bowl,223,10,209,7,0,0,0,0,IND (14 runs),Arshdeep Singh,T20,WI V IND INDIA IND (14 RUNS),27,537
 
 24/01/14,SL v ZIM,R. Premadasa Stadium,Sri Lanka,Bowl,143,5,144,7,0,0,0,0,SL (3 wkts),Angelo Mathews,T20,SL V ZIM SRI LANKA SL (3 WKTS),21,94
 24/01/16,SL v ZIM,R. Premadasa Stadium,Zimbabwe,Bowl,173,6,174,6,0,0,0,0,ZIM (4 wkts),Luke Jongwe,T20,SL V ZIM ZIMBABWE ZIM (4 WKTS),26,94
@@ -1088,6 +1103,8 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 25/12/26,AUS v ENG,Melbourne Cricket Ground,Australia,Bowl,185,10,220,10,310,10,276,6,ENG (4 wkts),0,Test,AUS V ENG AUSTRALIA ENG (4 WKTS),1,70
 26/01/04,AUS v ENG,Sydney Cricket Ground,England,Bat,384,10,567,10,342,10,161,5,AUS (5 wkts),0,Test,AUS V ENG ENGLAND AUS (5 WKTS),4,128
 26/08/22,AUS v BAN,Great Barrier Reef Arena,Australia,Bowl,64,10,210,10,95,10,0,0,AUS (Inn & 51 runs),0,Test,AUS V ENG AUSTRALIA AUS (INN & 51 RUNS),4,128
+26/10/09,AUS v SA,Kingsmead,Australia,Bat,390,10,284,10,314,6,206,10,AUS (214 runs),0,Test,AUS V SA AUSTRALIA AUS (214 RUNS),22,956
+
 24/03/22,BAN v SL,Sylhet Stadium,Bangladesh,Bowl,280,10,188,10,418,10,182,10,SL (328 runs),0,Test,BAN V SL BANGLADESH SL (328 RUNS),2,131
 24/03/30,BAN v SL,Zahur Ahmed Stadium,Sri Lanka,Bat,531,10,178,10,157,7,318,10,SL (192 runs),0,Test,BAN V SL SRI LANKA SL (192 RUNS),21,146
 24/08/21,PAK v BAN,Rawalpindi Stadium,Bangladesh,Bowl,448,6,565,10,146,10,30,0,BAN (10 wkts),0,Test,PAK V BAN BANGLADESH BAN (10 WKTS),2,101
@@ -1270,7 +1287,7 @@ Date,Series,Venue,Toss_Winner,Toss_Decision,1st_Inn_Runs,1st_Inn_Wkts,2nd_Inn_Ru
 25/10/20,PAK v SA,Rawalpindi Stadium,South Africa,Bowl,245,10,360,10,180,10,66,2,SA (8 wkts),0,Test,PAK V SA SOUTH AFRICA SA (8 WKTS),20,101
 25/11/14,IND v SA,Eden Gardens,India,Bowl,215,10,252,10,195,10,128,10,SA (30 runs),0,Test,IND V SA INDIA SA (30 RUNS),6,32
 25/11/22,IND v SA,Barsapara Stadium,South Africa,Bat,612,5,120,10,84,10,0,0,SA (408 runs),0,Test,IND V SA SOUTH AFRICA SA (408 RUNS),20,9
-,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
+26/10/09,AUS v SA,Kingsmead,Australia,Bat,390,10,284,10,314,6,206,10,AUS (214 runs),0,Test,AUS V SA AUSTRALIA AUS (214 RUNS),22,956
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147
 ,,,,,0,0,0,0,0,0,0,0,,0,Test,,27,147

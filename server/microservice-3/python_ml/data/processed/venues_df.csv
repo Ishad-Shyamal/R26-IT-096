@@ -40,6 +40,7 @@ S. Africa,Newlands,Cape Town,25000,Coastal/Seam,Pace/Swing,65-70m,Low Scoring,Co
 S. Africa,Centurion,Pretoria,22000,Hard/Fast,Pace/Bounce,68-74m,High Scoring,Sunny/Dry
 S. Africa,Kingsmead,Durban,25000,Coastal/Slow,Spin/Seam,68-75m,Low Scoring,High Humidity
 S. Africa,St George's Park,Gqeberha,19000,Slow/Dry,Spin,70-75m,Mid Scoring,Windy
+S. Africa,Boland Park,Paarl,22000,Hard/Fast,Pace/Bounce,68-74m,High Scoring,Sunny/Dry
 NZ,Eden Park,Auckland,42000,Drop-in,Batting,55-65m,High Scoring,Windy
 NZ,Hagley Oval,Christchurch,18000,Green,Pace/Seam,70-75m,Mid Scoring,Cold/Windy
 NZ,Wellington Basin,Wellington,11000,Green/Hard,Pace/Swing,70-78m,Mid Scoring,Extreme Wind
@@ -47,6 +48,7 @@ NZ,Seddon Park,Hamilton,12000,Flat,Batting,65-72m,High Scoring,Humid
 Pakistan,Gaddafi Stadium,Lahore,34000,Flat,Batting,65-72m,High Scoring,Heavy Dew
 Pakistan,National Stadium,Karachi,30000,Dry/Slow,Spin,68-75m,Balanced,Coastal/No Dew
 Pakistan,Multan Stadium,Multan,35000,Flat/Dusty,Batting/Spin,65-70m,High Scoring,Hot/Dry
+Pakistan,Rawalpindi Cricket Stadium,Rawalpindi,34000,Flat,Batting,65-72m,High Scoring,Heavy Dew
 UAE,Dubai Int. Stadium,Dubai,25000,Dry/Slow,Spin/Seam,65-75m,Mid Scoring,Extreme Dew
 UAE,Sheikh Zayed,Abu Dhabi,20000,Flat/Hard,Batting,70-80m,Balanced,Moderate Dew
 UAE,Sharjah Stadium,Sharjah,16000,Slow/Low,Spin,60-65m,Mid Scoring,Low Dew
@@ -60,4 +62,6 @@ West Indies,Daren Sammy,St Lucia,15000,Flat/Fast,Batting,60-68m,High Scoring,Win
 West Indies,Providence,Guyana,15000,Slow/Low,Spin,70-75m,Low Scoring,Humid
 Bangladesh,Sher-e-Bangla,Dhaka,25000,Slow/Dusty,Spin,65-75m,Low Scoring,High Dew
 Zimbabwe,Harare Sports,Harare,10000,Flat/True,Batting,65-70m,High Scoring,Dry/Sunny
+Zimbabwe,Bulawayo Athletic Club,Bulawayo,25000,Slow/Dusty,Spin,65-75m,Low Scoring,High Dew
+Zimbabwe,Kwekwe Sports Club,Kwekwe,10000,Flat/True,Batting,65-70m,High Scoring,Dry/Sunny
 Ireland,Malahide,Dublin,11500,Green,Seam/Swing,65-70m,Mid Scoring,Cloudy/Windy

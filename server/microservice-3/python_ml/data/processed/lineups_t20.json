@@ -584,9 +584,9 @@
       "Abhishek Sharma",
       "Sanju Samson",
       "Tilak Varma",
-      "Suryakumar Yadav",
+      "Shreyas Iyer",
       "Shivam Dube",
-      "Hardik Pandya",
+      "Nithish kumar Reddy",
       "Axar Patel",
       "Ravi Bishnoi",
       "Kuldeep Yadav",
@@ -603,7 +603,7 @@
       "Axar Patel",
       "Ravi Bishnoi",
       "Arshdeep Singh",
-      "Varun Chakravarthy",
+      "Kuldeep Yadav",
       "Jasprit Bumrah"
     ],
     "Bangladesh": [
@@ -630,7 +630,7 @@
       "Varun Chakravarthy",
       "Arshdeep Singh",
       "Mohammed Siraj",
-      "Jasprit Bumrah"
+      "Prince Yadav"
     ],
     "Ireland": [
       "Abhishek Sharma",
@@ -643,7 +643,7 @@
       "Axar Patel",
       "Arshdeep Singh",
       "Jasprit Bumrah",
-      "Prasidh Krishna"
+      "Prince Yadav"
     ],
     "New Zealand": [
       "Abhishek Sharma",
@@ -695,20 +695,20 @@
       "Kuldeep Yadav",
       "Ravi Bishnoi",
       "Arshdeep Singh",
-      "Jasprit Bumrah"
+      "Varun Chakravarthy"
     ],
     "West Indies": [
       "Abhishek Sharma",
       "Sanju Samson",
-      "Tilak Varma",
+      "Ishan Kishan",
       "Shreyas Iyer",
-      "Hardik Pandya",
-      "Shivam Dube",
+      "Tilak Varma",
+      "Naman Dhir",
+      "Nithish Kumar Reddy",
       "Axar Patel",
-      "Kuldeep Yadav",
       "Arshdeep Singh",
-      "Jasprit Bumrah",
-      "Varun Chakravarthy"
+      "Ravi Bishnoi",
+      "Prince Yadav"
     ],
     "Zimbabwe": [
       "Ishan Kishan",
@@ -721,7 +721,7 @@
       "Kuldeep Yadav",
       "Ravi Bishnoi",
       "Mohammed Siraj",
-      "Jasprit Bumrah"
+      "Prince Yadav"
     ]
   },
   "Ireland": {
@@ -1121,15 +1121,15 @@
     ],
     "Sri Lanka": [
       "Sahibzada Farhan",
-      "Saim Ayub",
       "Fakhar Zaman",
       "Maaz Sadaqat",
-      "Khawaja Nafay",
-      "Shadab Khan",
       "Hasan Nawaz",
+      "Khawaja Nafay",
+      "Mohammad Imran",
+      "Abdul Samad",
+      "Arafat Minhas",
+      "Razaullah",
       "Salman Mirza",
-      "Naseem Shah",
-      "Abrar Ahmed",
       "Sufiyan Muqeem"
     ],
     "West Indies": [
@@ -1398,16 +1398,16 @@
     ],
     "Pakistan": [
       "Lahiru Udara",
-      "Kamil Mishara",
+      "Sineth Jayawardene",
       "Kusal Mendis",
-      "Sineth Jayawardena",
       "Kamindu Mendis",
+      "Sahan Arachchige",
       "Dasun Shanaka",
       "Chamindu Wickramasinghe",
-      "Dunith Wellalage",
-      "Maheesh Theekshana",
-      "Dushmantha Chameera",
-      "Eshan Malinga"
+      "V Viyaskanth",
+      "Eshan Malinga",
+      "Binura Fernando",
+      "Nuwan Thushara"
     ],
     "South Africa": [
       "Pathum Nissanka",
