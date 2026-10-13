@@ -102,7 +102,7 @@ const MatchPreviewReview = () => {
     ],
     "England": [
       "Lord's",
-      "The Oval",
+      "Kennington Oval",
       "Edgbaston",
       "Old Trafford",
       "Headingley",
@@ -589,41 +589,57 @@ const fetchPlayerPredictions = async (players, country, matchType) => {
         </button>
 
 {mode === 'preview' && result?.success && (
-        <button
-          onClick={() =>
-            navigate('/lineups', {
-              state: {
-                team1:        formData.team1,
-                team2:        formData.team2,
-                format:       formData.format,
-                venue:        formData.venue,
-                venueCountry: formData.venueCountry,
-                match_date:   formData.match_date,
-                result:       result,
-                probableTeam1: result?.data?.team1_results?.players || [],
-                probableTeam2: result?.data?.team2_results?.players || [],
-                fromMode:     mode,
-              }
-            })
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    <button
+            onClick={() =>
+        navigate('/lineups', {
+          state: {
+            team1:        formData.team1,
+            team2:        formData.team2,
+            format:       formData.format,
+            venue:        formData.venue,
+            venueCountry: formData.venueCountry,
+            match_date:   formData.match_date,
+            result:       result,
+            probableTeam1: result?.data?.team1_results?.players || [],
+            probableTeam2: result?.data?.team2_results?.players || [],
+            fromMode:     mode,
           }
-          style={{
-            display:'flex',
-            alignItems:'center',
-            gap:'8px',
-            padding:'10px 18px',
-            fontSize:'0.88rem',
-            fontWeight:'500',
-            color:'var(--primary,#00f3ff)',
-            background:'rgba(0,243,255,0.05)',
-            border:'1px solid rgba(0,243,255,0.2)',
-            borderRadius:'10px',
-            cursor:'pointer'
-          }}
-        >
-          <Users size={16}/>
-          Lineups
-        </button>
-        )}
+        })
+      }
+      style={{
+        display:'flex', alignItems:'center', gap:'8px', padding:'10px 18px',
+        fontSize:'0.88rem', fontWeight:'500', color:'var(--primary,#00f3ff)',
+        background:'rgba(0,243,255,0.05)', border:'1px solid rgba(0,243,255,0.2)',
+        borderRadius:'10px', cursor:'pointer'
+      }}
+    >
+      <Users size={16}/> Lineups
+    </button>
+
+    <button
+      onClick={() =>
+        navigate('/upcoming-years', {
+          state: {
+            team1: formData.team1,
+            team2: formData.team2,
+            format: formData.format,
+            venue: formData.venue,
+            venueCountry: formData.venueCountry,
+          }
+        })
+      }
+      style={{
+        display:'flex', alignItems:'center', gap:'8px', padding:'10px 18px',
+        fontSize:'0.88rem', fontWeight:'500', color:'var(--primary,#00f3ff)',
+        background:'rgba(0,243,255,0.05)', border:'1px solid rgba(0,243,255,0.2)',
+        borderRadius:'10px', cursor:'pointer'
+      }}
+    >
+      <Calendar size={16}/> Years
+    </button>
+  </div>
+)}
       </div>
 
       <div
@@ -766,62 +782,6 @@ const fetchPlayerPredictions = async (players, country, matchType) => {
               </div>
             )}
 
-            {/* Date — review only */}
-            {mode === 'review' && (
-              <div style={inputContainerStyle} className="input-field-focus">
-                <Calendar size={18} style={iconStyle} />
-                <input
-                  type="date"
-                  required
-                  value={formData.match_date}
-                  onChange={(e) =>
-                    setFormData({ ...formData, match_date: e.target.value })
-                  }
-                  data-date={
-                    formData.match_date
-                      ? formData.match_date.split('-').reverse().join('/')
-                      : 'DD/MM/YYYY'
-                  }
-                  style={{
-                    ...inputStyle,
-                    colorScheme: 'dark',
-                    position: 'relative',
-                    color: formData.match_date ? '#ffffff' : 'rgba(255,255,255,0.4)',
-                  }}
-                  className="custom-date-picker"
-                />
-                
-                <style>{`
-                  .custom-date-picker {
-                    appearance: none;
-                    -webkit-appearance: none;
-                  }
-                  .custom-date-picker::-webkit-datetime-edit { 
-                    display: none; 
-                  }
-                  .custom-date-picker::before {
-                    content: attr(data-date);
-                    position: absolute;
-                    left: 0;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    color: inherit;
-                    pointer-events: none;
-                    font-family: inherit;
-                  }
-                  .custom-date-picker::-webkit-calendar-picker-indicator {
-                    position: absolute;
-                    right: 0;
-                    top: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: transparent;
-                    color: transparent;
-                    cursor: pointer;
-                  }
-                `}</style>
-              </div>
-            )}
 
             {/* Match Format Dropdown Selector */}
             <div style={inputContainerStyle} className="input-field-focus">
@@ -843,7 +803,36 @@ const fetchPlayerPredictions = async (players, country, matchType) => {
               </select>
               <ChevronDown size={16} style={arrowIconStyle} />
             </div>
+            {/* Match Date — Optional for Preview, Required for Review */}
+            <div style={inputContainerStyle} className="input-field-focus">
+              <Calendar size={18} style={iconStyle} />
 
+              <input
+                type="date"
+                required={mode === 'review'}
+                value={formData.match_date}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    match_date: e.target.value
+                  })
+                }
+                data-date={
+                  formData.match_date
+                    ? formData.match_date.split('-').reverse().join('/')
+                    : 'DD/MM/YYYY'
+                }
+                style={{
+                  ...inputStyle,
+                  colorScheme: 'dark',
+                  position: 'relative',
+                  color: formData.match_date
+                    ? '#ffffff'
+                    : 'rgba(255,255,255,0.4)',
+                }}
+                className="custom-date-picker"
+              />
+            </div>
             {/* Action Submit Button nested cleanly directly inside the same single row */}
             <div
               style={{

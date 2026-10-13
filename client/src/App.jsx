@@ -15,7 +15,8 @@ import Prediction from './components/Prediction';
 import MatchPreviewReview from './components/MatchPreviewReview';
 import Lineups from './components/Lineups';
 import NewsCurator from './components/NewsCurator';
-
+import UpcomingYears from './components/UpcomingYears';
+import ValidationYears from './components/ValidationYears';
 
 // Layout Component
 const MainLayout = ({ children }) => (
@@ -63,6 +64,17 @@ function App() {
         <Route path="/lineups" element={
           <MainLayout>
             <Lineups />
+          </MainLayout>
+        } />
+        
+        <Route path="/upcoming-years" element={
+          <MainLayout>
+            <UpcomingYears />
+          </MainLayout>
+        } />
+        <Route path="/validation-years" element={
+          <MainLayout>
+            <ValidationYears />
           </MainLayout>
         } />
         <Route path="/prediction" element={
