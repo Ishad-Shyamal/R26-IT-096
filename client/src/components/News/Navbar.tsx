@@ -2,7 +2,7 @@ import { useApp } from "../context/AppContext";
 import type { Tab } from "../context/AppContext";
 
 const tabs: { id: Tab; label: string; icon: string; desc: string }[] = [
-  { id: "prediction", label: "National Team Select Prediction", icon: "🏏", desc: "Selection Forecast" },
+  { id: "prediction", label: "National Team Select Probability", icon: "🏏", desc: "Selection Forecast" },
   { id: "feed", label: "News Feed", icon: "📰", desc: "Personalized" },
   { id: "query", label: "Query Engine", icon: "🔍", desc: "Ask Cricket AI" },
 ];

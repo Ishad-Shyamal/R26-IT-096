@@ -11,7 +11,7 @@ router.post('/query', async (req, res) => {
     const q = query.toLowerCase().trim();
     let resultText = "";
 
-    // Helper function: Mongo Schema එකේ ඕනෑම Key එකකින් Player Name එක ආරක්ෂිතව ලබා ගැනීමට
+    
     const getName = (p) => p.player_name || p.playerName || p.name || "Unknown Player";
     const getTeam = (p) => p.team || p.team_name || "N/A";
     const getNews = (p) => {

@@ -72,7 +72,7 @@ export default function NewsFeed({ newsText, playerName: propPlayerName }: NewsF
     fetchPlayerData();
   }, []);
 
-  // API එකෙන් එන සියලු රටවල් එකතු කර Dynamic List එකක් සාදාගැනීම
+  
   const countriesList = useMemo(() => {
     const countries = new Set<string>();
     dynamicPlayers.forEach((player) => {
@@ -82,7 +82,7 @@ export default function NewsFeed({ newsText, playerName: propPlayerName }: NewsF
     return ["All Countries", ...Array.from(countries).sort()];
   }, [dynamicPlayers]);
 
-  // Country filter & Sorting දෙකම යෙදීම
+  
   const processedPlayers = useMemo(() => {
     let filtered = [...dynamicPlayers];
 

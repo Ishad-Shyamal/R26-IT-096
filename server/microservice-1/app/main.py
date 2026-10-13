@@ -102,9 +102,7 @@ async def get_all_predictions():
 
 @app.get("/player-summary/{player_name}")
 async def get_player_summary(player_name: str):
-    """
-    Player Profile එක ඇතුළේ Display කිරීමට Dynamic LLM Structured Overview Generator Endpoint එක.
-    """
+    
     try:
         dataset_path = 'app/training/final_ml_dataset.csv'
         player_info = {}
