@@ -1,7 +1,7 @@
 import { useState } from "react";
 import NewsNavbar from "./News/Navbar";
 import NewsFeed from "./News/NewsFeed";
-import IPLPrediction from "./News/IPLPrediction";
+import NTSPrediction from "./News/NTS_Prediction";
 import QueryEngine from "./News/QueryEngine";
 import { AppProvider, useApp } from "./context/AppContext";
 
@@ -23,9 +23,9 @@ function MainContent() {
       {activeTab === "prediction" && (
         <div className="bg-gray-900 rounded-2xl shadow-lg p-6">
           <h2 className="text-2xl font-bold mb-4 text-cyan-400">
-            National Team Select Prediction
+            National Team Select Probability
           </h2>
-          <IPLPrediction />
+          <NTSPrediction />
         </div>
       )}
 
