@@ -561,7 +561,8 @@ def get_probable_11_internal(
     def anch(roles): return sum(1 for r in anchored_roles if r in roles)
  
     need_wk   = max(0, 1 - anch(["Wicketkeeper"]))
-    need_bat  = max(0, 3 - anch(["Batter"]))
+    min_bat   = 2 if (team_name.strip().lower() == "sri lanka" and fmt.upper() == "T20") else 3
+    need_bat  = max(0, min_bat - anch(["Batter"]))
     need_ar   = max(0, 2 - anch(["All-Rounder","Batting All-Rounder","Bowling All-Rounder"]))
     need_spin = max(0, n_spin - anch(["Spin Bowler"]))
     need_pace = max(0, n_pace - anch(["Pace Bowler","Bowler"]))
@@ -602,7 +603,35 @@ def get_probable_11_internal(
  
     seen_set = set()
     selected = [i for i in selected if not (i in seen_set or seen_set.add(i))]
- 
+
+    # ── Sri Lanka T20 only: max 4 pure bowlers, extra spots go to all-rounders ──
+    if team_name.strip().lower() == "sri lanka" and fmt.upper() == "T20":
+        pure_bowl = {"Spin Bowler", "Pace Bowler", "Bowler"}
+        ar_roles  = ["Batting All-Rounder", "All-Rounder", "Bowling All-Rounder"]
+
+        xi         = selected[:11]
+        bowlers_in = [i for i in xi if team_df.loc[i, "role"] in pure_bowl]
+        extra      = len(bowlers_in) - 4
+
+        if extra > 0:
+            # drop the weakest bowlers first (non-anchored before anchored, then lowest probability)
+            bowlers_in.sort(key=lambda i: (i in anchor_indices, team_df.loc[i, "probability"]))
+            to_drop = set(bowlers_in[:extra])
+            xi = [i for i in xi if i not in to_drop]
+
+            # replace each dropped bowler with the best available all-rounder
+            ar_pool = (team_df[team_df["role"].isin(ar_roles) & ~team_df.index.isin(xi)]
+                       .nlargest(extra, "probability").index.tolist())
+            xi.extend(ar_pool)
+
+            # fallback: if there aren't enough all-rounders, use the best non-bowler left
+            if len(xi) < 11:
+                more = (team_df[~team_df.index.isin(xi) & ~team_df["role"].isin(pure_bowl)]
+                        .nlargest(11 - len(xi), "probability").index.tolist())
+                xi.extend(more)
+
+        selected = xi
+
     final_xi = team_df.loc[selected[:11]].copy()
  
     if "player_name" in final_xi.columns:
@@ -627,6 +656,43 @@ def get_probable_11_internal(
                         else (100-r["probability"])),
         axis=1)
     final_xi = final_xi.sort_values(["_rg","_sk"], ascending=[True,True])
+
+    # ── Sri Lanka only: strict role order, last-XI positions kept where possible ──
+    if team_name.strip().lower() == "sri lanka":
+        # _rg groups: 1 = WK/Batter, 2 = Batting AR, 3 = All-Rounder,
+        #             4 = Bowling AR, 5 = Spin/Pace/Bowler
+        n    = len(final_xi)
+        rows = [r for _, r in final_xi.iterrows()]
+        rows.sort(key=lambda r: r["_rg"])        # stable: keeps existing order inside a group
+
+        order = [None] * n
+        start = 0
+        for g in sorted(set(r["_rg"] for r in rows)):
+            grp = [r for r in rows if r["_rg"] == g]
+            end = start + len(grp)               # this group owns slots start .. end-1
+
+            # 1) matched players whose last-XI position falls inside this group's slots
+            #    stay at that exact position
+            placed = set()
+            for r in grp:
+                bp = r["_bp"]
+                if bp != 99 and start <= bp - 1 < end and order[bp - 1] is None:
+                    order[bp - 1] = r
+                    placed.add(r.name)
+
+            # 2) the rest of the group fills the vacant slots in this range:
+            #    matched players first (by their last-XI position), then unmatched
+            rest = [r for r in grp if r.name not in placed]
+            rest.sort(key=lambda r: (r["_bp"] if r["_bp"] != 99 else 999))
+            it = iter(rest)
+            for i in range(start, end):
+                if order[i] is None:
+                    order[i] = next(it)
+
+            start = end
+
+        final_xi = pd.DataFrame(order)
+
     final_xi.drop(columns=["_rg","_bp","_sk"], inplace=True, errors="ignore")
  
     # ── Build player reason text ──────────────────────────
