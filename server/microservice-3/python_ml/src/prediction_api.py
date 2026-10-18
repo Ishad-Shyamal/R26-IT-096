@@ -633,6 +633,55 @@ def get_probable_11_internal(
         selected = xi
 
     final_xi = team_df.loc[selected[:11]].copy()
+        # ── Sri Lanka ODI only: exactly 2 batters, extra spot goes to a pace bowler ──
+    if team_name.strip().lower() == "sri lanka" and fmt.upper() == "ODI":
+        names = team_df["player_name"].astype(str).str.lower().str.strip()
+
+        def find_idx(key):
+            return team_df.index[names.str.contains(key, regex=False)].tolist()
+
+        xi    = selected[:11]
+        trio  = [i for k in ["avishka fernando", "kamil mishara", "lahiru udara"]
+                 for i in find_idx(k)]
+        pavan = find_idx("pavan rathnayake")
+        protect = set(find_idx("kamindu mendis") + find_idx("kusal mendis"))
+
+        # only ONE of Avishka / Kamil / Lahiru: prefer one already in the XI, then highest probability
+        keep_trio = ([max(trio, key=lambda i: (i in xi, team_df.loc[i, "probability"]))]
+                     if trio else [])
+        forced = set(keep_trio + pavan[:1])          # the 2 batters: chosen one + Pavan
+
+        # remove every other "Batter" and the two unchosen trio players
+        xi = [i for i in xi
+              if i in forced
+              or (team_df.loc[i, "role"] != "Batter" and i not in trio)]
+        for i in forced:
+            if i not in xi:
+                xi.append(i)
+
+        # trim if forcing pushed us above 11 (never drop forced / Kamindu / Kusal)
+        while len(xi) > 11:
+            cand = [i for i in xi if i not in forced and i not in protect]
+            if not cand:
+                break
+            xi.remove(min(cand, key=lambda i: team_df.loc[i, "probability"]))
+
+        # fill the freed spots with the best pace bowlers
+        need = 11 - len(xi)
+        if need > 0:
+            pace = (team_df[(team_df["role"] == "Pace Bowler") & ~team_df.index.isin(xi)]
+                    .nlargest(need, "probability").index.tolist())
+            xi.extend(pace)
+        # fallback if not enough pace bowlers: best non-batter left
+        if len(xi) < 11:
+            more = (team_df[~team_df.index.isin(xi) & (team_df["role"] != "Batter")
+                            & ~team_df.index.isin(trio)]
+                    .nlargest(11 - len(xi), "probability").index.tolist())
+            xi.extend(more)
+
+        selected = xi
+
+    final_xi = team_df.loc[selected[:11]].copy()
  
     if "player_name" in final_xi.columns:
         final_xi["player"] = final_xi["player_name"]
@@ -690,6 +739,24 @@ def get_probable_11_internal(
                     order[i] = next(it)
 
             start = end
+
+        # ── Sri Lanka ODI only: fixed positions 2, 3, 4 ──
+        if fmt.upper() == "ODI":
+            fixed = [(2, "kamindu mendis"), (3, "kusal mendis"), (4, "pavan rathnayake")]
+            lst   = list(order)
+
+            def _nm(r):
+                return str(r["player_name"]).lower().strip()
+
+            moved = []
+            for pos, key in fixed:
+                hit = next((r for r in lst if key in _nm(r)), None)
+                if hit is not None:
+                    lst = [r for r in lst if r is not hit]
+                    moved.append((pos, hit))
+            for pos, r in moved:                      # ascending, so indexes stay correct
+                lst.insert(min(pos - 1, len(lst)), r)
+            order = lst
 
         final_xi = pd.DataFrame(order)
 
