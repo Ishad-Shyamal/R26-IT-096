@@ -15,7 +15,6 @@ load_dotenv()
 
 app = FastAPI(title="InsightCric News Intelligence Hub")
 
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  
@@ -41,22 +40,19 @@ news_collection = database.get_collection(COLLECTION_NAME)
 
 @app.get("/players-predictions")
 async def get_all_predictions():
-    
     try:
         dataset_path = 'app/training/final_ml_dataset.csv' 
         
         if not os.path.exists(dataset_path):
             raise HTTPException(status_code=404, detail=f"Dataset file '{dataset_path}' not found!")
 
-        
         df = pd.read_csv(dataset_path)
         players_list = []
-        
         
         for index, row in df.iterrows():
             perf = float(row.get('performance_score', 0))
             marker = float(row.get('marker_score', 0))
-            
+            geo_risk = float(row.get('geopolitical_risk', 0))
             
             country_val = (
                 row.get('country') or 
@@ -67,9 +63,7 @@ async def get_all_predictions():
                 'Unknown'
             )
             
-            
             prob_raw = predict_ipl_probability(performance_score=perf, marker_score=marker)
-            
             
             if prob_raw == 0 and (perf > 0 or marker > 0):
                 prob_float = ((perf / 2000.0) * 0.7) + ((marker / 10.0) * 0.3)
@@ -80,15 +74,15 @@ async def get_all_predictions():
                 else:
                     prob_float = float(prob_raw) / 100.0 if prob_raw > 1 else float(prob_raw)
             
-            #
             player_data = {
                 "player_name": str(row.get('Player', row.get('player_name', f"Player {index + 1}"))),
                 "country": str(country_val).strip(),  
-                "team": str(country_val).strip(),     
+                "team": str(country_val).strip(),    
                 "performance_score": perf,
                 "marker_score": marker,
+                "geopolitical_risk": geo_risk,
                 "iplProb": prob_float,
-                "nationalProb": prob_float,           
+                "nationalProb": prob_float,          
                 "was_selected": int(row.get('was_selected', 1 if prob_float >= 0.5 else 0)),
                 "role": str(row.get('role', 'All-Rounder'))
             }
@@ -100,16 +94,63 @@ async def get_all_predictions():
         raise HTTPException(status_code=500, detail=f"Error processing dataset: {str(e)}")
 
 
+# --- NEWLY ADDED: Individual Player Validation Endpoint for Modal ---
+@app.get("/api/player-validation/{player_name}")
+async def get_player_validation(player_name: str):
+    try:
+        dataset_path = 'app/training/final_ml_dataset.csv'
+        if not os.path.exists(dataset_path):
+            raise HTTPException(status_code=404, detail="Dataset not found")
+        
+        df = pd.read_csv(dataset_path)
+        
+        # Case-insensitive matching for Player name
+        matched = pd.DataFrame()
+        if 'Player' in df.columns:
+            matched = df[df['Player'].str.lower() == player_name.lower()]
+        elif 'player_name' in df.columns:
+            matched = df[df['player_name'].str.lower() == player_name.lower()]
+            
+        if matched.empty:
+            raise HTTPException(status_code=404, detail=f"Player '{player_name}' not found")
+            
+        row = matched.iloc[0]
+        perf = float(row.get('performance_score', 0))
+        marker = float(row.get('marker_score', 0))
+        geo_risk = float(row.get('geopolitical_risk', 0))
+        
+        prob_raw = predict_ipl_probability(performance_score=perf, marker_score=marker)
+        if prob_raw == 0 and (perf > 0 or marker > 0):
+            prob_float = ((perf / 2000.0) * 0.7) + ((marker / 10.0) * 0.3)
+            prob_float = round(min(1.0, max(0.0, prob_float)), 4)
+        else:
+            if isinstance(prob_raw, str):
+                prob_float = float(prob_raw.replace("%", "")) / 100.0
+            else:
+                prob_float = float(prob_raw) / 100.0 if prob_raw > 1 else float(prob_raw)
+        
+        return {
+            "player_name": str(row.get('Player', row.get('player_name', player_name))),
+            "country": str(row.get('country', row.get('Country', 'Unknown'))).strip(),
+            "role": str(row.get('role', 'Player')),
+            "performance_score": perf,
+            "marker_score": marker,
+            "geopolitical_risk": geo_risk,
+            "IPL_select_probability": prob_float,
+            "was_selected": bool(row.get('was_selected', 1 if prob_float >= 0.5 else 0) == 1)
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/player-summary/{player_name}")
 async def get_player_summary(player_name: str):
-    
     try:
         dataset_path = 'app/training/final_ml_dataset.csv'
         player_info = {}
         
         if os.path.exists(dataset_path):
             df = pd.read_csv(dataset_path)
-            # Case-insensitive name matching
             matched = df[df['Player'].str.lower() == player_name.lower()] if 'Player' in df.columns else pd.DataFrame()
             if not matched.empty:
                 row = matched.iloc[0]
@@ -149,7 +190,6 @@ async def get_player_summary(player_name: str):
         """
 
         if not GEMINI_API_KEY:
-            # Fallback markdown output if API key is not configured
             fallback_md = f"### Player Overview\n- **Born / Origin**: {country}\n- **Batting Style**: Right-hand bat\n- **Bowling Style**: Right-arm medium\n- **Playing Role**: {role}\n\n### Career Highlights & Domestic Context\n- **Specialist Profile**: Key functional contributor in team setup.\n- **Statistical Impact**: Evaluated with baseline performance score of {perf}.\n- **Media & Selection Signal**: Marker score of {marker} indicates stable media sentiment."
             return {"player_name": player_name, "summary": fallback_md}
 
@@ -176,7 +216,6 @@ async def analyze_news(news_content: str = Body(..., embed=True)):
         if not news_content:
             raise HTTPException(status_code=400, detail="News content cannot be empty")
 
-        # NLP Processing
         performance_results = extract_player_performance(news_content)
         geo_signals = detect_geopolitical_signals(news_content)
         
