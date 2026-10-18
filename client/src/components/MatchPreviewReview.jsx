@@ -114,7 +114,8 @@ const MatchPreviewReview = () => {
       "Newlands",
       "Centurion",
       "Kingsmead",
-      "St George's Park"
+      "St George's Park",
+      "Boland Park"
     ],
     "New Zealand": [
       "Eden Park",
@@ -125,7 +126,8 @@ const MatchPreviewReview = () => {
     "Pakistan": [
       "Gaddafi Stadium",
       "National Stadium",
-      "Multan Stadium"
+      "Multan Stadium",
+      "Rawalpindi Cricket Stadium"
     ],
     "UAE": [
       "Dubai Int. Stadium",
@@ -148,7 +150,9 @@ const MatchPreviewReview = () => {
       "Sher-e-Bangla"
     ],
     "Zimbabwe": [
-      "Harare Sports"
+      "Harare Sports",
+      "Bulawayo Athletic Club",
+      "Kwekwe Sports Club"
     ],
     "Ireland": [
       "Malahide"

@@ -24,26 +24,16 @@ const COUNTRIES = [
   "Zimbabwe"
 ];
 
-// Playing Roles for Filter
-const ROLES = [
-  "All Roles",
-  "Batter",
-  "Bowler",
-  "All-rounder",
-  "Wicketkeeper"
-];
-
 export default function NationalTeamPrediction() {
   const [selectedTournament] = useState<string>("All"); 
   const [threshold, setThreshold] = useState(0.5);
   const [sortByProb, setSortByProb] = useState(true);
 
-  // ───  SEARCH, COUNTRY & ROLE FILTER STATES ───
+  // ─── 🔍 SEARCH & COUNTRY FILTER STATES ───
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("All Countries");
-  const [selectedRole, setSelectedRole] = useState("All Roles");
 
-  // ───  DYNAMIC DATA STATES ───
+  // ─── 🔄 DYNAMIC DATA STATES ───
   const [dynamicPlayers, setDynamicPlayers] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -65,31 +55,20 @@ export default function NationalTeamPrediction() {
     fetchPlayerData();
   }, []);
 
-  
+  // ─── 📊 USEMEMO CALCULATIONS ───
   const playersWithProb = useMemo(() => {
     return dynamicPlayers
       .filter(p => {
         const matchesTournament = selectedTournament === "All" || p.tournament === selectedTournament;
         const matchesSearch = p.player_name.toLowerCase().includes(searchQuery.toLowerCase());
-        
         const playerCountry = (p.country || p.team || "").toLowerCase().replace(/[\s_]+/g, "");
         const targetCountry = selectedCountry.toLowerCase().replace(/[\s_]+/g, "");
         const matchesCountry = selectedCountry === "All Countries" || playerCountry === targetCountry;
 
-        // Robust Role Filtering (Hyphens, Spaces & Case Differences Handling)
-        const playerRoleClean = (p.role || "").toLowerCase().replace(/[\s_-]+/g, "");
-        const targetRoleClean = selectedRole.toLowerCase().replace(/[\s_-]+/g, "");
-        
-        const matchesRole = 
-          selectedRole === "All Roles" || 
-          playerRoleClean === targetRoleClean ||
-          playerRoleClean.includes(targetRoleClean) ||
-          targetRoleClean.includes(playerRoleClean);
-
-        return matchesTournament && matchesSearch && matchesCountry && matchesRole;
+        return matchesTournament && matchesSearch && matchesCountry;
       })
       .sort((a, b) => sortByProb ? (b.nationalProb ?? b.iplProb) - (a.nationalProb ?? a.iplProb) : b.performance_score - a.performance_score);
-  }, [dynamicPlayers, selectedTournament, sortByProb, searchQuery, selectedCountry, selectedRole]);
+  }, [dynamicPlayers, selectedTournament, sortByProb, searchQuery, selectedCountry]);
 
   const highProbPlayers = useMemo(() => {
     return playersWithProb.filter(p => (p.nationalProb ?? p.iplProb) >= threshold);
@@ -170,7 +149,7 @@ export default function NationalTeamPrediction() {
             🏏
           </div>
           <div>
-            <h1 className="text-white font-extrabold text-2xl tracking-tight">National Team Selection Probability</h1>
+            <h1 className="text-white font-extrabold text-2xl tracking-tight">National Team Selection Prediction</h1>
             <p className="text-slate-400 text-xs sm:text-sm mt-0.5">Machine learning metrics predicting national team selection probabilities</p>
           </div>
         </div>
@@ -272,10 +251,10 @@ export default function NationalTeamPrediction() {
 
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
             {/* 🔍 Search Field */}
-            <div className="relative flex-1 min-w-[200px] sm:w-60">
+            <div className="relative flex-1 min-w-[240px] sm:w-72">
               <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
               <input
@@ -304,19 +283,6 @@ export default function NationalTeamPrediction() {
               {COUNTRIES.map(c => (
                 <option key={c} value={c} className="bg-slate-900 text-slate-200">
                   {c}
-                </option>
-              ))}
-            </select>
-
-            {/* 🏏 Playing Role Selector */}
-            <select
-              value={selectedRole}
-              onChange={e => setSelectedRole(e.target.value)}
-              className="bg-slate-950/90 border border-slate-700/80 text-slate-200 text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-emerald-500 cursor-pointer font-medium"
-            >
-              {ROLES.map(r => (
-                <option key={r} value={r} className="bg-slate-900 text-slate-200">
-                  {r}
                 </option>
               ))}
             </select>

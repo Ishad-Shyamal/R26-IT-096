@@ -145,6 +145,7 @@ async def get_player_validation(player_name: str):
 
 @app.get("/player-summary/{player_name}")
 async def get_player_summary(player_name: str):
+    
     try:
         dataset_path = 'app/training/final_ml_dataset.csv'
         player_info = {}

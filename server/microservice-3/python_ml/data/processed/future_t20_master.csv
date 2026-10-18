@@ -245,7 +245,7 @@ Hardik Pandya,India,Batting All-Rounder,33.25,1.0,1,310.0,-2.4222,0,1,146.32,14.
 Harsh Dubey,India,Bowling All-Rounder,25.25,1.0,1,77.0,0.5519,1,0,277.1,29.15,119.68,11.23,9.12,0.0,43.9656,0.0147,44.04,2027,H1,Jan-Jun
 Harshit Rana,India,Pace Bowler,24.25,1.0,1,53.0,0.9683,1,0,20.37,8.45,106.65,31.62,10.19,0.0,43.5244,0.6999,43.68,2027,H1,Jan-Jun
 Ishan Kishan,India,Wicketkeeper,29.25,1.0,1,180.0,-0.093,0,0,637.49,20.05,134.99,0.0,0.0,0.0,38.6185,0.4091,38.73,2027,H1,Jan-Jun
-Jasprit Bumrah,India,Pace Bowler,33.25,1.0,1,230.0,-0.5424,0,1,62.17,8.59,77.27,76.75,7.22,0.0,61.8115,0.9642,62.16,2027,H1,Jan-Jun
+Jasprit Bumrah,India,Pace Bowler,33.25,1.0,1,230.0,-0.5424,0,1,62.17,8.59,77.27,76.75,7.22,0.0,71.8115,0.9942,72.16,2027,H1,Jan-Jun
 Jitesh Sharma,India,Wicketkeeper,33.25,1.0,1,110.0,-1.2451,0,1,264.97,25.43,117.73,0.0,0.0,0.0,35.5786,0.1475,35.83,2027,H1,Jan-Jun
 KL Rahul,India,Wicketkeeper,35.25,0.9643,1,269.4286,0.6889,1,0,408.42,36.89,143.58,0.0,0.0,0.0,45.8082,0.6779,45.38,2027,H1,Jan-Jun
 KS Bharat,India,Wicketkeeper,33.25,1.0,1,32.0,-0.8691,0,1,78.5,14.3,124.39,0.0,0.0,0.0,32.4531,0.0306,32.79,2027,H1,Jan-Jun
@@ -600,10 +600,10 @@ Sohan de Livera,Sri Lanka,Top Order Batter,27.25,1.0,1,40.0,0.0305,0,0,178.77,14
 Sonal Dinusha,Sri Lanka,Batting All-Rounder,26.25,1.0,1,60.0,-3.5342,0,1,414.87,16.51,127.91,9.26,9.36,0.0,40.5895,0.2344,40.62,2027,H1,Jan-Jun
 Tharindu Ratnayake,Sri Lanka,Bowling All-Rounder,31.25,1.0,1,85.0,0.7446,1,0,862.22,29.75,110.85,17.65,8.16,0.0,47.7063,0.0196,47.71,2027,H1,Jan-Jun
 Traveen Mathew,Sri Lanka,Spin Bowler,26.25,1.0,1,56.0,-0.3721,0,0,56.9,1.64,67.86,29.6,7.14,0.0,32.2402,0.6305,31.54,2027,H1,Jan-Jun
-V Viyaskanth,Sri Lanka,Spin Bowler,26.25,1.0,1,57.0,0.3392,0,0,43.44,7.89,84.51,36.16,7.06,0.0,41.5908,0.9801,41.64,2027,H1,Jan-Jun
+V Viyaskanth,Sri Lanka,Spin Bowler,26.25,1.0,1,57.0,0.3392,0,0,43.44,7.89,84.51,36.16,7.06,0.0,48.5908,0.9901,49.64,2027,H1,Jan-Jun
 Vigneshwaran Akash,Sri Lanka,Spin Bowler,20.25,1.0,1,38.0,0.0297,0,0,56.99,12.19,112.49,12.08,8.55,0.0,36.1659,0.2284,36.21,2027,H1,Jan-Jun
 Vimath Dinsara,Sri Lanka,Top Order Batter,21.25,1.0,1,50.0,-0.6986,0,1,132.77,19.04,128.84,0.0,0.0,0.0,35.3005,0.4115,35.51,2027,H1,Jan-Jun
-Sineth Jayawardena,Sri Lanka,Top Order Batter,30.25,1.0,1,64.0,1.8496,1,0,542.76,38.61,143.52,0.0,0.0,0.0,46.8398,0.411,46.84,2027,H1,Jan-Jun
+Sineth Jayawardene,Sri Lanka,Top Order Batter,30.25,1.0,1,64.0,1.8496,1,0,542.76,38.61,143.52,0.0,0.0,0.0,46.8398,0.411,46.84,2027,H1,Jan-Jun
 Vishad Randika,Sri Lanka,Top Order Batter,30.25,1.0,1,64.0,1.8496,1,0,542.76,38.61,143.52,0.0,0.0,0.0,46.8398,0.411,46.84,2027,H1,Jan-Jun
 Vishen Halambage,Sri Lanka,Top Order Batter,22.25,1.0,1,44.0,-0.0245,0,0,152.15,20.07,142.18,0.0,0.0,0.0,38.6543,0.4634,38.74,2027,H1,Jan-Jun
 Vishwa Fernando,Sri Lanka,Pace Bowler,35.25,0.9375,1,54.0,-0.4102,0,0,98.37,8.67,70.14,18.14,7.61,0.0,29.184,0.2137,29.62,2027,H1,Jan-Jun
@@ -963,7 +963,7 @@ Hardik Pandya,India,Batting All-Rounder,33.75,1.0,1,314.0,-2.4222,0,1,134.78,14.
 Harsh Dubey,India,Bowling All-Rounder,25.75,1.0,1,81.0,0.5519,1,0,298.73,30.56,124.33,12.11,8.8,0.0,46.8876,0.0197,47.01,2027,H2,Jul-Dec
 Harshit Rana,India,Pace Bowler,24.75,1.0,1,57.0,0.9683,1,0,22.33,9.54,115.48,35.23,9.65,0.0,49.3188,0.7836,49.15,2027,H2,Jul-Dec
 Ishan Kishan,India,Wicketkeeper,29.75,1.0,1,184.0,-0.093,0,0,669.71,19.78,139.99,0.0,0.0,0.0,40.0832,0.5612,40.32,2027,H2,Jul-Dec
-Jasprit Bumrah,India,Pace Bowler,33.75,1.0,1,234.0,-0.5424,0,1,61.76,7.82,70.44,72.12,7.53,0.0,60.1227,0.9531,59.79,2027,H2,Jul-Dec
+Jasprit Bumrah,India,Pace Bowler,33.75,1.0,1,234.0,-0.5424,0,1,61.76,7.82,70.44,72.12,7.53,0.0,70.1227,0.9931,79.79,2027,H2,Jul-Dec
 Jitesh Sharma,India,Wicketkeeper,33.75,1.0,1,114.0,-1.2451,0,1,240.88,24.11,112.49,0.0,0.0,0.0,34.1875,0.0862,34.33,2027,H2,Jul-Dec
 KL Rahul,India,Wicketkeeper,35.75,0.8929,1,272.2857,0.6889,1,0,374.71,38.57,148.01,0.0,0.0,0.0,47.7097,0.6906,45.91,2027,H2,Jul-Dec
 KS Bharat,India,Wicketkeeper,33.75,1.0,1,36.0,-0.8691,0,1,78.98,13.95,127.31,0.0,0.0,0.0,33.2671,0.031,33.62,2027,H2,Jul-Dec
@@ -1318,10 +1318,10 @@ Sohan de Livera,Sri Lanka,Top Order Batter,27.75,1.0,1,44.0,0.0305,0,0,166.14,13
 Sonal Dinusha,Sri Lanka,Batting All-Rounder,26.75,1.0,1,64.0,-3.5342,0,1,411.97,16.53,136.3,8.95,8.82,0.0,43.0347,0.3319,43.06,2027,H2,Jul-Dec
 Tharindu Ratnayake,Sri Lanka,Bowling All-Rounder,31.75,1.0,1,89.0,0.7446,1,0,913.23,31.58,116.31,18.45,7.7,0.0,51.2883,0.5212,51.31,2027,H2,Jul-Dec
 Traveen Mathew,Sri Lanka,Spin Bowler,26.75,1.0,1,60.0,-0.3721,0,0,57.33,1.28,68.59,32.65,6.49,0.0,35.3962,0.7481,34.81,2027,H2,Jul-Dec
-V Viyaskanth,Sri Lanka,Spin Bowler,26.75,1.0,1,61.0,0.3392,0,0,39.82,7.78,81.53,37.19,7.01,0.0,42.939,0.9854,42.96,2027,H2,Jul-Dec
+V Viyaskanth,Sri Lanka,Spin Bowler,26.75,1.0,1,61.0,0.3392,0,0,39.82,7.78,81.53,37.19,7.01,0.0,49.939,0.9954,49.96,2027,H2,Jul-Dec
 Vigneshwaran Akash,Sri Lanka,Spin Bowler,20.75,1.0,1,42.0,0.0297,0,0,53.21,11.9,105.9,11.41,9.16,0.0,34.802,0.2064,34.8,2027,H2,Jul-Dec
 Vimath Dinsara,Sri Lanka,Top Order Batter,21.75,1.0,1,54.0,-0.6986,0,1,114.84,20.16,131.5,0.0,0.0,0.0,36.5573,0.4964,36.76,2027,H2,Jul-Dec
-Sineth Jayawardena,Sri Lanka,Top Order Batter,30.75,1.0,1,68.0,1.8496,1,0,501.12,35.62,127.94,0.0,0.0,0.0,42.6089,0.4302,42.75,2027,H2,Jul-Dec
+Sineth Jayawardene,Sri Lanka,Top Order Batter,30.75,1.0,1,68.0,1.8496,1,0,501.12,35.62,127.94,0.0,0.0,0.0,42.6089,0.4302,42.75,2027,H2,Jul-Dec
 Vishad Randika,Sri Lanka,Top Order Batter,30.75,1.0,1,68.0,1.8496,1,0,501.12,35.62,127.94,0.0,0.0,0.0,42.6089,0.4302,42.75,2027,H2,Jul-Dec
 Vishen Halambage,Sri Lanka,Top Order Batter,22.75,1.0,1,48.0,-0.0245,0,0,147.84,20.83,145.09,0.0,0.0,0.0,39.9123,0.7136,40.13,2027,H2,Jul-Dec
 Vishwa Fernando,Sri Lanka,Pace Bowler,35.75,0.8125,1,56.0,-0.4102,0,0,92.0,8.62,66.24,16.15,7.67,0.0,27.9692,0.1015,28.17,2027,H2,Jul-Dec
@@ -1682,7 +1682,7 @@ Hardik Pandya,India,Batting All-Rounder,34.25,0.95,1,316.8,-2.4222,0,1,109.37,13
 Harsh Dubey,India,Bowling All-Rounder,26.25,1.0,1,85.0,0.5519,1,0,302.79,30.15,121.54,12.28,9.02,0.0,45.0288,0.0189,45.08,2028,H1,Jan-Jun
 Harshit Rana,India,Pace Bowler,25.25,1.0,1,61.0,0.9683,1,0,22.46,9.86,114.77,35.99,9.95,0.0,47.9311,0.7854,48.03,2028,H1,Jan-Jun
 Ishan Kishan,India,Wicketkeeper,30.25,1.0,1,188.0,-0.093,0,0,710.81,19.69,146.74,0.0,0.0,0.0,40.8929,0.6613,41.12,2028,H1,Jan-Jun
-Jasprit Bumrah,India,Pace Bowler,34.25,1.0,1,238.0,-0.5424,0,1,69.88,8.11,73.19,77.33,6.88,0.0,61.08,0.9624,61.33,2028,H1,Jan-Jun
+Jasprit Bumrah,India,Pace Bowler,34.25,1.0,1,238.0,-0.5424,0,1,69.88,8.11,73.19,77.33,6.88,0.0,61.08,0.9624,71.33,2028,H1,Jan-Jun
 Jitesh Sharma,India,Wicketkeeper,34.25,1.0,1,118.0,-1.2451,0,1,237.48,24.87,116.99,0.0,0.0,0.0,34.7852,0.1147,34.95,2028,H1,Jan-Jun
 KL Rahul,India,Wicketkeeper,36.25,0.8214,1,274.5714,0.6889,1,0,334.14,39.39,149.1,0.0,0.0,0.0,47.2087,0.5383,46.0,2028,H1,Jan-Jun
 KS Bharat,India,Wicketkeeper,34.25,1.0,1,40.0,-0.8691,0,1,74.95,12.8,122.94,0.0,0.0,0.0,31.2789,0.0346,32.01,2028,H1,Jan-Jun
@@ -2006,7 +2006,7 @@ Jeffrey Vandersay,Sri Lanka,Spin Bowler,38.25,0.0,0,47.0,-0.4163,0,0,14.39,4.79,
 Kamil Mishara,Sri Lanka,Top Order Batter,27.25,1.0,1,68.0,-0.6104,0,1,472.26,31.41,140.2,0.0,0.0,0.0,42.8816,0.9349,43.07,2028,H1,Jan-Jun
 Kamindu Mendis,Sri Lanka,Batting All-Rounder,29.25,1.0,1,88.0,0.8297,1,0,644.48,44.24,149.15,41.25,8.39,0.0,72.6239,0.9206,68.22,2028,H1,Jan-Jun
 Kasun Rajitha,Sri Lanka,Pace Bowler,35.25,0.9583,1,63.0,0.8787,1,0,112.02,11.82,75.23,18.63,8.08,0.0,31.4414,0.134,31.49,2028,H1,Jan-Jun
-Kavija Gamage,Sri Lanka,Spin Bowler,21.25,1.0,1,73.0,-0.5785,0,1,61.47,10.12,120.64,16.29,7.7,0.0,39.3732,0.8737,39.47,2028,H1,Jan-Jun
+Kavija Gamage,Sri Lanka,Spin Bowler,21.25,1.0,1,73.0,-0.5785,0,1,61.47,10.12,120.64,16.29,7.7,0.0,37.3732,0.8537,39.47,2028,H1,Jan-Jun
 Keshara Nuwantha,Sri Lanka,Bowling All-Rounder,26.25,1.0,1,52.0,0.5893,1,0,172.43,18.92,152.4,0.0,0.0,0.0,40.1487,0.0161,40.32,2028,H1,Jan-Jun
 Kusal Mendis,Sri Lanka,Wicketkeeper,33.25,1.0,1,124.0,-7.5955,0,1,493.73,32.28,124.91,0.0,0.0,0.0,39.9416,0.8353,40.16,2028,H1,Jan-Jun
 Kusal Perera,Sri Lanka,Wicketkeeper,38.25,0.15,0,66.4,-1.5804,0,1,168.87,17.25,136.8,0.0,0.0,0.0,36.161,0.0089,36.16,2028,H1,Jan-Jun
@@ -2399,7 +2399,7 @@ Hardik Pandya,India,Batting All-Rounder,34.75,0.85,1,318.4,-2.4222,0,1,82.83,13.
 Harsh Dubey,India,Bowling All-Rounder,26.75,1.0,1,89.0,0.5519,1,0,316.38,30.7,122.6,12.83,8.95,0.0,44.1198,0.0188,44.13,2028,H2,Jul-Dec
 Harshit Rana,India,Pace Bowler,25.75,1.0,1,65.0,0.9683,1,0,21.73,9.8,109.71,35.34,10.66,0.0,45.3327,0.7826,45.22,2028,H2,Jul-Dec
 Ishan Kishan,India,Wicketkeeper,30.75,1.0,1,192.0,-0.093,0,0,711.65,18.46,145.12,0.0,0.0,0.0,38.2573,0.4963,38.33,2028,H2,Jul-Dec
-Jasprit Bumrah,India,Pace Bowler,34.75,1.0,1,242.0,-0.5424,0,1,70.28,7.47,67.6,73.81,7.06,0.0,57.3768,0.9648,57.94,2028,H2,Jul-Dec
+Jasprit Bumrah,India,Pace Bowler,34.75,1.0,1,242.0,-0.5424,0,1,70.28,7.47,67.6,73.81,7.06,0.0,57.3768,0.9648,77.94,2028,H2,Jul-Dec
 Jitesh Sharma,India,Wicketkeeper,34.75,1.0,1,122.0,-1.2451,0,1,225.52,24.81,117.69,0.0,0.0,0.0,33.2691,0.0746,33.56,2028,H2,Jul-Dec
 KL Rahul,India,Wicketkeeper,36.75,0.75,1,276.2857,0.6889,1,0,286.24,38.84,145.11,0.0,0.0,0.0,43.8747,0.1488,43.5,2028,H2,Jul-Dec
 KS Bharat,India,Wicketkeeper,34.75,1.0,1,44.0,-0.8691,0,1,73.61,12.12,122.94,0.0,0.0,0.0,29.6019,0.0342,30.35,2028,H2,Jul-Dec
@@ -2756,7 +2756,7 @@ Tharindu Ratnayake,Sri Lanka,Bowling All-Rounder,32.75,1.0,1,97.0,0.7446,1,0,889
 Traveen Mathew,Sri Lanka,Spin Bowler,27.75,1.0,1,68.0,-0.3721,0,0,47.28,0.29,57.01,32.76,6.48,0.0,30.7941,0.6777,30.43,2028,H2,Jul-Dec
 V Viyaskanth,Sri Lanka,Spin Bowler,27.75,1.0,1,69.0,0.3392,0,0,31.93,7.41,74.17,38.55,7.03,0.0,39.6443,0.7299,39.78,2028,H2,Jul-Dec
 Vigneshwaran Akash,Sri Lanka,Spin Bowler,21.75,1.0,1,50.0,0.0297,0,0,57.14,13.96,115.66,12.55,8.52,0.0,36.1693,0.3565,36.21,2028,H2,Jul-Dec
-Senith Jayawardena,Sri Lanka,Top Order Batter,31.75,1.0,1,76.0,1.8496,1,0,570.58,40.49,136.26,0.0,0.0,0.0,43.458,0.8654,43.52,2028,H2,Jul-Dec
+Sineth Jayawardene,Sri Lanka,Top Order Batter,31.75,1.0,1,76.0,1.8496,1,0,570.58,40.49,136.26,0.0,0.0,0.0,43.458,0.8654,43.52,2028,H2,Jul-Dec
 Vimath Dinsara,Sri Lanka,Top Order Batter,22.75,1.0,1,62.0,-0.6986,0,1,65.15,19.71,119.59,0.0,0.0,0.0,31.453,0.1916,32.12,2028,H2,Jul-Dec
 Vishad Randika,Sri Lanka,Top Order Batter,31.75,1.0,1,76.0,1.8496,1,0,570.58,40.49,136.26,0.0,0.0,0.0,43.458,0.8654,43.52,2028,H2,Jul-Dec
 Vishen Halambage,Sri Lanka,Top Order Batter,23.75,1.0,1,56.0,-0.0245,0,0,127.53,20.67,139.19,0.0,0.0,0.0,36.0208,0.4821,36.19,2028,H2,Jul-Dec
@@ -3475,7 +3475,7 @@ Traveen Mathew,Sri Lanka,Spin Bowler,28.25,1.0,1,72.0,-0.3721,0,0,41.41,0.04,51.
 V Viyaskanth,Sri Lanka,Spin Bowler,28.25,1.0,1,73.0,0.3392,0,0,26.95,6.95,67.75,37.64,7.34,0.0,36.6773,0.7916,36.73,2029,H1,Jan-Jun
 Vigneshwaran Akash,Sri Lanka,Spin Bowler,22.25,1.0,1,54.0,0.0297,0,0,56.14,14.31,114.61,12.48,8.67,0.0,34.5352,0.3154,34.58,2029,H1,Jan-Jun
 Vimath Dinsara,Sri Lanka,Top Order Batter,23.25,1.0,1,66.0,-0.6986,0,1,46.62,21.34,124.95,0.0,0.0,0.0,31.3917,0.1869,32.11,2029,H1,Jan-Jun
-Senith Jayawardena,Sri Lanka,Top Order Batter,32.25,1.0,1,80.0,1.8496,1,0,543.65,38.55,125.76,0.0,0.0,0.0,38.4998,0.7455,38.63,2029,H1,Jan-Jun
+Sineth Jayawardene,Sri Lanka,Top Order Batter,32.25,1.0,1,80.0,1.8496,1,0,543.65,38.55,125.76,0.0,0.0,0.0,38.4998,0.7455,38.63,2029,H1,Jan-Jun
 Vishad Randika,Sri Lanka,Top Order Batter,32.25,1.0,1,80.0,1.8496,1,0,543.65,38.55,125.76,0.0,0.0,0.0,38.4998,0.7455,38.63,2029,H1,Jan-Jun
 Vishen Halambage,Sri Lanka,Top Order Batter,24.25,1.0,1,60.0,-0.0245,0,0,122.99,21.46,142.16,0.0,0.0,0.0,35.0276,0.3733,35.23,2029,H1,Jan-Jun
 Vishwa Fernando,Sri Lanka,Pace Bowler,37.25,0.4375,1,56.0,-0.4102,0,0,65.68,8.01,53.36,9.99,8.34,0.0,19.2447,0.0168,19.25,2029,H1,Jan-Jun
@@ -4851,7 +4851,7 @@ Ashian Daniel,Sri Lanka,Spin Bowler,29.25,1.0,1,83.0,-1.5075,0,1,3.83,3.23,140.7
 Asitha Fernando,Sri Lanka,Pace Bowler,34.25,1.0,1,83.0,0.1024,0,0,62.08,8.33,47.58,22.95,10.45,0.0,23.1512,0.0326,22.55,2030,H1,Jan-Jun
 Avishka Fernando,Sri Lanka,Top Order Batter,32.25,1.0,1,74.0,0.4543,0,0,156.09,17.94,138.96,0.0,0.0,0.0,31.7806,0.3426,32.27,2030,H1,Jan-Jun
 Bhanuka Rajapaksa,Sri Lanka,Middle Order Batter,38.25,0.4583,1,59.3333,-0.3592,0,0,171.48,20.17,104.43,0.0,0.0,0.0,26.0494,0.0115,26.75,2030,H1,Jan-Jun
-Binura Fernando,Sri Lanka,Pace Bowler,35.25,0.95,1,81.0,-0.0578,0,0,156.97,12.12,49.84,21.62,12.22,0.0,24.1518,0.0409,23.65,2030,H1,Jan-Jun
+Binura Fernando,Sri Lanka,Pace Bowler,35.25,0.95,0,81.0,-0.0578,0,0,156.97,12.12,49.84,21.62,12.22,0.0,24.1518,0.0409,23.65,2030,H1,Jan-Jun
 Chamika Karunaratne,Sri Lanka,Bowling All-Rounder,34.25,0.875,1,97.0,-3.4557,0,1,160.53,4.46,111.32,12.0,10.95,0.0,28.7207,0.0056,28.74,2030,H1,Jan-Jun
 Chamindu Wickramasinghe,Sri Lanka,Bowling All-Rounder,28.25,1.0,1,60.0,-0.0012,0,0,123.95,10.34,170.9,6.84,7.31,0.0,39.6405,0.9113,39.72,2030,H1,Jan-Jun
 Chamindu Wijesinghe,Sri Lanka,Batting All-Rounder,28.25,1.0,1,67.0,-0.5596,0,1,57.38,18.09,133.16,4.49,6.31,0.0,33.9147,0.0456,34.03,2030,H1,Jan-Jun
@@ -4910,7 +4910,7 @@ Traveen Mathew,Sri Lanka,Spin Bowler,29.25,1.0,1,80.0,-0.3721,0,0,36.26,0.0,51.9
 V Viyaskanth,Sri Lanka,Spin Bowler,29.25,1.0,1,81.0,0.3392,0,0,21.11,7.07,65.27,41.6,6.88,0.0,35.7795,0.5996,35.6,2030,H1,Jan-Jun
 Vigneshwaran Akash,Sri Lanka,Spin Bowler,23.25,1.0,1,62.0,0.0297,0,0,58.66,16.27,121.92,13.37,8.27,0.0,35.1094,0.9478,45.18,2030,H1,Jan-Jun
 Vimath Dinsara,Sri Lanka,Top Order Batter,24.25,1.0,1,74.0,-0.6986,0,1,10.2,22.99,125.43,0.0,0.0,0.0,30.3993,0.3406,30.99,2030,H1,Jan-Jun
-Sineth Jayawardena,Sri Lanka,Top Order Batter,33.25,1.0,1,88.0,1.8496,1,0,569.95,40.36,124.08,0.0,0.0,0.0,36.9827,0.7295,37.09,2030,H1,Jan-Jun
+Sineth Jayawardene,Sri Lanka,Top Order Batter,33.25,1.0,1,88.0,1.8496,1,0,569.95,40.36,124.08,0.0,0.0,0.0,36.9827,0.7295,37.09,2030,H1,Jan-Jun
 Vishad Randika,Sri Lanka,Top Order Batter,33.25,1.0,1,88.0,1.8496,1,0,569.95,40.36,124.08,0.0,0.0,0.0,36.9827,0.7295,37.09,2030,H1,Jan-Jun
 Vishen Halambage,Sri Lanka,Top Order Batter,32.25,1.0,1,92.0,-0.0245,0,0,445.99,38.32,158.16,0.0,0.0,0.0,46.7776,0.8065,47.98,2030,H1,Jan-Jun
 Vishwa Fernando,Sri Lanka,Pace Bowler,38.25,0.1875,1,51.0,-0.4102,0,0,46.49,7.53,50.68,6.45,8.97,0.0,15.5629,0.0147,16.04,2030,H1,Jan-Jun
@@ -5569,7 +5569,7 @@ Ashian Daniel,Sri Lanka,Spin Bowler,29.75,1.0,1,87.0,-1.5075,0,1,1.21,2.78,135.9
 Asitha Fernando,Sri Lanka,Pace Bowler,34.75,1.0,1,87.0,0.1024,0,0,62.97,9.03,51.71,24.87,9.89,0.0,24.9849,0.0664,25.0,2030,H2,Jul-Dec
 Avishka Fernando,Sri Lanka,Top Order Batter,32.75,1.0,1,78.0,0.4543,0,0,165.31,19.05,147.08,0.0,0.0,0.0,33.6411,0.3512,33.96,2030,H2,Jul-Dec
 Bhanuka Rajapaksa,Sri Lanka,Middle Order Batter,38.75,0.375,1,58.0,-0.3592,0,0,147.9,19.38,100.27,0.0,0.0,0.0,24.9523,0.0097,25.48,2030,H2,Jul-Dec
-Binura Fernando,Sri Lanka,Pace Bowler,35.75,0.85,1,81.0,-0.0578,0,0,152.51,12.69,51.39,20.14,12.35,0.0,23.7295,0.026,22.86,2030,H2,Jul-Dec
+Binura Fernando,Sri Lanka,Pace Bowler,35.75,0.85,0,81.0,-0.0578,0,0,152.51,12.69,51.39,20.14,12.35,0.0,23.7295,0.026,22.86,2030,H2,Jul-Dec
 Chamika Karunaratne,Sri Lanka,Bowling All-Rounder,34.75,0.625,1,91.0,-3.4557,0,1,105.23,3.18,113.79,9.72,10.78,0.0,27.4624,0.0027,27.88,2030,H2,Jul-Dec
 Chamindu Wickramasinghe,Sri Lanka,Bowling All-Rounder,28.75,1.0,1,64.0,-0.0012,0,0,124.21,9.94,173.07,6.77,7.29,0.0,39.8145,0.9117,39.88,2030,H2,Jul-Dec
 Chamindu Wijesinghe,Sri Lanka,Batting All-Rounder,28.75,1.0,1,71.0,-0.5596,0,1,48.89,17.79,130.31,3.96,6.34,0.0,32.9365,0.0457,33.19,2030,H2,Jul-Dec
@@ -5628,7 +5628,7 @@ Traveen Mathew,Sri Lanka,Spin Bowler,29.75,1.0,1,84.0,-0.3721,0,0,32.56,0.0,52.3
 V Viyaskanth,Sri Lanka,Spin Bowler,29.75,1.0,1,85.0,0.3392,0,0,16.48,6.55,58.71,40.17,7.24,0.0,33.306,0.5789,32.59,2030,H2,Jul-Dec
 Vigneshwaran Akash,Sri Lanka,Spin Bowler,23.75,1.0,1,66.0,0.0297,0,0,52.51,15.18,110.16,12.13,9.22,0.0,31.6839,0.9841,41.76,2030,H2,Jul-Dec
 Vimath Dinsara,Sri Lanka,Top Order Batter,24.75,1.0,1,78.0,-0.6986,0,1,3.46,23.86,125.67,0.0,0.0,0.0,30.6728,0.3339,31.23,2030,H2,Jul-Dec
-Senith Jayawardena,Sri Lanka,Top Order Batter,33.75,1.0,1,92.0,1.8496,1,0,578.02,40.91,122.23,0.0,0.0,0.0,36.8019,0.7305,36.92,2030,H2,Jul-Dec
+Sineth Jayawardene,Sri Lanka,Top Order Batter,33.75,1.0,1,92.0,1.8496,1,0,578.02,40.91,122.23,0.0,0.0,0.0,36.8019,0.7305,36.92,2030,H2,Jul-Dec
 Vishad Randika,Sri Lanka,Top Order Batter,33.75,1.0,1,92.0,1.8496,1,0,578.02,40.91,122.23,0.0,0.0,0.0,36.8019,0.7305,36.92,2030,H2,Jul-Dec
 Vishen Halambage,Sri Lanka,Top Order Batter,32.75,1.0,1,95.0,-0.0245,0,0,450.79,38.07,155.3,0.0,0.0,0.0,45.9303,0.9138,46.28,2030,H2,Jul-Dec
 Vishwa Fernando,Sri Lanka,Pace Bowler,38.75,0.0625,1,47.0,-0.4102,0,0,37.37,7.38,50.73,4.95,9.19,0.0,14.6892,0.0126,14.9,2030,H2,Jul-Dec
